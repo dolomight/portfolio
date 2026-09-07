@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobsOhio — Redesigning Ohio's economic development platform | Sean Cowan</title>
+  <meta name="description" content="Case study: sitemap, wireframes, functional specification and detail design for the 2025 JobsOhio.com redesign.">
+  <meta name="theme-color" content="#003057">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260907m">
+  <style>
+    /* Page-specific overrides. Keep these tiny — everything reusable lives in the framework. */
+    :root {
+      --cs-accent: #d71920;          /* JobsOhio red */
+      --cs-heading-accent: #7cc4ff;  /* subhead colour once scrolled into view */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       NAV
+       =================================================================== -->
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- ===============================================================
+           01 · HERO — video is pinned (sticky) and fades out as the page
+           scrolls over it; the title scrolls away normally.
+           Video: "homepageheader_16x9_v1" on Sean's Vimeo (1224503790).
+           If the video is Unlisted, add data-vimeo-hash="…" from its share link.
+           =============================================================== -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover"
+                 data-video="vimeo"
+                 data-vimeo-id="1224503790"
+                 data-title="JobsOhio home page header video">
+              <img class="video-cover__poster" src="../../assets/jobsohio/poster-home.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>JobsOhio</span>
+            </div>
+            <h1 class="h1" data-split>JobsOhio</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b><strong>Digital Experience:</strong> Strategy • UX Architecture • Creative Direction</dd></div>
+              <div><dt class="visually-hidden">Agency</dt><dd><b>Agency</b>Fahlgren Mortine</dd></div>
+              <div><dt class="visually-hidden">Year</dt><dd><b>Year</b>2025</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>Sitemap · Wireframes · Functional Spec · Detail Design</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           02 · INTRO STATEMENT — one big sentence, word-by-word reveal
+           =============================================================== -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              We redesigned JobsOhio's digital front door from the sitemap up: a new information architecture, component-driven wireframes, a full functional specification, and a detailed design system built to make great happen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           03 · PINNED SCROLL-THROUGH — the home page design grows into a
+           centred frame, pins, and scrolls inside the frame before the page
+           moves on. data-scroll-speed: page px per screenshot px (0.75).
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/jobsohio/dd-home-desktop.png" alt="JobsOhio.com home page detail design, desktop" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           04 · OVERVIEW — eyebrow left, headline + body right
+           PLACEHOLDER COPY — replace before publishing
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Overview</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>
+              Rebuilding Ohio's economic-development platform around the way companies actually choose a state.
+            </h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>JobsOhio is the state's private, nonprofit economic development corporation. Its website is the first stop for site selectors, executives and talent weighing Ohio against every other state — and the legacy platform had grown into hundreds of loosely connected pages that were hard to navigate and harder to maintain.</p>
+              <p>Placeholder overview text. Describe the starting point: what the previous site did well, where it fell short, what the business wanted the redesign to achieve, and how the engagement was scoped. Two or three short paragraphs work best here.</p>
+              <p>Placeholder overview text. Close with the outcome in one sentence — the thing a reader should remember if they read nothing else.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           05 · PINNED SCROLL-THROUGH — Advanced Aerospace & Defense page
+           grows into a centred frame, pins, and scrolls inside the frame.
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/jobsohio/dd-aerospace-desktop.png" alt="Advanced Aerospace &amp; Defense industry page, desktop detail design" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           06 · OBJECTIVES — numbered list; each row fades in with scroll
+           PLACEHOLDER COPY — replace before publishing
+           =============================================================== -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade>
+              <div class="objectives__num">01.</div>
+              <div class="objectives__text h6">Placeholder objective. Reorganise a sprawling site into an architecture that mirrors how businesses evaluate a location.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">02.</div>
+              <div class="objectives__text h6">Placeholder objective. Define a reusable component library so every page is assembled from the same proven modules.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">03.</div>
+              <div class="objectives__text h6">Placeholder objective. Specify every interaction, state and content rule so design intent survives the build.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">04.</div>
+              <div class="objectives__text h6">Placeholder objective. Translate the JobsOhio brand into a bold, confident visual system for desktop and mobile.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">05.</div>
+              <div class="objectives__text h6">Placeholder objective. Make conversion paths — site search, incentives, talent, contact — unmissable on every page.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           07 · DISPLAY TITLE — leads into the sticky gallery
+           =============================================================== -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max">
+          <h2 class="display" data-split>Make Great Happen, Digitally</h2>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <!-- ===============================================================
+           08 · STICKY GALLERY — pinned media, scrolling numbered captions
+           Each .gallery__item pairs with the .gallery__caption of the
+           same index. Add/remove pairs freely; JS handles the rest.
+           =============================================================== -->
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/jobsohio/poster-home.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/jobsohio/dd-home-desktop.png" alt="JobsOhio home page" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/jobsohio/poster-aerospace.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/jobsohio/dd-aerospace-desktop.png" alt="Aerospace &amp; Defense industry page" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/jobsohio/dd-siteselection-desktop.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/jobsohio/dd-siteselection-desktop.png" alt="Site selection page" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/jobsohio/dd-nav-industries.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/jobsohio/dd-nav-industries-composite.png" alt="Industries mega-menu" loading="lazy" style="object-position:top left"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/jobsohio/dd-home-mobile.png" alt="Mobile home page" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/jobsohio/dd-newsroom-desktop.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/jobsohio/dd-newsroom-desktop.png" alt="Newsroom page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/jobsohio/dd-aerospace-mobile.png" alt="Mobile industry page" loading="lazy"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <!-- PLACEHOLDER COPY in each caption -->
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>A home page that sells Ohio</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. A confident, video-led hero followed by three clear paths — sites, incentives, talent — and proof points that make the case at a glance.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Industries built to soar</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. One flexible industry template with sub-sector tabs, success stories, rankings, video and a "we're ready" conversion moment.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>Sites, searchable</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. Site selection reframed around the selector's workflow — search, compare, shortlist — with certified sites surfaced first.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">04</div>
+                <h3 class="h2-c" data-split>Navigation that maps the state</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. Mega-menus that expose depth without overwhelming, and a mobile drawer that keeps every section one tap away.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">05</div>
+                <h3 class="h2-c" data-split>News. Worthy.</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. A newsroom, blog and media-resources hub unified under one filterable feed, designed for both journalists and prospects.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           09 · TEXT SECTION — "Built with AI, owned by humans"
+           PLACEHOLDER COPY — replace before publishing
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Built with AI, owned by humans</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>An AI-assisted process, from sitemap to specification to screen</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. Describe where AI accelerated the work — auditing the legacy site, drafting the content model, generating spec variations, checking components against the design system — and where human judgement made the calls.</p>
+              <p>Placeholder. Note the guardrails: every deliverable was reviewed and owned by the design team; AI shortened the distance between decision and artefact, it did not make the decisions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           10 · QUOTE — PLACEHOLDER
+           =============================================================== -->
+      <section class="section quote">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>Placeholder quote. A sentence or two from the client or a collaborator about what the redesign changed for them — the tone of the work, the speed, the result.</blockquote>
+            <cite class="h4">— Name, Title, JobsOhio</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           11 · TEXT SECTION + MEDIA — sitemap, wireframes, spec
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>One system, every page</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>From a 7.0 sitemap to a component-driven specification</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. The sitemap went through seven major revisions with the client, settling the top-level sections — Why Ohio, Site Selection, Industries, Incentives, Workforce, About, Newsroom — and the conversion pages that hang off them.</p>
+              <p>Placeholder. Component wireframes defined a shared kit of modules; the functional specification documented behaviour, states and content rules screen by screen so development could proceed without guesswork.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-article--full">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-reveal style="aspect-ratio:2000/1294; background:#fff">
+            <img src="../../assets/jobsohio/sitemap.png" alt="JobsOhio 2025 sitemap, version 7.0" loading="lazy" style="object-fit:contain">
+            <figcaption>Sitemap v7.0 — 18 Nov 2025</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 img-grid--wide">
+            <figure class="media-fill radius-media" data-reveal style="background:#f4f4f4">
+              <img src="../../assets/jobsohio/wire-components-1.png" alt="Component wireframes sheet" loading="lazy" style="object-position:top">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/jobsohio/spec-04.png" alt="Functional specification page" loading="lazy">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           12 · THE IMPACT + STATS
+           PLACEHOLDER COPY / NUMBERS — verify before publishing
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The impact</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>A platform Ohio can grow on, page by page</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. Summarise the result: what launched, how the team works with the new system, and any early performance indicators worth sharing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="58">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Desktop page wireframes</h2>
+                <p class="body-normal text-dim">Placeholder. Every template and conversion page defined before visual design began.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="114">0</span><small>screens</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Functional specification</h2>
+                <p class="body-normal text-dim">Placeholder. Behaviour, states and content rules documented across five delivery batches.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="7.0">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Sitemap revisions</h2>
+                <p class="body-normal text-dim">Placeholder. The architecture was iterated with stakeholders until every path had a purpose.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===============================================================
+           13 · UP NEXT — parked for now, revisit later
+           =============================================================== -->
+      <!--
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max">
+          <h2 class="display" data-split>Up next</h2>
+        </div>
+      </section>
+
+      <section class="section up-next">
+        <div class="site-max">
+          <div class="up-next__row">
+            <article class="up-next__card" data-reveal>
+              <a href="../aptios/index.html" class="block">
+                <figure class="media-fill radius-media"><img src="../../assets/jobsohio/dd-home-mobile.png" alt="" loading="lazy" style="object-position:top"></figure>
+              </a>
+              <div class="up-next__body">
+                <h3 class="h3-c">Aptios for AbbVie</h3>
+                <p class="body-normal text-dim">Placeholder. A clinical-trial platform: admin, eConsent and a 3D configurator.</p>
+                <a class="btn btn--outline" href="../aptios/index.html">Explore</a>
+              </div>
+            </article>
+            <article class="up-next__card" data-reveal style="--d:120ms">
+              <a href="../bbw/index.html" class="block">
+                <figure class="media-fill radius-media"><img src="../../assets/jobsohio/dd-aerospace-mobile.png" alt="" loading="lazy" style="object-position:top"></figure>
+              </a>
+              <div class="up-next__body">
+                <h3 class="h3-c">Bath &amp; Body Works</h3>
+                <p class="body-normal text-dim">Placeholder. Corporate site, media room and the 2026 reskin.</p>
+                <a class="btn btn--outline" href="../bbw/index.html">Explore</a>
+              </div>
+            </article>
+            <article class="up-next__card" data-reveal style="--d:240ms">
+              <a href="../ccg/index.html" class="block">
+                <figure class="media-fill radius-media"><img src="../../assets/jobsohio/wire-siteselection-desktop.png" alt="" loading="lazy" style="object-position:top"></figure>
+              </a>
+              <div class="up-next__body">
+                <h3 class="h3-c">Creative Composites Group</h3>
+                <p class="body-normal text-dim">Placeholder. Wireframes to detail design for a composites manufacturer.</p>
+                <a class="btn btn--outline" href="../ccg/index.html">Explore</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+      -->
+    </article>
+
+    <!-- When this block scrolls into view the page background transitions to
+         white; the page then lifts away like a curtain to reveal the footer video -->
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER — full-screen video pinned beneath the page. The page (main)
+       is an opaque layer that scrolls up and off it like a curtain.
+       Video: "joaerospace_header_(1)_v1" on Sean's Vimeo (1224504293).
+       If the video is Unlisted, add data-vimeo-hash="…" from its share link.
+       The poster stays visible until Vimeo reports playback, so a private or
+       password-protected video never shows a broken player.
+       =================================================================== -->
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover"
+           data-video="vimeo"
+           data-vimeo-id="1224504293"
+           data-title="Advanced Aerospace &amp; Defense header video">
+        <img class="video-cover__poster" src="../../assets/jobsohio/poster-aerospace.jpg" alt="" loading="lazy" width="1920" height="1080">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <div class="site-footer__live" data-reveal>
+            <span class="eyebrow">See it live</span>
+            <a class="site-footer__live-link" href="https://www.jobsohio.com/" target="_blank" rel="noopener">jobsohio.com <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="btn btn--solid" href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260907m" defer></script>
+</body>
+</html>

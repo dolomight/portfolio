@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROJECT — One-line summary | Sean Cowan</title>
+  <meta name="description" content="Case study: PROJECT.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260907m">
+  <style>
+    :root { --cs-accent: #ffffff; } /* brand accent for this project */
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- 01 · HERO ------------------------------------------------------
+           Option A: Vimeo   data-video="vimeo" data-vimeo-id="123" data-vimeo-hash="abc"
+           Option B: MP4     data-video="file"  data-src="../../assets/PROJECT/hero.mp4"
+           Option C: Image   delete .video-cover, keep <img> inside figure.media-fill -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover" data-video="file" data-src="../../assets/PROJECT/hero.mp4">
+              <img class="video-cover__poster" src="../../assets/PROJECT/hero-poster.jpg" alt="" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>PROJECT</span>
+            </div>
+            <h1 class="h1" data-split>PROJECT<br>Name</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b>Your role</dd></div>
+              <div><dt class="visually-hidden">Client</dt><dd><b>Client</b>Client name</dd></div>
+              <div><dt class="visually-hidden">Year</dt><dd><b>Year</b>2026</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>What you made</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 02 · INTRO STATEMENT ------------------------------------------- -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              One bold sentence that says what you did, for whom, and why it mattered.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 03 · MEDIA ARTICLE (screenshot in a browser frame) --------------
+           Drop the .browser-frame wrapper for a plain rounded image. -->
+      <article class="section media-article">
+        <div class="site-max">
+          <figure class="media-fill radius-media browser-frame" data-scrollscale>
+            <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="browser-frame__view">
+              <img src="../../assets/PROJECT/screen-1.png" alt="" loading="lazy">
+            </div>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- 04 · OVERVIEW --------------------------------------------------- -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6"><p class="eyebrow" data-reveal>Overview</p></div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>Headline that frames the challenge in one line.</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Paragraph one.</p>
+              <p>Paragraph two.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 05 · OBJECTIVES ------------------------------------------------- -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade><div class="objectives__num">01.</div><div class="objectives__text h6">Objective one.</div></li>
+            <li data-scrollfade><div class="objectives__num">02.</div><div class="objectives__text h6">Objective two.</div></li>
+            <li data-scrollfade><div class="objectives__num">03.</div><div class="objectives__text h6">Objective three.</div></li>
+            <li data-scrollfade><div class="objectives__num">04.</div><div class="objectives__text h6">Objective four.</div></li>
+            <li data-scrollfade><div class="objectives__num">05.</div><div class="objectives__text h6">Objective five.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 06 · DISPLAY TITLE + STICKY GALLERY ------------------------------
+           Keep .gallery__item and .gallery__caption counts equal.
+           Shot variants: .gallery__shot (desktop), .gallery__shot--mobile,
+           .gallery__shot--pair (desktop + small mobile overlay). -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>Section title in a few words</h2></div>
+      </section>
+      <div class="space-xs"></div>
+
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/PROJECT/screen-1.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/PROJECT/screen-1.png" alt="" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/PROJECT/screen-2.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/PROJECT/screen-2.png" alt="" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/PROJECT/mobile-1.png" alt="" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/PROJECT/screen-3.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--mobile">
+                <div class="browser-frame">
+                  <div class="browser-frame__view"><img src="../../assets/PROJECT/mobile-1.png" alt="" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>Caption title one</h3>
+                <div class="body-normal txt" data-reveal><p>Short supporting sentence.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Caption title two</h3>
+                <div class="body-normal txt" data-reveal><p>Short supporting sentence.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>Caption title three</h3>
+                <div class="body-normal txt" data-reveal><p>Short supporting sentence.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- 07 · TEXT SECTION (repeatable) ----------------------------------- -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6"><p class="eyebrow" data-reveal>Eyebrow label</p></div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4" data-split>Headline for this part of the story</h2>
+            <div class="txt body-large text-light" data-reveal><p>Body copy.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 08 · QUOTE ------------------------------------------------------- -->
+      <section class="section quote">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>The quote.</blockquote>
+            <cite class="h4">— Name, Title, Company</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 09 · FULL-BLEED VIDEO / IMAGE BAND -------------------------------- -->
+      <section class="media-band">
+        <figure class="media-fill" style="position:absolute;inset:0">
+          <div class="video-cover" data-video="file" data-src="../../assets/PROJECT/band.mp4">
+            <img class="video-cover__poster" src="../../assets/PROJECT/band-poster.jpg" alt="" loading="lazy">
+          </div>
+          <div class="media-fill__overlay"></div>
+        </figure>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- 10 · IMPACT + STATS ---------------------------------------------- -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6"><p class="eyebrow" data-reveal>The impact</p></div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4" data-split>What changed because of the work</h2>
+            <div class="txt body-large text-light" data-reveal><p>Body copy.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="72">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Stat label</h2><p class="body-normal text-dim">Supporting line.</p></div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="54" data-suffix="%">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Stat label</h2><p class="body-normal text-dim">Supporting line.</p></div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="0">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Stat label</h2><p class="body-normal text-dim">Supporting line.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- 11 · UP NEXT ----------------------------------------------------- -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>Up next</h2></div>
+      </section>
+      <section class="section up-next">
+        <div class="site-max">
+          <div class="up-next__row">
+            <article class="up-next__card" data-reveal>
+              <a href="../OTHER/index.html"><figure class="media-fill radius-media"><img src="../../assets/OTHER/thumb.png" alt="" loading="lazy"></figure></a>
+              <div class="up-next__body">
+                <h3 class="h3-c">Other project</h3>
+                <p class="body-normal text-dim">One line.</p>
+                <a class="btn btn--outline" href="../OTHER/index.html">Explore</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+    </article>
+
+    <!-- When this block scrolls into view the page background transitions to white
+         (main.is-light), then the page lifts away like a curtain to reveal the footer
+         video. Set --cs-page-end in the page <style> to end on a different colour. -->
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <!-- FOOTER — full-screen video pinned beneath the page; the page scrolls up
+       and off it like a curtain. For a plain footer, drop the --media class,
+       the figure, and the .page-end div above. -->
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover" data-video="file" data-src="../../assets/PROJECT/footer.mp4">
+        <img class="video-cover__poster" src="../../assets/PROJECT/footer-poster.jpg" alt="" loading="lazy">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <div class="site-footer__live" data-reveal>
+            <span class="eyebrow">See it live</span>
+            <a class="site-footer__live-link" href="https://www.PROJECT.com/" target="_blank" rel="noopener">PROJECT.com <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="btn btn--solid" href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260907m" defer></script>
+</body>
+</html>

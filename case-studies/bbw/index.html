@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bath &amp; Body Works — People, Product, Planet | Sean Cowan</title>
+  <meta name="description" content="Case study: the bbwinc.com corporate website for Bath &amp; Body Works — discovery, sitemap, wireframes and detail design (2023), the Media Room update (2025) and the brand reskin in Figma (2026).">
+  <meta name="theme-color" content="#0a1d79">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260907m">
+  <style>
+    /* Page-specific overrides — BBW 2026 brand: Ambergris navy, Starflower blue, Coconut white; the classic BBW pink for accents */
+    :root {
+      --cs-bg: #0a1d79;               /* Ambergris */
+      --cs-accent: #e5007e;           /* BBW pink */
+      --cs-heading-accent: #9db7ec;   /* Starflower blue, lifted for contrast on navy */
+    }
+    main.is-light { --cs-heading-accent: #465da3; }   /* Indigo Slate on white */
+
+    /* The Sketch exports have transparent page backgrounds — every browser frame sits on white */
+    .browser-frame__view { background: #fff; }
+    .wire-frame .browser-frame__view img { object-fit: cover; object-position: top center; }
+
+    /* BBW gingham — the brand's signature check, now blue-only, used as a quiet texture */
+    .gingham { position: relative; }
+    .gingham::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .18;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 48px, transparent 48px 96px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.35) 0 48px, transparent 48px 96px);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+              mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+    }
+    .gingham > * { position: relative; }
+    main.is-light .gingham::before { opacity: .08; background-image:
+        repeating-linear-gradient(90deg, rgba(10,29,121,.6) 0 48px, transparent 48px 96px),
+        repeating-linear-gradient(0deg, rgba(10,29,121,.6) 0 48px, transparent 48px 96px); }
+
+    /* Gallery backdrop: keep the page navy showing through the photo */
+    .gallery__bg { opacity: 0.45; }
+    .gallery__bg-veil { background: linear-gradient(180deg, rgba(10,29,121,.25), rgba(10,29,121,.7)); }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       NAV
+       =================================================================== -->
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- ===============================================================
+           01 · HERO — pinned video that fades as the page scrolls over it.
+           Video: the film running in the bbwinc.com home page header today
+           ("2026-BBW-Amazon-BestSellers"), on Sean's Vimeo.
+           =============================================================== -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover"
+                 data-video="vimeo"
+                 data-vimeo-id="1224653944"
+                 data-ratio="2.06"
+                 data-title="bbwinc.com home page header film (2026)">
+              <img class="video-cover__poster" src="../../assets/bbw/poster-hero.jpg" alt="" width="1600" height="777" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>Bath &amp; Body Works</span>
+            </div>
+            <h1 class="h1" data-split>Bath &amp; Body Works</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b><strong>Digital Experience:</strong> Strategy • UX Architecture • Creative Direction</dd></div>
+              <div><dt class="visually-hidden">Agency</dt><dd><b>Agency</b>Fahlgren Mortine</dd></div>
+              <div><dt class="visually-hidden">Years</dt><dd><b>Years</b>2022 – 2026</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>Sitemap · Wireframes · Detail Design · Media Room · Brand Reskin</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           02 · INTRO STATEMENT
+           =============================================================== -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              When Bath &amp; Body Works stepped out of L Brands as its own public company, bbwinc.com had to grow up with it: a corporate home for investors, media, associates and customers, organised around People, Product and Planet and launched alongside the company's first ESG report.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           03 · PINNED SCROLL-THROUGH — 2023 home page design
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/bbw/dd-home-desktop.png" alt="bbwinc.com home page detail design, desktop, 2023" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           04 · OVERVIEW
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Overview</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>
+              A corporate site that finally matched the brand behind it.
+            </h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>bbwinc.com is the first place investors, ESG raters and rankers, NGOs, media, consumers and job seekers go to learn about Bath &amp; Body Works. A 2022 benchmark against peer CPG and retail companies found the legacy site lacklustre: corporate in tone, thin on storytelling and disconnected from the retail brand people already loved.</p>
+              <p>The corporate communications team, which publishes the company's news and press releases, briefed a redesign for spring 2023, timed to the enhanced proxy statement and the launch of the first ESG report. The site had to land a new identity: an independent company with a purpose, told through People, Product and Planet.</p>
+              <p>With Fahlgren Mortine I led UX architecture and design from stakeholder discovery through sitemap, wireframes and detail design. The same architecture carried the Media Room rebuild in 2025 and the full brand reskin in 2026, when the design system moved from Sketch to Figma.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           05 · PINNED SCROLL-THROUGH — People page
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/bbw/dd-people-desktop.png" alt="People section landing page, desktop detail design" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           06 · OBJECTIVES — from the stakeholder kickoff, 28 Sept 2022
+           =============================================================== -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade>
+              <div class="objectives__num">01.</div>
+              <div class="objectives__text h6">Build trust and positively impact the company's reputation with every audience the site serves.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">02.</div>
+              <div class="objectives__text h6">Convey the company's values, what it does, how it does it and why that matters, through compelling stories about the business and its people.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">03.</div>
+              <div class="objectives__text h6">Provide critical, factual information to key stakeholders: SEC filings, press releases, governance materials and ESG data, live from the source.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">04.</div>
+              <div class="objectives__text h6">Design a highly functional, flexible site that is easy to navigate, responsive and WCAG 2.1 AA compliant.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">05.</div>
+              <div class="objectives__text h6">Give the communications team a CMS-driven platform with the flexibility to evolve and grow with the business.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           07 · DISPLAY TITLE → STICKY GALLERY
+           =============================================================== -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max">
+          <h2 class="display" data-split>People. Product. Planet.</h2>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/poster-hero.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-home-desktop.png" alt="bbwinc.com home page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-home-mobile.png" alt="Home page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/bg-about.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-nav-people-composite.png" alt="People mega-menu" loading="lazy" style="object-position:top left"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-nav-mobile.png" alt="Mobile navigation" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/bg-people.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-people-desktop.png" alt="People landing page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-people-mobile.png" alt="People landing page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/bg-planet.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-planet-desktop.png" alt="Planet landing page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-planet-mobile.png" alt="Planet landing page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/bg-esg.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-esg-desktop.png" alt="ESG hub page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-esg-mobile.png" alt="ESG hub, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/bbw/bg-investors.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/bbw/dd-investors-desktop.png" alt="Investor Relations landing page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/bbw/dd-investors-mobile.png" alt="Investor Relations, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>A home page that leads with purpose</h3>
+                <div class="body-normal txt" data-reveal><p>A full-width film under "The Power of Fragrance", the values statement "Doing the right thing is our thing", news filterable by People, Product, Planet and Finance, a Making an Impact module that switches between the three pillars, a live NYSE ticker and a careers strip for stores, distribution centres and the home office.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Navigation for six audiences</h3>
+                <div class="body-normal txt" data-reveal><p>Seven top-level sections, each with a mega-menu that pairs a one-line story with its sub-pages and a contact CTA. A utility bar links back to the retail site, customer care and careers so the corporate site never has to be everything. The mobile drawer mirrors the same hierarchy.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>People</h3>
+                <div class="body-normal txt" data-reveal><p>Culture, diversity and equity, Gingham Gives Back and volunteerism, told through associates rather than stock photography. A CEO quote, a fast-facts carousel, the Foundation and partnership touts and an "Investing in You" careers block give the section its own rhythm.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">04</div>
+                <h3 class="h2-c" data-split>Planet</h3>
+                <div class="body-normal txt" data-reveal><p>Brighter Places: climate change and carbon emissions, energy efficiency, sustainable sourcing and affiliations, with a Performance With Purpose module linking to the detail pages and a persistent tout for the ESG report.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">05</div>
+                <h3 class="h2-c" data-split>An evergreen home for ESG</h3>
+                <div class="body-normal txt" data-reveal><p>The ESG hub holds the report, ESG news and awards, and the policies that rarely change: ESG, supplier and governance. Putting the durable content on the site lets each annual report focus on what happened that year.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">06</div>
+                <h3 class="h2-c" data-split>Investors, fed live</h3>
+                <div class="body-normal txt" data-reveal><p>Financial reporting, stock performance, governance and the shareholder centre share one sub-navigation. Releases, SEC filings and quarterly results arrive through the GlobeNewswire integration, so the team publishes once and the site stays current.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           08 · DISCOVERY — benchmarks, stakeholders, sitemap, wireframes
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Discovery</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Benchmarks, stakeholders and a sitemap built for six audiences</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The engagement kicked off in September 2022 with a project team meeting weekly, a stakeholder team every two weeks and critical partners on demand: external communications, investor relations, legal, IT, ESG, DE&amp;I, corporate philanthropy, HR and creative.</p>
+              <p>We patterned the site against Nestlé, P&amp;G, Apple, L'Oréal and Ulta using the Vertic index: intuitive navigation, intelligent search, circular flow, storytelling and decision-journey fulfilment. Stakeholder feedback was consistent: prioritise storytelling, be less corporate and more transparent, show more people, add an ESG section and a blog, and link back to the retail site.</p>
+              <p>The sitemap organised everything under About, People, Product, Planet, Investors, Media and Careers. Wireframes then locked the page structure and component kit before a single colour was chosen.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/dd-media-desktop-crop.png" alt="Media landing page, 2023 detail design" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Media landing page, 2023</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/dd-newsroom-desktop-crop.png" alt="Newsroom, 2023 detail design" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/dd-press-release-desktop-crop.png" alt="Press release detail page, 2023 detail design" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-article--full">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-reveal style="aspect-ratio:1440/1868; background:#005699">
+            <img src="../../assets/bbw/dd-sitemap.png" alt="bbwinc.com corporate site map" loading="lazy" style="object-fit:contain">
+            <figcaption>Corporate site map — About Us, People, Planet, Investors, Careers, Legal &amp; Privacy</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/wire-home-desktop-crop.png" alt="Home page wireframe" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Home page wireframe</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/wire-about-desktop-crop.png" alt="About Us wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/wire-esg-desktop-crop.png" alt="ESG page wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           09 · QUOTE — from the Bath & Body Works 2023 ESG Report
+           =============================================================== -->
+      <section class="section quote gingham" style="padding-block: 12rem">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>Last year, we complemented our first ESG report with a complete overhaul of our bbwinc.com corporate site. We started to populate the site with information on ESG that we believe won't substantially change year-over-year. This allows our ESG report to really focus on what happened and what we accomplished over the past year.</blockquote>
+            <cite class="h4">— Jeff King, Group Vice President, Head of ESG, Bath &amp; Body Works 2023 ESG Report</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           10 · FULL-BLEED VIDEO BAND — "Fruit Fusion" campaign film (Hilary Duff)
+           =============================================================== -->
+      <section class="media-band">
+        <figure class="media-fill" style="position:absolute;inset:0">
+          <div class="video-cover"
+               data-video="vimeo"
+               data-vimeo-id="1224653946"
+               data-ratio="1.778"
+               data-title="Bath &amp; Body Works Fruit Fusion campaign film">
+            <img class="video-cover__poster" src="../../assets/bbw/poster-band.jpg" alt="" loading="lazy" width="1600" height="900">
+          </div>
+          <div class="media-fill__overlay" style="background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.45))"></div>
+        </figure>
+        <div class="media-band__label">
+          <div class="site-max" data-reveal>Fruit Fusion campaign film — from the bbwinc.com newsroom</div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           11 · MEDIA ROOM, 2025
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Media Room · 2025</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Everything you need to tell our story</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The Media Room is the corporate communications team's front door to the press, and the part of the site that drives brand awareness with the media. Two years after launch it was rebuilt around how journalists actually use it.</p>
+              <p>A featured-news carousel sits under the header, one search covers releases and stories, and every card is tagged People, Product, Planet or Financial so the newsroom filters the same way the home page does. Story detail pages gained image galleries with downloads, and Media Assets became a browsable library of logos, product, store and leadership imagery with folders and usage terms.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/bbw/mr-media-desktop.png" alt="Media Room landing page, 2025 detail design" loading="lazy">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/mr-newsroom-desktop-crop.png" alt="Newsroom listing with category filters" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Newsroom</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/mr-news-detail-desktop-crop.png" alt="Press release detail page" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/mr-media-assets-desktop-crop.png" alt="Media Assets: brand and corporate logos" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           12 · BRAND RESKIN, 2026 — Figma
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Brand reskin · 2026</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Same structure, evolved expression</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>In early 2026 Bath &amp; Body Works updated its logo and colour system, and the corporate site followed. The brief was explicit: not a redesign. The structure, navigation and functional patterns had proven themselves, so the work was to evolve the visual expression until the site looked like the brand as it exists today.</p>
+              <p>Typography moved from Source Sans to Helvetica Neue. The palette consolidated on blue: Ambergris, Starflower Blue and Coconut White, with Indigo Slate and Soft Silver added where pairings needed WCAG contrast. The gingham was simplified to the brand blues and the pink retired from the interface.</p>
+              <p>We used the moment to move the design system from Sketch into Figma: colour and type variables, component sets for headers, navigation, cards, carousels and content modules, page templates for every type, and a component key for the developers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 img-grid--wide">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/bbw/brand-color.jpg" alt="Colour system and accessibility pairings from the 2026 brand presentation" loading="lazy" width="1920" height="1080">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/bbw/brand-typography.jpg" alt="Typography refresh: Source Sans to Helvetica Neue Pro" loading="lazy" width="1920" height="1080">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/bbw/fx-home-desktop.png" alt="bbwinc.com home page, 2026 brand reskin in Figma" loading="lazy">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/fx-about-desktop-crop.png" alt="About Us page, 2026 reskin" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">About Us, 2026</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/fx-values-desktop-crop.png" alt="Values page, 2026 reskin" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/bbw/fx-financial-releases-desktop-crop.png" alt="Financial Releases page, 2026 reskin" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           13 · THE IMPACT + STATS
+           =============================================================== -->
+      <div class="gingham">
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The impact</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>One architecture, three pillars, four years of evolution</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The site launched in spring 2023 alongside the first ESG report and the enhanced proxy statement, and has been the company's evergreen home for ESG, investor and news content since. The architecture held through the 2025 Media Room rebuild and the 2026 reskin without a page being re-planned, which is the outcome the original brief asked for: a site with the flexibility to evolve and grow with the business.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="6">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Audiences served</h2>
+                <p class="body-normal text-dim">Investors, media, raters and rankers, NGOs, consumers, and associates and job seekers.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="1.3" data-suffix="M">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Annual visits at kickoff</h2>
+                <p class="body-normal text-dim">With 69,000+ document downloads a year and a 55/45 desktop-to-mobile split, from the 2022 analytics baseline.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="45">0</span><small>+</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Page templates designed</h2>
+                <p class="body-normal text-dim">Desktop and mobile, from the home page to SEC filings, board committees and media folders.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:360ms">
+              <div class="stat__value h3"><span data-count="4">0</span><small>years</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Of continuous evolution</h2>
+                <p class="body-normal text-dim">Launch in 2023, the Media Room in 2025, the brand reskin and the move to Figma in 2026.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      </div><!-- /.gingham -->
+
+      <!-- ===============================================================
+           14 · UP NEXT — parked for now, revisit later
+           =============================================================== -->
+      <!--
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>Up next</h2></div>
+      </section>
+      <section class="section up-next">
+        <div class="site-max">
+          <div class="up-next__row">
+            <article class="up-next__card" data-reveal>
+              <a href="../ccg/index.html"><figure class="media-fill radius-media"><img src="../../assets/ccg/poster-hero.jpg" alt="" loading="lazy"></figure></a>
+              <div class="up-next__body">
+                <h3 class="h3-c">Creative Composites Group</h3>
+                <p class="body-normal text-dim">Sitemap, wireframes and detail design for the FRP infrastructure leader.</p>
+                <a class="btn btn--outline" href="../ccg/index.html">Explore</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <div class="space-large"></div>
+      -->
+    </article>
+
+    <!-- When this block scrolls into view the page background transitions to
+         white; the page then lifts away like a curtain to reveal the footer video -->
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER — full-screen video pinned beneath the page (curtain reveal).
+       Video: bbwinc.com home page header loop (new store opening, 2025).
+       =================================================================== -->
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover"
+           data-video="vimeo"
+           data-vimeo-id="1224653943"
+           data-ratio="2.06"
+           data-title="bbwinc.com home page header video, new store opening">
+        <img class="video-cover__poster" src="../../assets/bbw/poster-footer.jpg" alt="" loading="lazy" width="1600" height="777">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <div class="site-footer__live" data-reveal>
+            <span class="eyebrow">See it live</span>
+            <a class="site-footer__live-link" href="https://www.bbwinc.com/" target="_blank" rel="noopener">bbwinc.com <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="btn btn--solid" href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260907m" defer></script>
+</body>
+</html>

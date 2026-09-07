@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The J.M. Smucker Company — More than jams and jellies | Sean Cowan</title>
+  <meta name="description" content="Case study: the jmsmucker.com corporate website — wireframes and detail design that grew the Smucker story from jams and jellies to 40+ brands (2019), then the 2021 corporate rebrand.">
+  <meta name="theme-color" content="#6b0f1f">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260907m">
+  <style>
+    /* Page-specific overrides — Smucker: deep jam red, the 2021 "bright idea green" and bold purple */
+    :root {
+      --cs-bg: #6b0f1f;               /* deep jam red */
+      --cs-accent: #e71224;           /* Smucker red (2021) */
+      --cs-heading-accent: #d7df4a;   /* bright idea green, lifted for the dark page */
+    }
+    main.is-light { --cs-heading-accent: #963958; }   /* bold purple on the cream page-end */
+    main.is-light { --cs-page-end: #fbf6e6; }         /* the 2021 cream instead of plain white */
+
+    /* Sketch exports have transparent page backgrounds — every browser frame sits on white */
+    .browser-frame__view { background: #fff; }
+    .wire-frame .browser-frame__view img { object-fit: cover; object-position: top center; }
+
+    /* 2019 site texture: the red gingham "argyle" — 45° checks, quiet, fading top and bottom */
+    .gingham { position: relative; }
+    .gingham::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .16;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,.4) 0 56px, transparent 56px 112px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,.4) 0 56px, transparent 56px 112px);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+              mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+    }
+    .gingham > * { position: relative; }
+
+    /* 2021 texture: the strawberry pattern from the rebrand, tiled behind the rebrand chapter */
+    .berries { position: relative; }
+    .berries::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14;
+      background: url(../../assets/smucker/pattern-strawberries.png) repeat 0 0 / 185px auto;
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 20%, #000 80%, transparent);
+              mask-image: linear-gradient(180deg, transparent, #000 20%, #000 80%, transparent);
+    }
+    .berries > * { position: relative; }
+    main.is-light .gingham::before { opacity: .07; background-image:
+        repeating-linear-gradient(45deg, rgba(107,15,31,.6) 0 56px, transparent 56px 112px),
+        repeating-linear-gradient(-45deg, rgba(107,15,31,.6) 0 56px, transparent 56px 112px); }
+
+    /* Gallery backdrop: let the deep red show through the page photography */
+    .gallery__bg { opacity: 0.4; }
+    .gallery__bg-veil { background: linear-gradient(180deg, rgba(107,15,31,.3), rgba(107,15,31,.75)); }
+
+    /* The four 2019 hero directions are 1200×570 */
+    .hero-tiles .media-fill { aspect-ratio: 1200 / 570; }
+    .video-article .media-fill { aspect-ratio: 16 / 9; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       NAV
+       =================================================================== -->
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- ===============================================================
+           01 · HERO — pinned video that fades as the page scrolls over it.
+           Video: corporate headquarters film, One Strawberry Lane, Orrville
+           (self-hosted, 30s silent loop).
+           =============================================================== -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover"
+                 data-video="file"
+                 data-src="../../assets/smucker/jms-corporate-hq.mp4"
+                 data-ratio="1.778"
+                 data-title="The J.M. Smucker Company headquarters film">
+              <img class="video-cover__poster" src="../../assets/smucker/poster-corporate-hq.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>The J.M. Smucker Company</span>
+            </div>
+            <h1 class="h1" data-split>The J.M. Smucker Co.</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b><strong>Digital Experience:</strong> Strategy • UX Architecture • Creative Direction</dd></div>
+              <div><dt class="visually-hidden">Agency</dt><dd><b>Agency</b>Fahlgren Mortine</dd></div>
+              <div><dt class="visually-hidden">Years</dt><dd><b>Years</b>2019 – 2021</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>Sitemap · Wireframes · Detail Design · 2021 Rebrand</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           02 · INTRO STATEMENT
+           =============================================================== -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              Most people still knew Smucker's for jam. The corporate communications team needed jmsmucker.com to tell the bigger story: a Fortune 500 family company behind more than 40 coffee, consumer food and pet food brands, a place to build a career in Orrville, Ohio, and a stock worth a main-street investor's attention.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           03 · PINNED SCROLL-THROUGH — 2019 home page design
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/smucker/og-home-desktop.png" alt="jmsmucker.com home page detail design, desktop, 2019" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           04 · OVERVIEW
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Overview</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>
+              From a jam company to a house of brands, without losing the family at the table.
+            </h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The J.M. Smucker Company had grown through acquisition into a multi-billion-dollar business: Folgers, Dunkin', Café Bustelo and 1850 in coffee; Jif, Smucker's, Crisco and Sahale Snacks in consumer foods; Milk-Bone, Meow Mix and Rachael Ray Nutrish in pet. The corporate site still read like the jam company, and it served none of the audiences the communications team cared about well.</p>
+              <p>Three of them mattered most. Consumers and media who needed to see the breadth of the portfolio. Candidates who needed to feel what it is like to work at the Orrville headquarters, inside a culture five generations of one family had shaped. And main-street investors who wanted the numbers, the filings and the story in plain language.</p>
+              <p>With Fahlgren Mortine I led creative direction, UX architecture and design from wireframes through detail design for the 2019 launch. When Smucker rebranded in 2021 with a new mark, palette and typography, I returned to carry the site through the change without rebuilding it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           05 · PINNED SCROLL-THROUGH — Brands You Love
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/smucker/og-brands-desktop.png" alt="Brands You Love landing page, desktop detail design" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           06 · OBJECTIVES
+           =============================================================== -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade>
+              <div class="objectives__num">01.</div>
+              <div class="objectives__text h6">Transform the corporate story from jams and jellies to the 40-plus brands, three categories and billions in sales the company represents today.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">02.</div>
+              <div class="objectives__text h6">Make the site a recruiting tool for the Orrville headquarters: show the campus, the people and the family-style culture, not just the job listings.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">03.</div>
+              <div class="objectives__text h6">Serve main-street investors with live stock data, results, filings and plain-English financial highlights alongside the story.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">04.</div>
+              <div class="objectives__text h6">Give corporate communications one home for news, stories, publications and the impact report, with a social feed that keeps it alive between releases.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">05.</div>
+              <div class="objectives__text h6">Build it as a component system that could take a brand change, which it had to two years later.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           07 · DISPLAY TITLE → STICKY GALLERY (2019 design)
+           =============================================================== -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max">
+          <h2 class="display" data-split>More than jams and jellies</h2>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-home.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-home-desktop.png" alt="Home page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-home-mobile.png" alt="Home page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-brands.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-brands-desktop.png" alt="Brands You Love" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-brands-mobile.png" alt="Brands You Love, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-careers.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-careers-desktop.png" alt="Careers" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-careers-mobile.png" alt="Careers, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-investors.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-investors-desktop.png" alt="Investor Relations" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-investors-mobile.png" alt="Investor Relations, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-smucker-way.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-smucker-way-desktop.png" alt="The Smucker Way" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-smucker-way-mobile.png" alt="The Smucker Way, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/smucker/bg-impact.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/smucker/og-impact-desktop.png" alt="Our Impact" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/smucker/og-impact-mobile.png" alt="Our Impact, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>Made for Families</h3>
+                <div class="body-normal txt" data-reveal><p>The home page opens on people, not products: a family at breakfast under a hand-lettered "Made for Families", one of four hero directions. Below it, "40+ Brands You Know and Love" puts the whole portfolio on one red gingham band, then News &amp; Stories, a Careers film, the impact story and a "Made for Sharing" social grid.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Brands You Love</h3>
+                <div class="body-normal txt" data-reveal><p>A wall of brand marks leads into a balanced portfolio: Coffee, Consumer Foods, and Pet Foods and Snacks as tabs over the products themselves, then innovation, quality and the two areas of expertise, culinary and animal nutrition. This is the page that changes what "Smucker's" means.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>Create a career with us</h3>
+                <div class="body-normal txt" data-reveal><p>Careers is built to recruit for Orrville. A campus tour film, "A Culture of Growth", the hiring process in three steps, an intern's testimonial and an interactive map of thirty-plus locations, with the corporate headquarters marked with a star.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">04</div>
+                <h3 class="h2-c" data-split>Investors, in plain English</h3>
+                <div class="body-normal txt" data-reveal><p>A live SJM quote sits in the hero. Quarterly results and investor resources share one blue module, financial highlights are three big numbers, and the reading list packages the company spotlight, annual report and impact report for people who don't read 10-Ks for a living.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">05</div>
+                <h3 class="h2-c" data-split>The Smucker Way</h3>
+                <div class="body-normal txt" data-reveal><p>Purpose, vision and the Basic Beliefs the family has run the company on since 1897, told with the leadership team, the Orrville offices and a timeline of defining moments. The culture pages are what make the careers pages credible.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">06</div>
+                <h3 class="h2-c" data-split>Thriving together</h3>
+                <div class="body-normal txt" data-reveal><p>Our Impact organises corporate responsibility around consumers, responsible sourcing, employee well-being, communities and the planet, each as a colour-blocked card that links to its own page, and closes on the Made for Sharing feed.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           08 · DISCOVERY — wireframes and the four hero directions
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Wireframes &amp; direction</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Structure first, then the warmth</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The sitemap settled on six sections that map to the audiences: About, Brands You Love, Investors, Careers, News &amp; Stories and Our Impact. Wireframes in spring 2019 locked every page type and the component kit before a colour was chosen, so the storytelling modules, the location map, the stock ticker and the social feed all had a home.</p>
+              <p>Detail design then leaned into what Smucker already owned: the red gingham as a diamond texture, brand marks as a family of circles, warm photography of real associates, and a hand-lettered script to make "Made for Families", "Stewards", "Best Friends" and "Trailblazers" feel written rather than set.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/wire-home-desktop-crop.png" alt="Home page wireframe" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Home page wireframe</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/wire-careers-desktop-crop.png" alt="Careers wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/wire-invest-desktop-crop.png" alt="Investors wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 hero-tiles">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/smucker/og-hero-families.jpg" alt="Home page hero direction: Made for Families" loading="lazy" width="1200" height="570">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/smucker/og-hero-stewards.jpg" alt="Home page hero direction: Made for Stewards" loading="lazy" width="1200" height="570">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:240ms">
+              <img src="../../assets/smucker/og-hero-best-friends.jpg" alt="Home page hero direction: Made for Best Friends" loading="lazy" width="1200" height="570">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:360ms">
+              <img src="../../assets/smucker/og-hero-trailblazers.jpg" alt="Home page hero direction: Made for Trailblazers" loading="lazy" width="1200" height="570">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           09 · QUOTE — the line the whole site is built to earn
+           =============================================================== -->
+      <section class="section quote gingham" style="padding-block: 12rem">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>For more than 120 years and through five generations of family leadership, we've maintained the belief that being a successful business and a responsible one are not mutually exclusive. And our actions prove it.</blockquote>
+            <cite class="h4">— "Together We Thrive", jmsmucker.com</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           10 · FULL-BLEED VIDEO BAND — employee story film
+           =============================================================== -->
+      <section class="media-band">
+        <figure class="media-fill" style="position:absolute;inset:0">
+          <div class="video-cover"
+               data-video="file"
+               data-src="../../assets/smucker/jms-culture-work-life-balance.mp4"
+               data-ratio="1.778"
+               data-title="Smucker culture film: work-life balance">
+            <img class="video-cover__poster" src="../../assets/smucker/poster-culture-work-life-balance.jpg" alt="" loading="lazy" width="1920" height="1080">
+          </div>
+          <div class="media-fill__overlay" style="background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.4))"></div>
+        </figure>
+        <div class="media-band__label">
+          <div class="site-max" data-reveal>Culture film — "Smucker is a place that appreciates work-life balance"</div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           11 · CAREERS & CULTURE — film-led recruiting
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Careers &amp; culture</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Recruiting for Orrville with film, not job boards</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Smucker's competition for talent is not other food companies, it is the idea that a career means a coast. So the careers and culture pages lead with the campus at One Strawberry Lane and the people in it: a headquarters tour, associate stories on work-life balance and family-friendly benefits, the childcare centre, the wellness centre, the Basic Beliefs.</p>
+              <p>Every film has a home in the system: the hero tour on Careers, story films inside the Why Smucker and Employee Benefits pages, and a "Love our brands? Join the family" tout that follows readers through the rest of the site.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article video-article">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-scrollscale>
+            <div class="video-cover"
+                 data-video="file"
+                 data-src="../../assets/smucker/jms-family-friendly-benefits.mp4"
+                 data-ratio="1.778"
+                 data-title="Smucker family-friendly benefits film">
+              <img class="video-cover__poster" src="../../assets/smucker/poster-family-friendly-benefits.jpg" alt="" loading="lazy" width="1920" height="1080">
+            </div>
+            <figcaption>Family-friendly benefits film — the on-campus childcare centre</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/og-careers-desktop-crop.png" alt="Careers page, 2019 design" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Careers</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/og-smucker-way-desktop-crop.png" alt="The Smucker Way page, 2019 design" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/og-about-desktop-crop.png" alt="About page, 2019 design" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           12 · 2021 REBRAND — new mark, palette, type; same architecture
+           =============================================================== -->
+      <div class="berries">
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Corporate rebrand · 2021</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>A new company mark, carried by the same architecture</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>In 2021 The J.M. Smucker Co. retired the strawberry-and-banner corporate logo for a new fruit-and-leaf mark and a bolder identity: cream, red, bold purple, trusted green and a bright idea green, headlines in condensed Champion with Cooper for accents, TT Norms for everything else, and a family of strawberry, leaf and stripe patterns.</p>
+              <p>Because the 2019 site was built as a component system, the rebrand was a reskin rather than a redesign. The home page got a new hero carousel with three colourways, "Who Touches Our Business" and "40+ Brands" as colour-blocked bands, a refreshed News &amp; Stories, and a new Media Assets section with downloadable headshots, product photography and brand portfolios for the press.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 img-grid--wide">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/smucker/rb-hero-style-3.jpg" alt="2021 home page hero, bold purple colourway with the Uncrustables sandwich" loading="lazy" width="1277" height="716">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/smucker/rb-nav-1.jpg" alt="2021 navigation dropdown over the hero" loading="lazy" width="1279" height="718">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/smucker/rb-home-desktop.png" alt="jmsmucker.com home page, 2021 rebrand" loading="lazy">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/rb-media-1-crop.png" alt="Media Assets landing page, 2021" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Media Assets, 2021</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/rb-media-2-crop.png" alt="Media Assets: executive headshots, 2021" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/smucker/rb-media-3-crop.png" alt="Media Assets: pet food portfolio, 2021" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+      </div><!-- /.berries -->
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           13 · THE IMPACT + STATS
+           =============================================================== -->
+      <div class="gingham">
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The impact</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>A corporate site that finally matched the size of the company</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>jmsmucker.com launched in 2019 as the company's story for consumers, candidates and investors in one place, and it held its structure through the 2021 rebrand with only a visual layer changed. The architecture, the component kit and the film-first approach to culture are still recognisable on the live site today.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="40">0</span><small>+</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Brands in one story</h2>
+                <p class="body-normal text-dim">Coffee, consumer foods and pet, from Folgers and Jif to Milk-Bone and Meow Mix.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="30">0</span><small>+</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Locations on the map</h2>
+                <p class="body-normal text-dim">Headquarters, offices and manufacturing across North America, filterable by type.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="45">0</span><small>+</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Page templates designed</h2>
+                <p class="body-normal text-dim">Desktop and mobile, from the home page to governance documents, internships and the impact report.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:360ms">
+              <div class="stat__value h3"><span data-count="2">0</span><small>identities</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">One architecture</h2>
+                <p class="body-normal text-dim">The 2019 launch and the 2021 rebrand, with no page re-planned in between.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      </div><!-- /.gingham -->
+
+      <!-- ===============================================================
+           14 · UP NEXT — parked for now, revisit later
+           =============================================================== -->
+      <!--
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>Up next</h2></div>
+      </section>
+      -->
+    </article>
+
+    <!-- When this block scrolls into view the page background transitions to
+         cream; the page then lifts away like a curtain to reveal the footer video -->
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER — full-screen video pinned beneath the page (curtain reveal).
+       Video: careers hero film, the Orrville headquarters (self-hosted).
+       =================================================================== -->
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover"
+           data-video="file"
+           data-src="../../assets/smucker/jms-careers-hero.mp4"
+           data-ratio="1.778"
+           data-title="Smucker careers film, Orrville headquarters">
+        <img class="video-cover__poster" src="../../assets/smucker/poster-careers-hero.jpg" alt="" loading="lazy" width="1920" height="1080">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <div class="site-footer__live" data-reveal>
+            <span class="eyebrow">See it live</span>
+            <a class="site-footer__live-link" href="https://www.jmsmucker.com/" target="_blank" rel="noopener">jmsmucker.com <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="btn btn--solid" href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260907m" defer></script>
+</body>
+</html>

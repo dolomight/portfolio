@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creative Composites Group — Advancing infrastructure online | Sean Cowan</title>
+  <meta name="description" content="Case study: sitemap, wireframes and detail design for the Creative Composites Group website redesign.">
+  <meta name="theme-color" content="#0b1d45">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260907m">
+  <style>
+    /* Page-specific overrides — CCG brand: navy, orange, lavender-blue */
+    :root {
+      --cs-bg: #0b1d45;
+      --cs-accent: #f26a1b;
+      --cs-heading-accent: #f7924a;   /* subheads turn CCG orange once in view */
+    }
+    main.is-light { --cs-heading-accent: #d9580f; }
+
+    /* Transparent wireframe PNGs need a white page behind them */
+    .wire-frame .browser-frame__view { background: #fff; }
+    .wire-frame .browser-frame__view img { object-fit: cover; object-position: top center; }
+
+    /* CCG's blue line-wave behind the sticky gallery; backdrops eased back so it reads through */
+    .gallery__sticky {
+      background: var(--cs-bg) url(../../assets/ccg/bg-side-wave.svg) no-repeat right center / cover;
+    }
+    .gallery__bg { opacity: 0.3; }
+    .gallery__bg-veil { background: linear-gradient(180deg, rgba(11,29,69,.15), rgba(11,29,69,.45)); }
+
+    /* CCG's orange→lavender "fiber wave" (from their footer) behind selected sections */
+    .fiber-wave { position: relative; }
+    .fiber-wave::before {
+      content: ""; position: absolute; inset: -15% 0;
+      background: url(../../assets/ccg/ccg-fiber-wave-gradient.png) no-repeat 0% 50% / auto 130%;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    .fiber-wave--right::before { transform: scaleX(-1); }
+    .fiber-wave > * { position: relative; }
+    main.is-light .fiber-wave::before { opacity: 0.5; }
+    @media (max-width: 767px) {
+      .fiber-wave::before { background-image: url(../../assets/ccg/ccg-fiber-wave-gradient-mobile.png); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       NAV
+       =================================================================== -->
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- ===============================================================
+           01 · HERO — pinned video that fades as the page scrolls over it.
+           Video: creativecompositesgroup.com home page loop
+           ("Main Page-Loop-Master"), self-hosted.
+           =============================================================== -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover"
+                 data-video="file"
+                 data-src="../../assets/ccg/ccg-hero.mp4"
+                 data-ratio="2.398"
+                 data-title="Creative Composites Group home page video">
+              <img class="video-cover__poster" src="../../assets/ccg/poster-hero.jpg" alt="" width="2048" height="854" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>Creative Composites Group</span>
+            </div>
+            <h1 class="h1" data-split>Creative Composites Group</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b><strong>Digital Experience:</strong> Strategy • UX Architecture • Creative Direction</dd></div>
+              <div><dt class="visually-hidden">Agency</dt><dd><b>Agency</b>Fahlgren Mortine</dd></div>
+              <div><dt class="visually-hidden">Year</dt><dd><b>Year</b>2025</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>Sitemap · Wireframes · Detail Design</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           02 · INTRO STATEMENT
+           =============================================================== -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              We rebuilt Creative Composites Group's website around the products and industries it serves: a 989-page sitemap distilled into seven clear sections, component wireframes, and a bold navy-and-orange design system for the FRP leader.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           03 · PINNED SCROLL-THROUGH — home page design
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/ccg/dd-home-desktop.png" alt="Creative Composites Group home page detail design, desktop" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           04 · OVERVIEW — PLACEHOLDER COPY
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Overview</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>
+              Turning a sprawling product catalogue into a site engineers can actually navigate.
+            </h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Creative Composites Group designs and manufactures fiber-reinforced polymer (FRP) products for bridges, utilities, transit, waterfront and industrial infrastructure. Its legacy site had grown to nearly a thousand pages across product lines, services, resources and news — with no clear path for the engineers and specifiers who came looking for a specific solution.</p>
+              <p>Placeholder overview text. Describe the starting point: what the previous site did well, where it fell short, what the business wanted the redesign to achieve, and how the engagement was scoped.</p>
+              <p>Placeholder overview text. Close with the outcome in one sentence — the thing a reader should remember if they read nothing else.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           05 · PINNED SCROLL-THROUGH — product detail page
+           =============================================================== -->
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/ccg/dd-product-detail-desktop.png" alt="FireStrong utility pole product detail page, desktop detail design" loading="eager">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           06 · OBJECTIVES — PLACEHOLDER COPY
+           =============================================================== -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade>
+              <div class="objectives__num">01.</div>
+              <div class="objectives__text h6">Placeholder objective. Reorganise nearly a thousand pages into an architecture that follows how engineers search: by industry first, then product.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">02.</div>
+              <div class="objectives__text h6">Placeholder objective. Give every product a detail page built to sell the specification — downloads, performance data, FAQs and video in one place.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">03.</div>
+              <div class="objectives__text h6">Placeholder objective. Explain FRP to newcomers without slowing down the experts who already know what they need.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">04.</div>
+              <div class="objectives__text h6">Placeholder objective. Translate the CCG brand into a confident navy-and-orange system that works from hero video to data table.</div>
+            </li>
+            <li data-scrollfade>
+              <div class="objectives__num">05.</div>
+              <div class="objectives__text h6">Placeholder objective. Make "request a quote" and "find a sales partner" one tap away on every page.</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           07 · DISPLAY TITLE → STICKY GALLERY
+           =============================================================== -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max">
+          <h2 class="display" data-split>Advancing Infrastructure, Online</h2>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/ccg/poster-hero.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/ccg/dd-home-desktop.png" alt="CCG home page" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/ccg/dd-nav-industries.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/ccg/dd-nav-industries-composite.png" alt="Industries &amp; Products mega-menu" loading="lazy" style="object-position:top left"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/ccg/dd-nav-mobile-industries.png" alt="Mobile navigation, Industries" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/ccg/poster-bridges.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/ccg/dd-product-detail-desktop.png" alt="Product detail page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/ccg/dd-product-detail-mobile.png" alt="Product detail page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/ccg/poster-structural.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/ccg/dd-services-desktop.png" alt="Services page" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/ccg/dd-services-mobile.png" alt="Services page, mobile" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/ccg/dd-what-is-frp-desktop.png" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/ccg/dd-what-is-frp-desktop.png" alt="What is FRP? page" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <!-- PLACEHOLDER COPY in each caption -->
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>A home page built on FRP</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. A cinematic infrastructure loop, a services carousel, the latest from the blog and a plain-language "What is FRP?" — all leading to industries and products.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Industries and products, mapped</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. A four-level mega-menu that walks from industry to product line to product without ever leaving the header — and a mobile drawer that does the same.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>Product pages that sell the spec</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. Every product carries its downloads, dimensions, performance data, testimonials, videos and FAQs on one page — built for the engineer writing the spec.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">04</div>
+                <h3 class="h2-c" data-split>Services, from design to field</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. Design-build, manufacturing, fabrication and field services presented as one continuous offering, each with its own detail page and header film.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">05</div>
+                <h3 class="h2-c" data-split>What is FRP? Answered.</h3>
+                <div class="body-normal txt" data-reveal><p>Placeholder. A learning hub — construction, material selection, manufacturing processes and a glossary — that brings newcomers up to speed without slowing down the experts.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           08 · TEXT SECTION — "Built with AI, owned by humans" (PLACEHOLDER)
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Built with AI, owned by humans</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>An AI-assisted audit of a thousand pages, and a human-led design of the ones that matter</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. Describe where AI accelerated the work — crawling and clustering the legacy site, drafting the content model, generating layout variations, checking components against the design system — and where human judgement made the calls.</p>
+              <p>Placeholder. Note the guardrails: every deliverable was reviewed and owned by the design team; AI shortened the distance between decision and artefact, it did not make the decisions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           09 · QUOTE — PLACEHOLDER
+           =============================================================== -->
+      <section class="section quote fiber-wave fiber-wave--left" style="padding-block: 12rem">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>Placeholder quote. A sentence or two from the client or a collaborator about what the redesign changed for them — the tone of the work, the speed, the result.</blockquote>
+            <cite class="h4">— Name, Title, Creative Composites Group</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           10 · FULL-BLEED VIDEO BAND — Structural Fabrication services header
+           =============================================================== -->
+      <section class="media-band">
+        <figure class="media-fill" style="position:absolute;inset:0">
+          <div class="video-cover"
+               data-video="file"
+               data-src="../../assets/ccg/ccg-structural-fabrication.mp4"
+               data-ratio="2.398"
+               data-title="Structural fabrication services header video">
+            <img class="video-cover__poster" src="../../assets/ccg/poster-structural.jpg" alt="" loading="lazy" width="2048" height="854">
+          </div>
+          <div class="media-fill__overlay" style="background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.45))"></div>
+        </figure>
+        <div class="media-band__label">
+          <div class="site-max" data-reveal>Structural Fabrication — services page header</div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           11 · TEXT SECTION + MEDIA — sitemap and wireframes
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>One system, every page</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>From a 989-page sitemap to a component-driven design</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. The sitemap went through five major revisions, consolidating the legacy site into seven sections — Industries &amp; Products, Services, What is FRP, Resources, About, Blog and Contact — with Request a Quote and Find a Sales Partner as persistent utilities.</p>
+              <p>Placeholder. Wireframes locked the page structure and component kit before visual design; the detail design then carried the same modules across desktop and mobile.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-article--full">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-reveal style="aspect-ratio:1833/1416; background:#fff">
+            <img src="../../assets/ccg/sitemap.png" alt="Creative Composites Group sitemap, version 5.0" loading="lazy" style="object-fit:contain">
+            <figcaption>Sitemap v5.0 — 19 Mar 2025 · 989 pages</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3">
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/ccg/wire-home-desktop-crop.png" alt="Home page wireframe" loading="lazy" width="1000" height="1250"></div>
+              <figcaption class="visually-hidden">Home page wireframe</figcaption>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/ccg/wire-product-detail-crop.png" alt="Product detail wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame wire-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:4/5"><img src="../../assets/ccg/wire-what-is-frp-crop.png" alt="What is FRP wireframe" loading="lazy" width="1000" height="1250"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           12 · THE IMPACT + STATS — PLACEHOLDER COPY / NUMBERS
+           (wrapped in the CCG fiber wave, mirrored so the orange sits right)
+           =============================================================== -->
+      <div class="fiber-wave fiber-wave--right">
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The impact</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>A site that finally matches the engineering behind it</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Placeholder. Summarise the result: what launched, how the team works with the new system, and any early performance indicators worth sharing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="989">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Pages mapped</h2>
+                <p class="body-normal text-dim">Placeholder. The full legacy site, audited and organised into the v5.0 sitemap.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="7">0</span></div>
+              <div class="stat__content">
+                <h2 class="body-large">Top-level sections</h2>
+                <p class="body-normal text-dim">Placeholder. Industries &amp; Products, Services, What is FRP, Resources, About, Blog, Contact.</p>
+              </div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="45">0</span><small>screens</small></div>
+              <div class="stat__content">
+                <h2 class="body-large">Desktop templates designed</h2>
+                <p class="body-normal text-dim">Placeholder. Every page type, plus mobile variants, navigation states and forms.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      </div><!-- /.fiber-wave -->
+
+      <!-- ===============================================================
+           13 · UP NEXT — parked for now, revisit later
+           =============================================================== -->
+      <!--
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>Up next</h2></div>
+      </section>
+      <section class="section up-next">
+        <div class="site-max">
+          <div class="up-next__row">
+            <article class="up-next__card" data-reveal>
+              <a href="../jobsohio/index.html"><figure class="media-fill radius-media"><img src="../../assets/jobsohio/poster-home.jpg" alt="" loading="lazy"></figure></a>
+              <div class="up-next__body">
+                <h3 class="h3-c">JobsOhio</h3>
+                <p class="body-normal text-dim">Sitemap, wireframes, functional spec and detail design for Ohio's economic-development platform.</p>
+                <a class="btn btn--outline" href="../jobsohio/index.html">Explore</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <div class="space-large"></div>
+      -->
+    </article>
+
+    <!-- When this block scrolls into view the page background transitions to
+         white; the page then lifts away like a curtain to reveal the footer video -->
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===================================================================
+       FOOTER — full-screen video pinned beneath the page (curtain reveal).
+       Video: Bridges industry page header loop ("Bridges-Loop"), self-hosted.
+       =================================================================== -->
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover"
+           data-video="file"
+           data-src="../../assets/ccg/ccg-bridges.mp4"
+           data-ratio="2.398"
+           data-title="Bridges industry page header video">
+        <img class="video-cover__poster" src="../../assets/ccg/poster-bridges.jpg" alt="" loading="lazy" width="2048" height="854">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <div class="site-footer__live" data-reveal>
+            <span class="eyebrow">See it live</span>
+            <a class="site-footer__live-link" href="https://www.creativecompositesgroup.com/" target="_blank" rel="noopener">creativecompositesgroup.com <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="btn btn--solid" href="../../index.html#contact">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260907m" defer></script>
+</body>
+</html>

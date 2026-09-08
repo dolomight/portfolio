@@ -334,13 +334,19 @@ a.site-nav__brand {
 }
 a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .brand-mark__initials {
+  /* the SC monogram (assets/SC_Icon.svg) as a CSS mask over a page-coloured
+     box, so it takes the same colour the "SC" text used to; the text in the
+     markup is kept as a fallback but hidden */
   position: relative; z-index: 2;
-  font-size: 1.3rem; font-weight: 700; letter-spacing: 0; line-height: 1;
-  color: var(--cs-bg);
+  width: 1.64rem; height: 2rem;
+  font-size: 0; color: transparent; overflow: hidden;
+  background: var(--cs-bg);
+  -webkit-mask: url(../assets/SC_Icon.svg) no-repeat center / contain;
+  mask: url(../assets/SC_Icon.svg) no-repeat center / contain;
   opacity: 0; transform: scale(0.5);
   transition: opacity 0.3s ease, transform 0.5s var(--cs-ease);
 }
-.site-nav.is-light .brand-mark__initials { color: #fff; }
+.site-nav.is-light .brand-mark__initials { background: #fff; }
 .site-nav.is-light .brand-mark::after { background: #fff; }
 /* the name's box never animates: it snaps open before the letters fade in, and snaps shut only after they have all faded out */
 .brand-name { display: inline-flex; white-space: pre; overflow: visible; max-width: 20rem; margin-left: -0.8rem; transition: max-width 0s linear 0s, margin 0s linear 0s; }

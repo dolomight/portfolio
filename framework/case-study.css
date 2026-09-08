@@ -380,11 +380,12 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   pointer-events: none;
   transition: opacity 0.35s ease, transform 0.5s var(--cs-ease), background-color 0.4s ease;
 }
+.site-nav__toggle,
 .site-nav.is-scrolled .site-nav__toggle,
 .menu-open .site-nav__toggle {
   opacity: 1; transform: translateY(-50%) scale(1); pointer-events: auto;
-  transition-delay: 0.1s;
 }
+.site-nav__links { display: none; }   /* the pill + project list is the only navigation */
 .site-nav__toggle:hover { background: rgba(255, 255, 255, 0.25); }
 .site-nav__burger { position: relative; width: 1.6rem; height: 1rem; }
 .site-nav__burger i {
@@ -441,7 +442,7 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   position: absolute; bottom: 0;
   top: calc((var(--cs-nav-h) - 5rem) / 2);                       /* level with the top of the close pill */
   right: calc(max(var(--cs-gutter), (100vw - var(--cs-max)) / 2 + var(--cs-gutter)) + 5.6rem + 1.2rem);   /* just left of it */
-  width: min(42rem, calc(100vw - 2 * var(--cs-gutter) - 6.8rem));
+  width: min(46rem, calc(100vw - 2 * var(--cs-gutter) - 6.8rem));
   display: flex; flex-direction: column; gap: 1.2rem;
   padding: 1rem 0 4rem;
   overflow-y: auto; overscroll-behavior: contain;
@@ -451,25 +452,30 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .site-menu__work::-webkit-scrollbar { display: none; }
 .work-card {
   flex: none;
-  display: flex; align-items: stretch; gap: 1.6rem;
-  padding: 1.4rem; border-radius: 1.6rem;
-  background: rgba(255, 255, 255, 0.55);
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  min-height: 10.4rem;
+  padding: 1.2rem 1.2rem 1.2rem 1.8rem; border-radius: 0.8rem;   /* same radius as the thumbnail */
+  background: rgba(40, 40, 40, 0.72);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  color: #111; text-decoration: none;
+  color: #cfcfcf; text-decoration: none;
   opacity: 0; transform: translateY(1.6rem);
-  transition: opacity 0.45s ease, transform 0.7s var(--cs-ease), background-color 0.3s ease;
+  transition: opacity 0.45s ease, transform 0.7s var(--cs-ease), background-color 0.3s ease, color 0.3s ease;
 }
-.menu-open .work-card { opacity: 1; transform: none; transition-delay: calc(0.12s + var(--i, 0) * 45ms), calc(0.12s + var(--i, 0) * 45ms), 0s; }
-.work-card:hover { background: #fff; }
-.work-card.is-current { background: #fff; box-shadow: inset 0 0 0 2px #111; }
+.menu-open .work-card { opacity: 1; transform: none; transition-delay: calc(0.12s + var(--i, 0) * 45ms), calc(0.12s + var(--i, 0) * 45ms), 0s, 0s; }
+.work-card:hover { background: rgba(60, 60, 60, 0.8); color: #fff; }
+.work-card.is-current, .work-card.is-current:hover { background: rgba(255, 255, 255, 0.68); color: #161616; }   /* softer than white, still clearly not a hover (hover is a lighter grey) */
+.work-card__body { display: flex; flex-direction: column; min-width: 0; }
+.work-card__num { font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 0.8rem; }
+.work-card__title {   /* the brief description, set like the screenshot: condensed, bold, uppercase */
+  font-family: var(--cs-font-cond); font-weight: 700; text-transform: uppercase;
+  font-size: 1.9rem; line-height: 1.08; letter-spacing: 0.005em;   /* ~20% under the first cut */
+}
+.work-card__kind { display: none; }
 .work-card__thumb {
-  flex: none; width: 9.6rem; height: 9.6rem; border-radius: 0.8rem; overflow: hidden; background: #ddd;
+  flex: none; width: 12.8rem; height: 8rem; border-radius: 0.8rem; overflow: hidden; background: #333;
+  order: 2;
 }
 .work-card__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.work-card__body { display: flex; flex-direction: column; min-width: 0; padding: 0.2rem 0; }
-.work-card__num { font-size: 1.2rem; letter-spacing: 0.08em; color: rgba(0, 0, 0, 0.5); margin-bottom: 0.4rem; }
-.work-card__title { font-size: 1.6rem; line-height: 1.25; font-weight: 500; }
-.work-card__kind { margin-top: auto; padding-top: 0.8rem; font-size: 1.2rem; color: rgba(0, 0, 0, 0.5); }
 @media (max-width: 1023px) {
   .site-menu__links { padding-right: 40rem; }
   .site-menu__links a { font-size: 5.6rem; }
@@ -481,8 +487,9 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
     top: calc(var(--cs-nav-h) + 0.8rem); right: var(--cs-gutter); left: var(--cs-gutter); width: auto;
     padding-bottom: 3rem;
   }
-  .work-card { padding: 1rem; gap: 1.2rem; }
-  .work-card__thumb { width: 7.2rem; height: 7.2rem; }
+  .work-card { padding: 1rem 1rem 1rem 1.4rem; gap: 1.4rem; min-height: 0; }
+  .work-card__title { font-size: 1.8rem; }
+  .work-card__thumb { width: 10.4rem; height: 6.5rem; }
 }
 
 /* --------------------------------------------------------------------------

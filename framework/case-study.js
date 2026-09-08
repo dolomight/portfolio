@@ -276,18 +276,18 @@
      which is worked out from this script's own URL so the list works from
      any page depth. */
   var WORK_ITEMS = [
-    { path: "case-studies/jobsohio/index.html", thumb: "assets/menu/jobsohio.jpg", title: "JobsOhio", kind: "Case study" },
-    { path: "case-studies/ccg/index.html", thumb: "assets/menu/ccg.jpg", title: "Creative Composites Group", kind: "Case study" },
-    { path: "case-studies/bbw/index.html", thumb: "assets/menu/bbw.jpg", title: "Bath & Body Works", kind: "Case study" },
-    { path: "case-studies/smucker/index.html", thumb: "assets/menu/smucker.jpg", title: "The J.M. Smucker Co.", kind: "Case study" },
-    { path: "archive/exal/index.html", thumb: "assets/menu/exal.jpg", title: "Exal Visualizer", kind: "Archive" },
-    { path: "archive/stryker/index.html", thumb: "assets/menu/stryker.jpg", title: "Stryker Knee", kind: "Archive" },
-    { path: "archive/ticktracker/index.html", thumb: "assets/menu/ticktracker.jpg", title: "TickTracker", kind: "Archive" },
-    { path: "archive/cm1000/index.html", thumb: "assets/menu/cm1000.jpg", title: "CM1000 Sales Tool", kind: "Archive" },
-    { path: "archive/nationwide/index.html", thumb: "assets/menu/nationwide.jpg", title: "Nationwide Life", kind: "Archive" },
-    { path: "archive/ge/index.html", thumb: "assets/menu/ge.jpg", title: "GE Healthcare", kind: "Archive" },
-    { path: "archive/tradeshow/index.html", thumb: "assets/menu/tradeshow.jpg", title: "Trade Show Experiences", kind: "Archive" },
-    { path: "archive/qn2a/index.html", thumb: "assets/menu/qn2a.jpg", title: "QN2A · Stand Up To Cancer", kind: "Archive" }
+    { path: "case-studies/jobsohio/index.html", thumb: "assets/menu/jobsohio.jpg", title: "JobsOhio", kind: "Case study", desc: "Selling Ohio to companies deciding where to build, hire and invest" },
+    { path: "case-studies/ccg/index.html", thumb: "assets/menu/ccg.jpg", title: "Creative Composites Group", kind: "Case study", desc: "Rebuilding the FRP infrastructure leader’s site for the engineers who use it" },
+    { path: "case-studies/bbw/index.html", thumb: "assets/menu/bbw.jpg", title: "Bath & Body Works", kind: "Case study", desc: "A corporate home built around People, Product and Planet" },
+    { path: "case-studies/smucker/index.html", thumb: "assets/menu/smucker.jpg", title: "The J.M. Smucker Co.", kind: "Case study", desc: "Telling the story of a family company behind 40+ brands" },
+    { path: "archive/exal/index.html", thumb: "assets/menu/exal.jpg", title: "Exal Visualizer", kind: "Archive", desc: "A browser configurator that puts the customer’s brand on the bottle" },
+    { path: "archive/stryker/index.html", thumb: "assets/menu/stryker.jpg", title: "Stryker Knee", kind: "Archive", desc: "A patient-education iPad app for a dual-radius knee implant" },
+    { path: "archive/ticktracker/index.html", thumb: "assets/menu/ticktracker.jpg", title: "TickTracker", kind: "Archive", desc: "Brand, UX and UI for a crowdsourced tick tracking app" },
+    { path: "archive/cm1000/index.html", thumb: "assets/menu/cm1000.jpg", title: "CM1000 Sales Tool", kind: "Archive", desc: "A live-data cost calculator for a new marine pump" },
+    { path: "archive/nationwide/index.html", thumb: "assets/menu/nationwide.jpg", title: "Nationwide Life", kind: "Archive", desc: "A 360° video and browser VR pilot for life insurance" },
+    { path: "archive/ge/index.html", thumb: "assets/menu/ge.jpg", title: "GE Healthcare", kind: "Archive", desc: "Putting everyday and medical radiation exposure on one scale" },
+    { path: "archive/tradeshow/index.html", thumb: "assets/menu/tradeshow.jpg", title: "Trade Show Experiences", kind: "Archive", desc: "Kiosks, virtual booths and sales aids for four brands" },
+    { path: "archive/qn2a/index.html", thumb: "assets/menu/qn2a.jpg", title: "QN2A · Stand Up To Cancer", kind: "Archive", desc: "Where cancer patients shared the questions they wish they’d asked" }
   ];
   var scriptSrc = (document.currentScript && document.currentScript.src) || "";
   var siteRoot = scriptSrc.replace(/framework\/[^\/]*$/, "");
@@ -306,9 +306,9 @@
       var itemPath = new URL(a.href).pathname.replace(/\/index\.html$/, "/");
       if (itemPath === here) a.classList.add("is-current");
       a.innerHTML =
-        '<span class="work-card__thumb"><img src="' + siteRoot + item.thumb + '" alt="" width="320" height="320"></span>' +
-        '<span class="work-card__body"><span class="work-card__num">' + (i < 9 ? "0" : "") + (i + 1) + "</span>" +
-        '<span class="work-card__title">' + item.title + "</span>" +
+        '<span class="work-card__thumb"><img src="' + siteRoot + item.thumb + '" alt="" width="480" height="300"></span>' +
+        '<span class="work-card__body"><span class="work-card__num">' + (i < 9 ? "0" : "") + (i + 1) + " · " + item.title + "</span>" +
+        '<span class="work-card__title">' + item.desc + "</span>" +
         '<span class="work-card__kind">' + item.kind + "</span></span>";
       list.appendChild(a);
     });

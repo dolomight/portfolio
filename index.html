@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="framework/case-study.css?v=20260907n">
+  <link rel="stylesheet" href="framework/case-study.css?v=20260907r">
   <style>
     /* Charcoal palette for this page (the framework default is navy) */
     :root { --cs-bg: #161616; --cs-charcoal: #161616; --cs-heading-accent: #9fb4c8; }
@@ -50,6 +50,14 @@
     .site-nav .site-nav__brand { opacity: 0; transform: translateY(-.6rem); pointer-events: none;
       transition: opacity .45s ease, transform .6s var(--cs-ease), background-color .4s ease; }
     .site-nav.show-brand .site-nav__brand { opacity: 1; transform: none; pointer-events: auto; }
+    /* While .brand-hold is on, the brand stays in its name-and-dot form even
+       though the nav is already scrolled; JS drops the class once the name
+       has faded in, and the framework's collapse-to-circle animation plays */
+    .site-nav.is-scrolled.brand-hold .brand-name span { opacity: 1; transition-delay: 0s; }
+    .site-nav.is-scrolled.brand-hold .brand-name { max-width: 20rem; margin-left: -0.8rem; overflow: visible; transition-delay: 0s; }
+    .site-nav.is-scrolled.brand-hold .brand-mark::before { transform: none; transition-delay: 0s; }
+    .site-nav.is-scrolled.brand-hold .brand-mark__initials { opacity: 0; transform: scale(.5); transition-delay: 0s; }
+    .site-nav.is-scrolled.brand-hold .brand-mark::after { transform: scale(0); transition-delay: 0s; }
     /* Nav over the white footer: charcoal instead of the framework's navy */
     .site-nav.is-light { color: var(--cs-charcoal); }
     .site-nav.is-light .site-nav__toggle { background: rgba(22,22,22,.08); }
@@ -107,7 +115,7 @@
     .case-panel__link { display: inline-block; color: inherit; text-decoration: none; pointer-events: auto; }
     .case-panel__index { display: flex; align-items: center; gap: 1.6rem; margin-bottom: 2.4rem; color: var(--cs-text-70); opacity: var(--t, 0); }
     .case-panel__index i { display: inline-block; width: 4rem; height: 1px; background: currentColor; opacity: .5; }
-    .case-panel h2 { margin-left: -0.05em; font-size: 11rem; line-height: .95; font-weight: 500; letter-spacing: -0.03em; transition: color .4s ease; }
+    .case-panel h2 { margin-left: -0.05em; font-size: 8.25rem; line-height: .95; font-weight: 500; letter-spacing: -0.03em; transition: color .4s ease; }   /* 25% under the first cut */
     .case-panel h2 .w { display: inline-block; white-space: nowrap; }
     /* each letter fades in a little after the one before it as --t runs 0 → 1 */
     .case-panel h2 .l { display: inline-block; opacity: clamp(0, calc(var(--t, 0) * 1.6 - var(--i, 0) / var(--n, 1) * 0.6), 1); }
@@ -123,9 +131,9 @@
     .case-panel__cta .arrow { display: inline-block; transition: transform .5s var(--cs-ease); }
     .case-panel__cta:hover { background: #fff; color: #000; }
     .case-panel__cta:hover .arrow { transform: translateX(.4rem); }
-    @media (max-width: 1023px) { .case-panel h2 { font-size: 8rem; } }
+    @media (max-width: 1023px) { .case-panel h2 { font-size: 6rem; } }
     @media (max-width: 767px) {
-      .case-panel h2 { font-size: 5.6rem; }
+      .case-panel h2 { font-size: 4.2rem; }
       .case-stage__foot { padding-bottom: 4rem; }
       .case-stage__foot-item { flex-direction: column; align-items: flex-start; gap: 2.4rem; }
       .case-panel__desc { font-size: 1.7rem; }
@@ -469,7 +477,7 @@
     </div>
   </footer>
 
-  <script src="framework/case-study.js?v=20260907n" defer></script>
+  <script src="framework/case-study.js?v=20260907r" defer></script>
   <script>
   (function () {
     var panels = Array.prototype.slice.call(document.querySelectorAll(".case-panel"));
@@ -481,6 +489,7 @@
     var nav = document.querySelector(".site-nav");
     var heroName = document.querySelector(".media-hero__title h1");
     var footer = document.querySelector(".site-footer");
+    var holdTimer = null;
     var ticking = false, current = 0;
 
     // Split each title into letters (grouped by word so lines still break
@@ -526,8 +535,21 @@
       var showFoot = headline.top < vh && headline.bottom <= footTop;
       foots.forEach(function (f, i) { f.classList.toggle("is-active", showFoot && i === active); });
 
-      // Name pill appears once the hero name has left the viewport
-      if (heroName && nav) nav.classList.toggle("show-brand", heroName.getBoundingClientRect().bottom < 0);
+      // Once the hero name has left the viewport the brand fades in as the
+      // name + dot, then (after the fade) collapses to the circle like on
+      // the case-study pages. Scrolling back up hides it and re-arms the hold.
+      if (heroName && nav) {
+        var nameGone = heroName.getBoundingClientRect().bottom < 0;
+        if (nameGone && !nav.classList.contains("show-brand")) {
+          nav.classList.add("show-brand", "brand-hold");
+          clearTimeout(holdTimer);
+          holdTimer = setTimeout(function () { nav.classList.remove("brand-hold"); }, 1100);
+        } else if (!nameGone && nav.classList.contains("show-brand")) {
+          nav.classList.remove("show-brand");
+          nav.classList.add("brand-hold");
+          clearTimeout(holdTimer);
+        }
+      }
 
       // Footer only becomes visible once the page has started lifting off it;
       // nav switches to its light colours while the white footer is under it

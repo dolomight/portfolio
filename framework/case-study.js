@@ -272,12 +272,56 @@
   }
 
   /* --------------------------------------------------------------- nav */
+  /* Every project, in home-page order. Paths are relative to the site root,
+     which is worked out from this script's own URL so the list works from
+     any page depth. */
+  var WORK_ITEMS = [
+    { path: "case-studies/jobsohio/index.html", thumb: "assets/menu/jobsohio.jpg", title: "JobsOhio", kind: "Case study" },
+    { path: "case-studies/ccg/index.html", thumb: "assets/menu/ccg.jpg", title: "Creative Composites Group", kind: "Case study" },
+    { path: "case-studies/bbw/index.html", thumb: "assets/menu/bbw.jpg", title: "Bath & Body Works", kind: "Case study" },
+    { path: "case-studies/smucker/index.html", thumb: "assets/menu/smucker.jpg", title: "The J.M. Smucker Co.", kind: "Case study" },
+    { path: "archive/exal/index.html", thumb: "assets/menu/exal.jpg", title: "Exal Visualizer", kind: "Archive" },
+    { path: "archive/stryker/index.html", thumb: "assets/menu/stryker.jpg", title: "Stryker Knee", kind: "Archive" },
+    { path: "archive/ticktracker/index.html", thumb: "assets/menu/ticktracker.jpg", title: "TickTracker", kind: "Archive" },
+    { path: "archive/cm1000/index.html", thumb: "assets/menu/cm1000.jpg", title: "CM1000 Sales Tool", kind: "Archive" },
+    { path: "archive/nationwide/index.html", thumb: "assets/menu/nationwide.jpg", title: "Nationwide Life", kind: "Archive" },
+    { path: "archive/ge/index.html", thumb: "assets/menu/ge.jpg", title: "GE Healthcare", kind: "Archive" },
+    { path: "archive/tradeshow/index.html", thumb: "assets/menu/tradeshow.jpg", title: "Trade Show Experiences", kind: "Archive" },
+    { path: "archive/qn2a/index.html", thumb: "assets/menu/qn2a.jpg", title: "QN2A · Stand Up To Cancer", kind: "Archive" }
+  ];
+  var scriptSrc = (document.currentScript && document.currentScript.src) || "";
+  var siteRoot = scriptSrc.replace(/framework\/[^\/]*$/, "");
+
+  function buildWorkList(menu) {
+    if (!siteRoot || menu.querySelector(".site-menu__work")) return;
+    var list = document.createElement("div");
+    list.className = "site-menu__work";
+    list.setAttribute("aria-label", "All projects");
+    var here = location.pathname.replace(/\/index\.html$/, "/");
+    WORK_ITEMS.forEach(function (item, i) {
+      var a = document.createElement("a");
+      a.className = "work-card";
+      a.href = siteRoot + item.path;
+      a.style.setProperty("--i", i);
+      var itemPath = new URL(a.href).pathname.replace(/\/index\.html$/, "/");
+      if (itemPath === here) a.classList.add("is-current");
+      a.innerHTML =
+        '<span class="work-card__thumb"><img src="' + siteRoot + item.thumb + '" alt="" width="320" height="320"></span>' +
+        '<span class="work-card__body"><span class="work-card__num">' + (i < 9 ? "0" : "") + (i + 1) + "</span>" +
+        '<span class="work-card__title">' + item.title + "</span>" +
+        '<span class="work-card__kind">' + item.kind + "</span></span>";
+      list.appendChild(a);
+    });
+    menu.appendChild(list);
+  }
+
   function initNav() {
     var nav = document.querySelector(".site-nav");
     if (!nav || nav.dataset.navDone) return;
     nav.dataset.navDone = "1";
     var toggle = nav.querySelector(".site-nav__toggle");
     var menu = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
+    if (menu) buildWorkList(menu);
 
     // Brand: split "Sean Cowan" into letters so they can fade out left→right
     var brandName = nav.querySelector(".brand-name");
@@ -300,7 +344,12 @@
       menu.setAttribute("aria-hidden", open ? "false" : "true");
     }
     setOpen(false);
-    toggle.addEventListener("click", function () { setOpen(!document.body.classList.contains("menu-open")); });
+    toggle.addEventListener("click", function () {
+      var open = !document.body.classList.contains("menu-open");
+      setOpen(open);
+      var list = menu.querySelector(".site-menu__work");
+      if (open && list) list.scrollTop = 0;   // reveal always runs from the top card down
+    });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) setOpen(false); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
   }

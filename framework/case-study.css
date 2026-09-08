@@ -407,17 +407,21 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .site-menu {
   position: fixed; inset: 0;
   z-index: 45;
-  display: flex; align-items: center;
-  background: rgba(0, 24, 46, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(24px) saturate(0.8);
+  -webkit-backdrop-filter: blur(24px) saturate(0.8);
   opacity: 0; visibility: hidden;
   transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 }
 .menu-open .site-menu { opacity: 1; visibility: visible; transition: opacity 0.5s ease, visibility 0s; }
-.site-menu__links { display: flex; flex-direction: column; gap: 1.2rem; }
+/* Primary links, left */
+.site-menu__links {
+  position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem;
+  padding-right: 50rem;
+}
 .site-menu__links a {
-  font-size: 8rem; line-height: 1; font-weight: 500; letter-spacing: -0.03em;
+  font-size: 7.2rem; line-height: 1; font-weight: 500; letter-spacing: -0.03em;
   color: #fff; opacity: 0;
   transform: translateY(2rem);
   transition: opacity 0.5s ease, transform 0.8s var(--cs-ease), color 0.3s;
@@ -428,7 +432,58 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .menu-open .site-menu__links a:nth-child(4) { transition-delay: 0.18s; }
 .site-menu__links a:hover { color: var(--cs-heading-accent); }
 .menu-open { overflow: hidden; }
-@media (max-width: 767px) { .site-menu__links a { font-size: 5.2rem; } }
+
+/* Work list, right (tinywins.com "Latest wins" panel): every case study
+   and archive project as a card, in home-page order, so a reader can jump
+   between projects from any page. Built by initNav from WORK_ITEMS. */
+.site-menu__links { display: none; }   /* the overlay is the project list only */
+.site-menu__work {
+  position: absolute; bottom: 0;
+  top: calc((var(--cs-nav-h) - 5rem) / 2);                       /* level with the top of the close pill */
+  right: calc(max(var(--cs-gutter), (100vw - var(--cs-max)) / 2 + var(--cs-gutter)) + 5.6rem + 1.2rem);   /* just left of it */
+  width: min(42rem, calc(100vw - 2 * var(--cs-gutter) - 6.8rem));
+  display: flex; flex-direction: column; gap: 1.2rem;
+  padding: 1rem 0 4rem;
+  overflow-y: auto; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.site-menu__work::-webkit-scrollbar { display: none; }
+.work-card {
+  flex: none;
+  display: flex; align-items: stretch; gap: 1.6rem;
+  padding: 1.4rem; border-radius: 1.6rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  color: #111; text-decoration: none;
+  opacity: 0; transform: translateY(1.6rem);
+  transition: opacity 0.45s ease, transform 0.7s var(--cs-ease), background-color 0.3s ease;
+}
+.menu-open .work-card { opacity: 1; transform: none; transition-delay: calc(0.12s + var(--i, 0) * 45ms), calc(0.12s + var(--i, 0) * 45ms), 0s; }
+.work-card:hover { background: #fff; }
+.work-card.is-current { background: #fff; box-shadow: inset 0 0 0 2px #111; }
+.work-card__thumb {
+  flex: none; width: 9.6rem; height: 9.6rem; border-radius: 0.8rem; overflow: hidden; background: #ddd;
+}
+.work-card__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.work-card__body { display: flex; flex-direction: column; min-width: 0; padding: 0.2rem 0; }
+.work-card__num { font-size: 1.2rem; letter-spacing: 0.08em; color: rgba(0, 0, 0, 0.5); margin-bottom: 0.4rem; }
+.work-card__title { font-size: 1.6rem; line-height: 1.25; font-weight: 500; }
+.work-card__kind { margin-top: auto; padding-top: 0.8rem; font-size: 1.2rem; color: rgba(0, 0, 0, 0.5); }
+@media (max-width: 1023px) {
+  .site-menu__links { padding-right: 40rem; }
+  .site-menu__links a { font-size: 5.6rem; }
+}
+@media (max-width: 767px) {
+  .site-menu__links { top: calc(var(--cs-nav-h) + 1.6rem); transform: none; gap: 0.6rem; padding-right: 0; }
+  .site-menu__links a { font-size: 3.6rem; }
+  .site-menu__work {
+    top: calc(var(--cs-nav-h) + 0.8rem); right: var(--cs-gutter); left: var(--cs-gutter); width: auto;
+    padding-bottom: 3rem;
+  }
+  .work-card { padding: 1rem; gap: 1.2rem; }
+  .work-card__thumb { width: 7.2rem; height: 7.2rem; }
+}
 
 /* --------------------------------------------------------------------------
    Hero

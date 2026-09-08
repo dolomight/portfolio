@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sean Cowan — Director, Digital Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="framework/case-study.css?v=20260907m">
+  <style>
+    /* Page backdrop: the wave, blurred and dimmed behind everything (same treatment as the
+       case-study gallery backdrops) so the body of the page isn't a flat colour */
+    body::before {
+      content: ""; position: fixed; inset: -4%; z-index: 0; pointer-events: none;
+      background: url(assets/home/poster-wave.jpg) center / cover no-repeat;
+      filter: blur(28px) saturate(1.1); opacity: .28; transform: scale(1.04);
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,48,87,.35), rgba(0,48,87,.6));
+    }
+    main, .site-footer { background: transparent; position: relative; z-index: 1; }
+    /* Archive: smaller thumbnails, four across */
+    .archive-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--cs-gap); row-gap: 5.6rem; }
+    .archive-card { display: block; color: inherit; text-decoration: none; }
+    .archive-card .media-fill { aspect-ratio: 16 / 10; }
+    .archive-card .media-fill img { transition: transform 1s var(--cs-ease); }
+    .archive-card:hover .media-fill img { transform: scale(1.04); }
+    .archive-card h3 { margin-top: 2rem; }
+    .archive-card p { margin-top: .6rem; }
+    /* Card descriptions match the contact copy (16px) */
+    .up-next__body p, .archive-card p { font-size: 1.6rem; line-height: 1.6; }
+    @media (max-width: 1023px) { .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 599px) { .archive-grid { grid-template-columns: 1fr; } }
+    /* Home hero: tight stack pinned to the bottom edge, caption small and white */
+    .media-hero .media-hero__title { gap: 0; padding-bottom: 2.8rem; }
+    .media-hero .media-hero__title h1 { font-weight: 700; letter-spacing: -0.02em; }
+    .hero-role { margin-top: .8rem; }
+    .hero-caption { max-width: 48rem; margin-top: 1.6rem; font-size: 1.5rem; line-height: 1.55; color: #fff; opacity: .8; }
+    /* Fade the bottom of the wave (and the eventual animation) so the text always sits on dark */
+    .media-hero .media-fill__overlay {
+      background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.18) 40%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.88) 100%);
+    }
+    #about .txt a { color: #fff; border-bottom: 1px solid var(--cs-text-15); }
+    #about .txt a:hover { border-color: #fff; }
+    /* Home page: the name pill stays hidden until the hero name has scrolled off screen */
+    .site-nav .site-nav__brand { opacity: 0; transform: translateY(-.6rem); pointer-events: none;
+      transition: opacity .45s ease, transform .6s var(--cs-ease), background-color .4s ease; }
+    .site-nav.show-brand .site-nav__brand { opacity: 1; transform: none; pointer-events: auto; }
+    /* Contact form (mirrors fivefeethigh.com/contact) */
+    .contact { row-gap: 5.6rem; }
+    .contact__intro { padding-right: 8rem; }
+    .contact__details { margin-top: 3.2rem; font-size: 1.6rem; line-height: 1.6; }
+    @media (max-width: 767px) { .contact__intro { padding-right: 0; } }
+    .contact__details a { color: #fff; border-bottom: 1px solid var(--cs-text-15); }
+    .contact__details a:hover { border-color: #fff; }
+    .contact__form { display: flex; flex-direction: column; gap: 2.4rem; position: relative; }
+    .field label { display: block; font-size: 1.3rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cs-text-60); margin-bottom: .8rem; }
+    .field label span { text-transform: none; letter-spacing: 0; }
+    .field input, .field textarea, .field select {
+      width: 100%; font: inherit; font-size: 1.6rem; color: #fff;
+      background: rgba(255,255,255,.04); border: 1px solid var(--cs-text-15); border-radius: .8rem;
+      padding: 1.4rem 1.6rem; outline: none; transition: border-color .3s ease, background-color .3s ease;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: #fff; background: rgba(255,255,255,.07); }
+    .field textarea { resize: vertical; min-height: 14rem; }
+    .select-wrap { position: relative; }
+    .select-wrap select { appearance: none; -webkit-appearance: none; padding-right: 4.4rem; cursor: pointer; }
+    .select-wrap select:invalid { color: var(--cs-text-60); }
+    .select-wrap select option { color: #000; }
+    .select-wrap::after { content: ""; position: absolute; right: 1.8rem; top: 50%; width: .9rem; height: .9rem; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+    .field.is-invalid input, .field.is-invalid textarea, .field.is-invalid select { border-color: #ff7b7b; }
+    .contact__actions { display: flex; align-items: center; gap: 2.4rem; flex-wrap: wrap; margin-top: .8rem; }
+    .contact__form.is-sending .btn { opacity: .5; pointer-events: none; }
+    .contact__status:empty { display: none; }
+    .contact__status.is-error { color: #ff9b9b; }
+    .contact__form.is-sent .field, .contact__form.is-sent .btn { display: none; }
+    .contact__form.is-sent .contact__status { font-size: 2rem; color: #fff; }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="#top" id="nav-brand"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="#work">Work</a><a href="#archive">Archive</a><a href="#about">About</a><a href="#contact">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="#work">Work</a><a href="#archive">Archive</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <!-- ===============================================================
+         HERO — pinned image that fades as the page scrolls over it.
+         Placeholder: Hokusai's Great Wave. When the animated version is on
+         Vimeo, drop its ID into data-vimeo-id and the poster becomes the
+         first frame.
+         =============================================================== -->
+    <section class="media-hero">
+      <div class="media-hero__pin">
+        <figure class="media-hero__media media-fill" data-hero-fade>
+          <div class="video-cover"
+               data-video="vimeo"
+               data-vimeo-id=""
+               data-ratio="1.488"
+               data-title="The Great Wave off Kanagawa, Hokusai">
+            <img class="video-cover__poster" src="assets/home/poster-wave.jpg" alt="The Great Wave off Kanagawa by Hokusai" width="2400" height="1613" fetchpriority="high">
+          </div>
+          <div class="media-fill__overlay"></div>
+        </figure>
+      </div>
+      <div class="media-hero__content">
+        <div class="site-max media-hero__title">
+          <h1 class="h3">Sean Cowan</h1>
+          <p class="eyebrow hero-role">AI Powered Strategy, User Experience and Creative Direction</p>
+          <p class="hero-caption">Like Hokusai's iconic wave, my design and business philosophy harmonizes traditional principles with the dynamic currents of digital transformation.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="space-large"></div>
+
+    <!-- ===============================================================
+         ABOUT
+         =============================================================== -->
+    <section class="section section--clip text-section" id="about">
+      <div class="site-max site-grid">
+        <div class="s:col-1-6">
+          <p class="eyebrow" data-reveal>About</p>
+        </div>
+        <div class="s:col-7-5 text-section__content">
+          <h2 class="h6 text-accent" data-split>Digital work that people want to use, and that moves the business it was built for.</h2>
+          <div class="txt body-large text-light" data-reveal>
+            <p>Born and raised in Baltimore, I came to Columbus for the <a href="https://www.ccad.edu/" target="_blank" rel="noopener">Columbus College of Art &amp; Design</a> and never left the city's digital advertising and marketing community, where I've been lucky to work with and for some very good people.</p>
+            <p>Today I'm <a href="https://www.linkedin.com/in/seancowan/" target="_blank" rel="noopener">Director of Digital Experience</a> at <a href="https://theshipyard.com/" target="_blank" rel="noopener">The Shipyard</a> / <a href="https://www.fahlgrenmortine.com/" target="_blank" rel="noopener">Fahlgren Mortine</a>, leading strategy, UX architecture and creative direction for the kind of clients on this page. The brief is always the same underneath: build tools, not toys, make something people want to use, make sure it earns its keep, and share what we learn so the next project starts further ahead.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="space-large"></div>
+
+    <section class="section section--clip" id="work">
+      <div class="site-max">
+        <p class="eyebrow text-dim" data-reveal>Selected work</p>
+        <div class="space-xs"></div>
+        <h2 class="display" data-split>Case studies</h2>
+      </div>
+    </section>
+
+    <section class="section up-next">
+      <div class="site-max">
+        <div class="up-next__row">
+          <!-- Add one card per case study -->
+          <article class="up-next__card" data-reveal>
+            <a href="case-studies/jobsohio/index.html">
+              <figure class="media-fill radius-media" data-scrollscale><img src="assets/jobsohio/thumb-home.jpg" alt="" loading="lazy"></figure>
+            </a>
+            <div class="up-next__body">
+              <h3 class="h3-c">JobsOhio</h3>
+              <p class="body-normal text-dim">Ohio's economic-development platform: the site that sells the state to companies deciding where to build, hire and invest.</p>
+              <a class="btn btn--outline" href="case-studies/jobsohio/index.html">Explore</a>
+            </div>
+          </article>
+          <article class="up-next__card" data-reveal style="--d:120ms">
+            <a href="case-studies/ccg/index.html">
+              <figure class="media-fill radius-media" data-scrollscale><img src="assets/ccg/thumb-home.jpg" alt="" loading="lazy"></figure>
+            </a>
+            <div class="up-next__body">
+              <h3 class="h3-c">Creative Composites Group</h3>
+              <p class="body-normal text-dim">The website for the FRP infrastructure leader, rebuilt so engineers can find the product, the spec and the support they came for.</p>
+              <a class="btn btn--outline" href="case-studies/ccg/index.html">Explore</a>
+            </div>
+          </article>
+          <article class="up-next__card" data-reveal style="--d:240ms">
+            <a href="case-studies/bbw/index.html">
+              <figure class="media-fill radius-media" data-scrollscale><img src="assets/bbw/thumb-home.jpg" alt="" loading="lazy"></figure>
+            </a>
+            <div class="up-next__body">
+              <h3 class="h3-c">Bath &amp; Body Works</h3>
+              <p class="body-normal text-dim">The corporate home for a newly independent company, built for investors, media, associates and customers around People, Product and Planet.</p>
+              <a class="btn btn--outline" href="case-studies/bbw/index.html">Explore</a>
+            </div>
+          </article>
+          <article class="up-next__card" data-reveal style="--d:360ms">
+            <a href="case-studies/smucker/index.html">
+              <figure class="media-fill radius-media" data-scrollscale><img src="assets/smucker/thumb-home.jpg" alt="" loading="lazy"></figure>
+            </a>
+            <div class="up-next__body">
+              <h3 class="h3-c">The J.M. Smucker Company</h3>
+              <p class="body-normal text-dim">A corporate site that tells the story of a Fortune 500 family company behind 40+ brands, and recruits for its Orrville headquarters.</p>
+              <a class="btn btn--outline" href="case-studies/smucker/index.html">Explore</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <div class="space-large"></div>
+    <section class="section section--clip" id="archive">
+      <div class="site-max">
+        <p class="eyebrow text-dim" data-reveal>Archive projects</p>
+        <div class="space-xs"></div>
+        <h2 class="h5" data-split>Earlier work: apps, sales tools and experiences</h2>
+      </div>
+    </section>
+    <section class="section">
+      <div class="site-max">
+        <div class="archive-grid">
+          <a class="archive-card" href="archive/exal/index.html" data-reveal style="--d:0ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-exal.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">Exal Visualizer</h3>
+            <p class="body-normal text-dim">A browser-based configurator that puts a prospect&#x27;s brand on Exal&#x27;s aluminium bottles.</p>
+          </a>
+          <a class="archive-card" href="archive/stryker/index.html" data-reveal style="--d:90ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-stryker.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">Stryker Knee</h3>
+            <p class="body-normal text-dim">A patient-education iPad app that made the case for a dual-radius knee implant.</p>
+          </a>
+          <a class="archive-card" href="archive/ticktracker/index.html" data-reveal style="--d:180ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-ticktracker.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">TickTracker</h3>
+            <p class="body-normal text-dim">Brand, UX and UI for a crowdsourced tick and Lyme disease tracking app.</p>
+          </a>
+          <a class="archive-card" href="archive/cm1000/index.html" data-reveal style="--d:270ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-cm1000.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">CM1000 Sales Tool</h3>
+            <p class="body-normal text-dim">An interactive cost calculator fed by live NOAA data for a new marine pump technology.</p>
+          </a>
+          <a class="archive-card" href="archive/nationwide/index.html" data-reveal style="--d:0ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-nationwide.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">Nationwide Life</h3>
+            <p class="body-normal text-dim">A split-tested 360° video and browser VR pilot for life insurance conversion.</p>
+          </a>
+          <a class="archive-card" href="archive/ge/index.html" data-reveal style="--d:90ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-ge.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">GE Healthcare</h3>
+            <p class="body-normal text-dim">Interactive infographics that put everyday and medical radiation exposure on one scale.</p>
+          </a>
+          <a class="archive-card" href="archive/tradeshow/index.html" data-reveal style="--d:180ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-tradeshow.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">Trade Show Experiences</h3>
+            <p class="body-normal text-dim">Kiosks, virtual booths and lead-scoring sales aids for Emerson, Avery Dennison, Cooper Tire and Colfax.</p>
+          </a>
+          <a class="archive-card" href="archive/qn2a/index.html" data-reveal style="--d:270ms">
+            <figure class="media-fill radius-media" data-scrollscale><img src="assets/archive/thumb-qn2a.jpg" alt="" loading="lazy" width="1000" height="625"></figure>
+            <h3 class="body-large">QN2A · Stand Up To Cancer</h3>
+            <p class="body-normal text-dim">A community site where cancer patients shared the questions they wish they&#x27;d asked.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <div class="space-large"></div>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="site-max">
+      <div class="site-grid contact">
+        <div class="s:col-1-6 contact__intro">
+          <p class="eyebrow text-dim" data-reveal>Contact</p>
+          <div class="space-xs"></div>
+          <h2 class="display" data-split>Let's talk.</h2>
+          <div class="txt text-light contact__details" data-reveal>
+            <p>If you want to get hold of me, a text or an email works best. Or use the form on this page. Unless I'm sleeping or flying, I typically respond within the hour.</p>
+            <p><a href="tel:+16146576111">614.657.6111</a><br><a href="mailto:scowan@fivefeethigh.com">scowan@fivefeethigh.com</a></p>
+          </div>
+        </div>
+        <!-- Netlify Forms: detected at deploy time; notifications → scowan@fivefeethigh.com are set in the Netlify dashboard (Forms → Notifications) -->
+        <form class="s:col-7-6 contact__form" id="contact-form" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="visually-hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label for="cf-email">Email address <span aria-hidden="true">(required)</span></label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cf-subject">Subject <span aria-hidden="true">(required)</span></label>
+            <input id="cf-subject" name="subject" type="text" required>
+          </div>
+          <div class="field">
+            <label for="cf-reason">Booking opportunities <span aria-hidden="true">(required)</span></label>
+            <div class="select-wrap">
+              <select id="cf-reason" name="booking" required>
+                <option value="" selected disabled>Select an option</option>
+                <option>Speaking Engagement</option>
+                <option>Project</option>
+                <option>Opportunities</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone <span aria-hidden="true">(required)</span></label>
+            <input id="cf-phone" name="phone" type="tel" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message <span aria-hidden="true">(required)</span></label>
+            <textarea id="cf-message" name="message" rows="6" required></textarea>
+          </div>
+          <div class="contact__actions">
+            <button class="btn btn--solid" type="submit">Submit</button>
+            <p class="contact__status body-normal" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+      <div class="site-footer__bottom"><span>© 2026 Sean Cowan</span><a href="#top">Back to top</a></div>
+    </div>
+  </footer>
+  <script src="framework/case-study.js?v=20260907m" defer></script>
+  <script>
+  (function () {
+    // Show the name pill in the nav once the hero name has left the viewport
+    var heroName = document.querySelector(".media-hero__title h1");
+    var nav = document.querySelector(".site-nav");
+    if (heroName && nav) {
+      var check = function () { nav.classList.toggle("show-brand", heroName.getBoundingClientRect().bottom < 0); };
+      window.addEventListener("scroll", check, { passive: true });
+      window.addEventListener("resize", check);
+      check();
+    }
+  })();
+  (function () {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    var status = form.querySelector(".contact__status");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bad = false;
+      form.querySelectorAll(".field").forEach(function (f) {
+        var el = f.querySelector("input, textarea, select");
+        var ok = el.checkValidity();
+        f.classList.toggle("is-invalid", !ok);
+        if (!ok && !bad) { el.focus(); bad = true; }
+      });
+      if (bad) { status.className = "contact__status body-normal is-error"; status.textContent = "Please fill in the highlighted fields."; return; }
+      var data = new FormData(form);
+      var payload = {};
+      data.forEach(function (v, k) { payload[k] = v; });
+      form.classList.add("is-sending");
+      status.className = "contact__status body-normal"; status.textContent = "Sending…";
+      // Netlify Forms accepts a URL-encoded POST to any path on the deployed site
+      fetch(form.getAttribute("action") || "/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString()
+      }).then(function (r) { return r.ok ? r : Promise.reject(r); }).then(function () {
+        form.classList.remove("is-sending"); form.classList.add("is-sent");
+        status.textContent = "Thanks. Your message is on its way; I'll get back to you shortly.";
+      }).catch(function () {
+        form.classList.remove("is-sending");
+        status.className = "contact__status body-normal is-error";
+        var body = "Subject: " + payload.subject + "\nBooking: " + payload.booking + "\nPhone: " + payload.phone + "\n\n" + payload.message;
+        status.innerHTML = "Something went wrong sending the form. <a href=\"mailto:scowan@fivefeethigh.com?subject=" + encodeURIComponent(payload.subject || "Portfolio contact") + "&body=" + encodeURIComponent(body) + "\">Email me directly instead</a>.";
+      });
+    });
+    form.addEventListener("input", function (e) {
+      var f = e.target.closest(".field"); if (f) f.classList.toggle("is-invalid", !e.target.checkValidity());
+    });
+  })();
+  </script>
+
+</body>
+</html>

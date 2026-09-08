@@ -10,3 +10,8 @@
   for = "/framework/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Password gate for the whole site (see netlify/edge-functions/password.ts)
+[[edge_functions]]
+  path = "/*"
+  function = "password"

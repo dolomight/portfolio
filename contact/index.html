@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Sean Cowan</title>
+  <meta name="description" content="Get in touch with Sean Cowan, Director of Digital Experience: speaking engagements, projects and opportunities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../framework/case-study.css?v=20260907m">
+  <style>
+    /* Charcoal palette, matching the home page */
+    :root { --cs-bg: #161616; --cs-heading-accent: #9fb4c8; }
+    html, body { background: var(--cs-bg); }
+    body::before {
+      content: ""; position: fixed; inset: -4%; z-index: 0; pointer-events: none;
+      background: url(../assets/home/poster-wave.jpg) center / cover no-repeat;
+      filter: blur(28px) saturate(.55); opacity: .22; transform: scale(1.04);
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(22,22,22,.45), rgba(22,22,22,.75));
+    }
+    main, .site-footer { background: transparent; position: relative; z-index: 1; }
+    .site-footer { padding-top: 4rem; }
+    .site-footer__bottom { margin-top: 0; }
+    /* Contact form (mirrors fivefeethigh.com/contact) */
+    .contact { row-gap: 5.6rem; }
+    .contact__intro { padding-right: 8rem; }
+    .contact__details { margin-top: 3.2rem; font-size: 1.6rem; line-height: 1.6; }
+    @media (max-width: 767px) { .contact__intro { padding-right: 0; } }
+    .contact__details a { color: #fff; border-bottom: 1px solid var(--cs-text-15); }
+    .contact__details a:hover { border-color: #fff; }
+    .contact__form { display: flex; flex-direction: column; gap: 2.4rem; position: relative; }
+    .field label { display: block; font-size: 1.3rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cs-text-60); margin-bottom: .8rem; }
+    .field label span { text-transform: none; letter-spacing: 0; }
+    .field input, .field textarea, .field select {
+      width: 100%; font: inherit; font-size: 1.6rem; color: #fff;
+      background: rgba(255,255,255,.04); border: 1px solid var(--cs-text-15); border-radius: .8rem;
+      padding: 1.4rem 1.6rem; outline: none; transition: border-color .3s ease, background-color .3s ease;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: #fff; background: rgba(255,255,255,.07); }
+    .field textarea { resize: vertical; min-height: 14rem; }
+    .select-wrap { position: relative; }
+    .select-wrap select { appearance: none; -webkit-appearance: none; padding-right: 4.4rem; cursor: pointer; }
+    .select-wrap select:invalid { color: var(--cs-text-60); }
+    .select-wrap select option { color: #000; }
+    .select-wrap::after { content: ""; position: absolute; right: 1.8rem; top: 50%; width: .9rem; height: .9rem; border-right: 1.5px solid #fff; border-bottom: 1.5px solid #fff; transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+    .field.is-invalid input, .field.is-invalid textarea, .field.is-invalid select { border-color: #ff7b7b; }
+    .contact__actions { display: flex; align-items: center; gap: 2.4rem; flex-wrap: wrap; margin-top: .8rem; }
+    .contact__form.is-sending .btn { opacity: .5; pointer-events: none; }
+    .contact__status:empty { display: none; }
+    .contact__status.is-error { color: #ff9b9b; }
+    .contact__form.is-sent .field, .contact__form.is-sent .btn { display: none; }
+    .contact__form.is-sent .contact__status { font-size: 2rem; color: #fff; }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#archive">Archive</a>
+          <a href="../index.html#about">About</a>
+          <a href="index.html">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#archive">Archive</a>
+      <a href="../index.html#about">About</a>
+      <a href="index.html">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top" style="padding-top: var(--cs-nav-h)">
+    <div class="space-xs"></div>
+    <section class="section section--clip">
+      <div class="site-max">
+      <div class="site-grid contact">
+        <div class="s:col-1-6 contact__intro">
+          <p class="eyebrow text-dim" data-reveal>Contact</p>
+          <div class="space-xs"></div>
+          <h1 class="display" data-split>Let's talk.</h1>
+          <div class="txt text-light contact__details" data-reveal>
+            <p>If you want to get hold of me, a text or an email works best. Or use the form on this page. Unless I'm sleeping or flying, I typically respond within the hour.</p>
+            <p><a href="tel:+16146576111">614.657.6111</a><br><a href="mailto:scowan@fivefeethigh.com">scowan@fivefeethigh.com</a></p>
+          </div>
+        </div>
+        <!-- Netlify Forms: detected at deploy time; notifications → scowan@fivefeethigh.com are set in the Netlify dashboard (Forms → Notifications) -->
+        <form class="s:col-7-6 contact__form" id="contact-form" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-reveal>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="visually-hidden" aria-hidden="true"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field">
+            <label for="cf-email">Email address <span aria-hidden="true">(required)</span></label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="cf-subject">Subject <span aria-hidden="true">(required)</span></label>
+            <input id="cf-subject" name="subject" type="text" required>
+          </div>
+          <div class="field">
+            <label for="cf-reason">Booking opportunities <span aria-hidden="true">(required)</span></label>
+            <div class="select-wrap">
+              <select id="cf-reason" name="booking" required>
+                <option value="" selected disabled>Select an option</option>
+                <option>Speaking Engagement</option>
+                <option>Project</option>
+                <option>Opportunities</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-phone">Phone <span aria-hidden="true">(required)</span></label>
+            <input id="cf-phone" name="phone" type="tel" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message <span aria-hidden="true">(required)</span></label>
+            <textarea id="cf-message" name="message" rows="6" required></textarea>
+          </div>
+          <div class="contact__actions">
+            <button class="btn btn--solid" type="submit">Submit</button>
+            <p class="contact__status body-normal" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+      </div>
+    </section>
+    <div class="space-large"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-max">
+      <div class="site-footer__bottom"><span>© 2026 Sean Cowan</span><a href="#top">Back to top</a></div>
+    </div>
+  </footer>
+  <script src="../framework/case-study.js?v=20260907m" defer></script>
+  <script>
+  (function () {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    var status = form.querySelector(".contact__status");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bad = false;
+      form.querySelectorAll(".field").forEach(function (f) {
+        var el = f.querySelector("input, textarea, select");
+        var ok = el.checkValidity();
+        f.classList.toggle("is-invalid", !ok);
+        if (!ok && !bad) { el.focus(); bad = true; }
+      });
+      if (bad) { status.className = "contact__status body-normal is-error"; status.textContent = "Please fill in the highlighted fields."; return; }
+      var data = new FormData(form);
+      var payload = {};
+      data.forEach(function (v, k) { payload[k] = v; });
+      form.classList.add("is-sending");
+      status.className = "contact__status body-normal"; status.textContent = "Sending…";
+      // Netlify Forms accepts a URL-encoded POST to any path on the deployed site
+      fetch(form.getAttribute("action") || "/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString()
+      }).then(function (r) { return r.ok ? r : Promise.reject(r); }).then(function () {
+        form.classList.remove("is-sending"); form.classList.add("is-sent");
+        status.textContent = "Thanks. Your message is on its way; I'll get back to you shortly.";
+      }).catch(function () {
+        form.classList.remove("is-sending");
+        status.className = "contact__status body-normal is-error";
+        var body = "Subject: " + payload.subject + "\nBooking: " + payload.booking + "\nPhone: " + payload.phone + "\n\n" + payload.message;
+        status.innerHTML = "Something went wrong sending the form. <a href=\"mailto:scowan@fivefeethigh.com?subject=" + encodeURIComponent(payload.subject || "Portfolio contact") + "&body=" + encodeURIComponent(body) + "\">Email me directly instead</a>.";
+      });
+    });
+    form.addEventListener("input", function (e) {
+      var f = e.target.closest(".field"); if (f) f.classList.toggle("is-invalid", !e.target.checkValidity());
+    });
+  })();
+  </script>
+</body>
+</html>

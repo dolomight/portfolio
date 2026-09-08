@@ -9,7 +9,8 @@
 [[headers]]
   for = "/framework/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    # revalidate every load (cheap 304) so CSS/JS fixes reach phones without a ?v= bump
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Password gate for the whole site (see netlify/edge-functions/password.ts)
 [[edge_functions]]

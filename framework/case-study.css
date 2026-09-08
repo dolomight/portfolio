@@ -320,17 +320,14 @@ a.site-nav__brand {
   width: 1.8rem; height: 1.8rem; margin-top: -0.9rem; border-radius: 50%;
   background: currentColor;
   transform-origin: left center;
-  transition: transform 0.6s var(--cs-ease);
-}
-/* halo: a page-coloured disc 8px wider than the grown circle, so the white
-   mark stays legible over light content passing under the nav; it grows out
-   after "SC" has appeared and collapses first on the way back */
-.brand-mark::after {
-  content: ""; position: absolute; left: -0.4rem; top: 50%; z-index: 0;
-  width: 4.4rem; height: 4.4rem; margin-top: -2.2rem; border-radius: 50%;
-  background: var(--cs-bg); opacity: 0.85;
-  transform: scale(0);
-  transition: transform 0.45s var(--cs-ease);
+  /* halo: a 50%-opacity page-coloured ring so the white mark stays legible
+     over light content passing under the nav. It is a spread shadow on the
+     circle itself, so it is always concentric (0.2rem here = 0.4rem once the
+     circle is scaled 2x). It grows out after the monogram has appeared and
+     collapses first on the way back. */
+  --halo: color-mix(in srgb, var(--cs-bg) 50%, transparent);
+  box-shadow: 0 0 0 0 var(--halo);
+  transition: transform 0.6s var(--cs-ease), box-shadow 0.45s var(--cs-ease);
 }
 a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .brand-mark__initials {
@@ -347,7 +344,7 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   transition: opacity 0.3s ease, transform 0.5s var(--cs-ease);
 }
 .site-nav.is-light .brand-mark__initials { background: #fff; }
-.site-nav.is-light .brand-mark::after { background: #fff; }
+.site-nav.is-light .brand-mark::before { --halo: rgba(255, 255, 255, 0.5); }
 /* the name's box never animates: it snaps open before the letters fade in, and snaps shut only after they have all faded out */
 .brand-name { display: inline-flex; white-space: pre; overflow: visible; max-width: 20rem; margin-left: -0.8rem; transition: max-width 0s linear 0s, margin 0s linear 0s; }
 /* letters: fade only, no movement. Out = right→left on scroll; back in = left→right */
@@ -357,9 +354,8 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 /* scrolled: letters out right→left, name collapses, mark grows, SC in */
 .site-nav.is-scrolled .brand-name span { opacity: 0; transition-delay: calc((var(--n, 10) - 1 - var(--i, 0)) * 35ms); }
 .site-nav.is-scrolled .brand-name { max-width: 0; margin-left: 0; overflow: hidden; transition-delay: 0.65s; }
-.site-nav.is-scrolled .brand-mark::before { transform: scale(2); transition-delay: 0.25s; }
+.site-nav.is-scrolled .brand-mark::before { transform: scale(2); box-shadow: 0 0 0 0.2rem var(--halo); transition-delay: 0.25s, 0.85s; }
 .site-nav.is-scrolled .brand-mark__initials { opacity: 1; transform: none; transition-delay: 0.55s; }
-.site-nav.is-scrolled .brand-mark::after { transform: scale(1); transition-delay: 0.85s; }
 .site-nav.is-scrolled a.site-nav__brand:hover .brand-mark::before { transform: scale(2.08); }
 .site-nav__right { position: relative; display: flex; align-items: center; justify-content: flex-end; min-height: 5rem; }
 .site-nav__links {

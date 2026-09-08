@@ -281,6 +281,7 @@
     { path: "case-studies/ccg/index.html", thumb: "assets/menu/ccg.jpg", title: "Creative Composites Group", kind: "Case study", desc: "Rebuilding the FRP infrastructure leader’s site for the engineers who use it" },
     { path: "case-studies/bbw/index.html", thumb: "assets/menu/bbw.jpg", title: "Bath & Body Works", kind: "Case study", desc: "A corporate home built around People, Product and Planet" },
     { path: "case-studies/smucker/index.html", thumb: "assets/menu/smucker.jpg", title: "The J.M. Smucker Co.", kind: "Case study", desc: "Telling the story of a family company behind 40+ brands" },
+    { path: "archive/mammoth/index.html", thumb: "assets/menu/mammoth.jpg", title: "Certified Unreal · Mammoth Lakes", kind: "Archive", desc: "A 3D map of 17 geological wonders for Mammoth Lakes Tourism" },
     { path: "archive/exal/index.html", thumb: "assets/menu/exal.jpg", title: "Exal Visualizer", kind: "Archive", desc: "A browser configurator that puts the customer’s brand on the bottle" },
     { path: "archive/stryker/index.html", thumb: "assets/menu/stryker.jpg", title: "Stryker Knee", kind: "Archive", desc: "A patient-education iPad app for a dual-radius knee implant" },
     { path: "archive/ticktracker/index.html", thumb: "assets/menu/ticktracker.jpg", title: "TickTracker", kind: "Archive", desc: "Brand, UX and UI for a crowdsourced tick tracking app" },

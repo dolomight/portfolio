@@ -55,9 +55,8 @@
        has faded in, and the framework's collapse-to-circle animation plays */
     .site-nav.is-scrolled.brand-hold .brand-name span { opacity: 1; transition-delay: 0s; }
     .site-nav.is-scrolled.brand-hold .brand-name { max-width: 20rem; margin-left: -0.8rem; overflow: visible; transition-delay: 0s; }
-    .site-nav.is-scrolled.brand-hold .brand-mark::before { transform: none; transition-delay: 0s; }
+    .site-nav.is-scrolled.brand-hold .brand-mark::before { transform: none; box-shadow: 0 0 0 0 var(--halo); transition-delay: 0s; }
     .site-nav.is-scrolled.brand-hold .brand-mark__initials { opacity: 0; transform: scale(.5); transition-delay: 0s; }
-    .site-nav.is-scrolled.brand-hold .brand-mark::after { transform: scale(0); transition-delay: 0s; }
     /* Nav over the white footer: charcoal instead of the framework's navy */
     .site-nav.is-light { color: var(--cs-charcoal); }
     .site-nav.is-light .site-nav__toggle { background: rgba(22,22,22,.08); }
@@ -115,7 +114,7 @@
     .case-panel__link { display: inline-block; color: inherit; text-decoration: none; pointer-events: auto; }
     .case-panel__index { display: flex; align-items: center; gap: 1.6rem; margin-bottom: 2.4rem; color: var(--cs-text-70); opacity: var(--t, 0); }
     .case-panel__index i { display: inline-block; width: 4rem; height: 1px; background: currentColor; opacity: .5; }
-    .case-panel h2 { margin-left: -0.05em; font-size: 8.25rem; line-height: .95; font-weight: 500; letter-spacing: -0.03em; transition: color .4s ease; }   /* 25% under the first cut */
+    .case-panel h2 { margin-left: -0.05em; font-size: 8.25rem; line-height: .95; font-weight: 700; letter-spacing: -0.03em; transition: color .4s ease; }   /* 25% under the first cut */
     .case-panel h2 .w { display: inline-block; white-space: nowrap; }
     /* each letter fades in a little after the one before it as --t runs 0 → 1 */
     .case-panel h2 .l { display: inline-block; opacity: clamp(0, calc(var(--t, 0) * 1.6 - var(--i, 0) / var(--n, 1) * 0.6), 1); }
@@ -385,6 +384,15 @@
 
       <section class="section section--clip">
         <div class="site-max loose-grid">
+          <a class="loose-tile" href="archive/mammoth/index.html" style="--c: 1 / span 7" data-reveal>
+            <figure class="media-fill radius-media" data-scrollscale>
+              <div class="video-cover" data-video="vimeo" data-vimeo-id="1225088850" data-ratio="1.778" data-title="Mammoth Lakes Certified Unreal 3D map">
+                <img class="video-cover__poster" src="assets/archive/thumb-mammoth.jpg" alt="" loading="lazy" width="1000" height="625">
+              </div>
+            </figure>
+            <h3 class="body-large">Certified Unreal · Mammoth Lakes</h3>
+            <p class="text-dim">An interactive 3D map that takes visitors to the 17 geological wonders behind Mammoth Lakes Tourism's Certified Unreal campaign.</p>
+          </a>
           <a class="loose-tile" href="archive/exal/index.html" style="--c: 1 / span 5" data-reveal>
             <figure class="media-fill radius-media" data-scrollscale>
               <div class="video-cover" data-video="vimeo" data-vimeo-id="290820825" data-ratio="1.55" data-title="Exal Visualizer">

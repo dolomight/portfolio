@@ -616,6 +616,17 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 @media (prefers-reduced-motion: reduce) {
   .media-scroll__frame { transform: none !important; }
 }
+@media (max-width: 767px) {
+  /* Phones: let the pinned frame fill the viewport height instead of being
+     capped by the 16:11 desktop ratio at 87.5% width. Height = viewport minus
+     the nav, the browser bar and a little breathing room top and bottom. */
+  .media-article.media-scroll figure.media-scroll__frame { width: 100%; }
+  .media-article.media-scroll .browser-frame__view {
+    aspect-ratio: auto;
+    height: calc(100vh - 18rem);
+    height: calc(100svh - 18rem);
+  }
+}
 
 /* Scroll-linked grow: JS drives --ss 0 → 1 as the element rises through the
    viewport; the frame scales from 87.5% to full size (LIV Golf media reveal). */

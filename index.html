@@ -129,6 +129,7 @@
     .case-panel__index i { display: inline-block; width: 4rem; height: 1px; background: currentColor; opacity: .5; }
     .case-panel h2 { margin-left: -0.05em; font-size: 8.25rem; line-height: .95; font-weight: 700; letter-spacing: -0.03em; transition: color .4s ease; }   /* 25% under the first cut */
     .case-panel h2 .w { display: inline-block; white-space: nowrap; }
+    .case-panel h2[data-stack] .w { display: block; }   /* one word per line, e.g. Creative / Composites / Group */
     /* each letter fades in a little after the one before it as --t runs 0 → 1 */
     .case-panel h2 .l { display: inline-block; opacity: clamp(0, calc(var(--t, 0) * 1.6 - var(--i, 0) / var(--n, 1) * 0.6), 1); }
     .case-panel__link:hover h2 { color: rgba(255,255,255,.8); }
@@ -358,7 +359,7 @@
         <div class="site-max">
           <a class="case-panel__link" href="case-studies/ccg/index.html" aria-label="Creative Composites Group case study">
             <p class="eyebrow case-panel__index"><span>02</span><i aria-hidden="true"></i><span>Infrastructure manufacturing</span></p>
-            <h2 data-letters>Creative Composites Group</h2>
+            <h2 data-letters data-stack>Creative Composites Group</h2>
           </a>
         </div>
       </article>

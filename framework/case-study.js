@@ -298,7 +298,17 @@
     list.className = "site-menu__work";
     list.setAttribute("aria-label", "All projects");
     var here = location.pathname.replace(/\/index\.html$/, "/");
+    var HEADINGS = { "Case study": "Case studies", "Archive": "Archive" };
+    var lastKind = null;
     WORK_ITEMS.forEach(function (item, i) {
+      if (item.kind !== lastKind) {   // sub-header above each group
+        lastKind = item.kind;
+        var h = document.createElement("p");
+        h.className = "site-menu__heading";
+        h.textContent = HEADINGS[item.kind] || item.kind;
+        h.style.setProperty("--i", i);
+        list.appendChild(h);
+      }
       var a = document.createElement("a");
       a.className = "work-card";
       a.href = siteRoot + item.path;

@@ -450,6 +450,15 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   scrollbar-width: none;
 }
 .site-menu__work::-webkit-scrollbar { display: none; }
+.site-menu__heading {
+  flex: none; margin: 1.2rem 0 0.2rem 0.4rem;
+  font-family: var(--cs-font-cond); font-size: 1.6rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0; transform: translateY(1.6rem);
+  transition: opacity 0.45s ease, transform 0.7s var(--cs-ease);
+}
+.site-menu__heading:first-child { margin-top: 0; }
+.menu-open .site-menu__heading { opacity: 1; transform: none; transition-delay: calc(0.12s + var(--i, 0) * 45ms); }
 .work-card {
   flex: none;
   display: flex; align-items: center; justify-content: space-between; gap: 2rem;

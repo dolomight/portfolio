@@ -14,6 +14,7 @@
      [data-scrollscale]        frame grows 87.5% → 100% as it scrolls up (large media)
      [data-media-scroll]       frame grows, pins, and the tall screenshot scrolls inside it
      [data-footer-veil]        footer veil fades away as the footer scrolls in
+     .archive-media iframe     Vimeo fullscreen button enabled on phones only
      .site-nav                 gets .is-scrolled after the hero
 
    Public API:  window.CaseStudy.init(root?)  — re-run for injected content
@@ -433,6 +434,21 @@
     update();
   }
 
+  /* ------------------------------------------ archive player: mobile fullscreen
+     Archive pages embed a stripped-down Vimeo player (fullscreen=0). On phones
+     the small inline frame is hard to watch, so allow the fullscreen button
+     there only — desktop keeps the bare player. */
+  function initArchiveFullscreen(root) {
+    if (!window.matchMedia("(max-width: 767px)").matches) return;
+    $all(".archive-media iframe[src*='player.vimeo.com']", root).forEach(function (f) {
+      if (f.src.indexOf("fullscreen=0") === -1) return;
+      f.src = f.src.replace("fullscreen=0", "fullscreen=1");
+      f.setAttribute("allowfullscreen", "");
+      var allow = f.getAttribute("allow") || "";
+      if (allow.indexOf("fullscreen") === -1) f.setAttribute("allow", (allow ? allow + "; " : "") + "fullscreen");
+    });
+  }
+
   /* -------------------------------------------------------------- init */
   function init(root) {
     root = root || document;
@@ -443,6 +459,7 @@
     initVideo(root);
     initScrollLinked(root);
     initMediaScroll(root);
+    initArchiveFullscreen(root);
     initNav();
   }
 

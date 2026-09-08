@@ -9,6 +9,7 @@
 
 :root {
   --cs-bg: #003057;
+  --cs-brand: #002a4d;            /* site navy: nav monogram + halo, favicon disc */
   --cs-text: #fff;
   --cs-heading-accent: #7cc4ff;   /* subheads turn this colour once in view */
   --cs-text-70: rgba(255, 255, 255, 0.7);
@@ -320,24 +321,24 @@ a.site-nav__brand {
   width: 1.8rem; height: 1.8rem; margin-top: -0.9rem; border-radius: 50%;
   background: currentColor;
   transform-origin: left center;
-  /* halo: a 50%-opacity page-coloured ring so the white mark stays legible
+  /* halo: a 50%-opacity navy ring so the white mark stays legible
      over light content passing under the nav. It is a spread shadow on the
      circle itself, so it is always concentric (0.2rem here = 0.4rem once the
      circle is scaled 2x). It grows out after the monogram has appeared and
      collapses first on the way back. */
-  --halo: color-mix(in srgb, var(--cs-bg) 50%, transparent);
+  --halo: color-mix(in srgb, var(--cs-brand) 50%, transparent);
   box-shadow: 0 0 0 0 var(--halo);
   transition: transform 0.6s var(--cs-ease), box-shadow 0.45s var(--cs-ease);
 }
 a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .brand-mark__initials {
   /* the SC monogram (assets/SC_Icon.svg) as a CSS mask over a page-coloured
-     box, so it takes the same colour the "SC" text used to; the text in the
+     box in the site navy; the text in the
      markup is kept as a fallback but hidden */
   position: relative; z-index: 2;
   width: 1.64rem; height: 2rem;
   font-size: 0; color: transparent; overflow: hidden;
-  background: var(--cs-bg);
+  background: var(--cs-brand);
   -webkit-mask: url(../assets/SC_Icon.svg) no-repeat center / contain;
   mask: url(../assets/SC_Icon.svg) no-repeat center / contain;
   opacity: 0; transform: scale(0.5);

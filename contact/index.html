@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KSJ8FXFF');</script>
+  <!-- End Google Tag Manager -->
   <title>Contact — Sean Cowan</title>
   <meta name="description" content="Get in touch with Sean Cowan, Director of Digital Experience: speaking engagements, projects and opportunities.">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -70,6 +73,9 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSJ8FXFF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header class="site-nav">
     <div class="site-max site-nav__inner">
       <a class="site-nav__brand" href="../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
@@ -186,6 +192,7 @@
       }).then(function (r) { return r.ok ? r : Promise.reject(r); }).then(function () {
         form.classList.remove("is-sending"); form.classList.add("is-sent");
         status.textContent = "Thanks. Your message is on its way; I'll get back to you shortly.";
+        if (window.CaseStudy && window.CaseStudy.track) window.CaseStudy.track("cs_form_submit", { form_name: "contact", booking: payload.booking || "" });
       }).catch(function () {
         form.classList.remove("is-sending");
         status.className = "contact__status body-normal is-error";

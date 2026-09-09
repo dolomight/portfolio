@@ -24,6 +24,24 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ------------------------------------------------------------ analytics
+     Pushes named events to the Google Tag Manager dataLayer (cs_* events; GTM
+     forwards them to GA4). Safe when GTM is absent: the array just fills. */
+  function track(name, params) {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      var ev = { event: name, page_path: location.pathname, page_title: document.title };
+      for (var k in params) if (params[k] != null && params[k] !== "") ev[k] = params[k];
+      window.dataLayer.push(ev);
+    } catch (_) { /* never let analytics break the page */ }
+  }
+  function sectionOf(el) {
+    var sec = el.closest && el.closest("section, article, footer, header, nav");
+    if (!sec) return "";
+    var eyebrow = sec.querySelector && sec.querySelector(".eyebrow");
+    return (eyebrow && eyebrow.textContent.trim()) || sec.className.split(" ")[0] || sec.tagName.toLowerCase();
+  }
+
   /* ---------------------------------------------------------------- utils */
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
@@ -161,6 +179,7 @@
         });
       } else if (data.event === "play" || data.event === "timeupdate") {
         entry.box.classList.add("is-playing");
+        if (!entry.tracked) { entry.tracked = true; track("cs_video_play", { video_title: entry.box.dataset.title || "", video_kind: "vimeo" }); }
       }
     });
   }
@@ -199,7 +218,10 @@
         if (box.dataset.poster) media.poster = box.dataset.poster;
         media.muted = true; media.loop = true; media.autoplay = true; media.playsInline = true;
         media.setAttribute("aria-hidden", "true");
-        media.addEventListener("playing", function () { box.classList.add("is-playing"); });
+        media.addEventListener("playing", function () {
+          box.classList.add("is-playing");
+          if (!box.dataset.tracked) { box.dataset.tracked = "1"; track("cs_video_play", { video_title: box.dataset.title || "", video_kind: "file" }); }
+        });
         // Missing/unsupported file: quietly fall back to the poster
         media.addEventListener("error", function () { box.classList.remove("is-playing"); media.remove(); });
       }
@@ -352,6 +374,7 @@
     if (!toggle || !menu) return;
     function setOpen(open) {
       document.body.classList.toggle("menu-open", open);
+      if (open) track("cs_menu_open", {});
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
       menu.setAttribute("aria-hidden", open ? "false" : "true");
@@ -503,6 +526,30 @@
   }
 
   /* -------------------------------------------------------------- init */
+  /* ----------------------------------------------------- click tracking
+     One delegated listener: buttons/CTAs (.btn, .case-panel__cta), nav and
+     menu links, archive carousel cards, home tiles, mailto/tel links. Outbound
+     links and file downloads are covered by GA4 enhanced measurement. */
+  function initClickTracking() {
+    if (document.body.dataset.csClicks) return;
+    document.body.dataset.csClicks = "1";
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a, button");
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      var text = (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80);
+      var name = null, extra = {};
+      if (a.classList.contains("btn") || a.classList.contains("case-panel__cta") || a.classList.contains("site-footer__live-link")) name = "cs_cta_click";
+      else if (a.closest(".archive-carousel")) name = "cs_carousel_click";
+      else if (a.closest(".loose-tile") || a.classList.contains("loose-tile") || a.classList.contains("case-panel__link") || a.classList.contains("work-card")) name = "cs_work_click";
+      else if (a.closest(".site-nav, .site-menu") && !a.classList.contains("site-nav__toggle")) name = "cs_nav_click";
+      else if (/^(mailto|tel):/.test(href)) { name = "cs_contact_link"; extra.link_type = href.split(":")[0]; }
+      if (!name) return;
+      extra.link_text = text; extra.link_url = href; extra.page_section = sectionOf(a);
+      track(name, extra);
+    }, { passive: true });
+  }
+
   function init(root) {
     root = root || document;
     initSplit(root);
@@ -515,9 +562,10 @@
     initArchiveFullscreen(root);
     initArchiveCarousel(root);
     initNav();
+    initClickTracking();
   }
 
-  window.CaseStudy = { init: init, splitWords: splitWords };
+  window.CaseStudy = { init: init, splitWords: splitWords, track: track };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { init(); });
   else init();

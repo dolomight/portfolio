@@ -12,7 +12,11 @@
     # revalidate every load (cheap 304) so CSS/JS fixes reach phones without a ?v= bump
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Password gate for the whole site (see netlify/edge-functions/password.ts)
-[[edge_functions]]
-  path = "/*"
-  function = "password"
+# Keep the site out of search engines: it is shared by direct link only.
+# noindex (not a robots.txt Disallow) is what actually keeps pages out of
+# results even when they are linked from LinkedIn etc. Crawlers must be able
+# to fetch the pages to see it, so nothing is blocked.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

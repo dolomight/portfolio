@@ -31,21 +31,6 @@
     .archive-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, max-content)); gap: 2.4rem 4.8rem; margin: 0; padding-top: 3.2rem; border-top: 1px solid var(--cs-text-15); width: 100%; }
     .archive-meta dt { font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cs-text-60); margin-bottom: .6rem; }
     .archive-meta dd { margin: 0; font-size: 1.5rem; color: var(--cs-text); }
-    /* Prev / all / next as frosted pills with arrows, like the nav */
-    .archive-nav { display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
-    .archive-nav a {
-      display: inline-flex; align-items: center; gap: 1rem;
-      height: 5rem; padding: 0 2rem; border-radius: var(--cs-radius);
-      background: rgba(255,255,255,.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      color: #fff; font-size: 1.5rem; font-weight: 500; white-space: nowrap;
-      transition: background-color .4s ease, transform .5s var(--cs-ease);
-    }
-    .archive-nav a:hover { background: rgba(255,255,255,.25); }
-    .archive-nav a .arrow { display: inline-block; transition: transform .5s var(--cs-ease); }
-    .archive-nav a.is-next:hover .arrow { transform: translateX(.4rem); }
-    .archive-nav a.is-prev:hover .arrow { transform: translateX(-.4rem); }
-    .archive-nav a.is-all { color: var(--cs-text-70); }
-    .archive-nav a.is-all:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -117,19 +102,37 @@
       </section>
 
       <div class="space-large"></div>
-      <section class="section">
-        <div class="site-max archive-nav" data-reveal>
-          <a class="is-prev" href="../mammoth/index.html"><span class="arrow" aria-hidden="true">←</span>Certified Unreal</a>
-          <a class="is-all" href="../../index.html#archive">All archive projects</a>
-          <a class="is-next" href="../stryker/index.html">Stryker Knee<span class="arrow" aria-hidden="true">→</span></a>
+      <section class="section section--clip">
+        <div class="site-max">
+          <div class="archive-carousel" data-carousel data-reveal>
+            <div class="archive-carousel__head">
+              <p class="eyebrow">Archive projects</p>
+              <div class="archive-carousel__controls">
+                <button class="archive-carousel__btn is-prev" type="button" aria-label="Scroll to earlier projects">←</button>
+                <button class="archive-carousel__btn is-next" type="button" aria-label="Scroll to later projects">→</button>
+              </div>
+            </div>
+            <ul class="archive-carousel__track">
+            <li><a class="archive-card" href="../mammoth/index.html"><span class="archive-card__title">Certified Unreal · Mammoth Lakes</span></a></li>
+            <li><span class="archive-card is-current" aria-current="page"><span class="archive-card__tag">Viewing</span><span class="archive-card__title">Exal Visualizer</span></span></li>
+            <li><a class="archive-card" href="../stryker/index.html"><span class="archive-card__title">Stryker Knee</span></a></li>
+            <li><a class="archive-card" href="../ticktracker/index.html"><span class="archive-card__title">TickTracker</span></a></li>
+            <li><a class="archive-card" href="../cm1000/index.html"><span class="archive-card__title">CM1000 Sales Tool</span></a></li>
+            <li><a class="archive-card" href="../nationwide/index.html"><span class="archive-card__title">Nationwide Life</span></a></li>
+            <li><a class="archive-card" href="../ge/index.html"><span class="archive-card__title">GE Healthcare</span></a></li>
+            <li><a class="archive-card" href="../tradeshow/index.html"><span class="archive-card__title">Trade Show Experiences</span></a></li>
+            <li><a class="archive-card" href="../qn2a/index.html"><span class="archive-card__title">QN2A · Stand Up To Cancer</span></a></li>
+            </ul>
+          </div>
         </div>
       </section>
       <div class="space-large"></div>
     </article>
   </main>
 
-  <footer class="site-footer" id="contact">
-    <div class="site-max">
+  <!-- White footer pinned beneath the page; the page lifts off it like a curtain -->
+  <footer class="site-footer site-footer--curtain" id="contact">
+    <div class="site-max site-footer__inner">
       <div class="site-footer__cta">
         <h2 class="display" data-split>Let's talk.</h2>
         <a class="btn btn--solid" href="../../contact/index.html">Contact</a>

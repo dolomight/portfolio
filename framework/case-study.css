@@ -1024,3 +1024,72 @@ main.is-light {
 .site-footer__live-link:hover span { transform: translate(0.3rem, -0.3rem); }
 @media (max-width: 767px) { .site-footer__live-link { font-size: 2.6rem; } }
 .site-footer--media .site-footer__bottom { margin-top: 6rem; color: var(--cs-text-70); }
+
+/* --------------------------------------------------------------------------
+   White curtain footer (archive pages). Same idea as the home page: the
+   footer is white and pinned beneath the opaque page, so the page lifts away
+   like a curtain to reveal it. JS turns the nav navy once the page has
+   cleared it (.site-nav.is-light).
+   -------------------------------------------------------------------------- */
+.site-footer--curtain {
+  position: sticky; bottom: 0; z-index: 0;
+  min-height: 60vh; min-height: 60svh;
+  display: flex; align-items: flex-end;
+  padding: 6rem 0 0; border-top: 0; overflow: hidden;
+  background: #fff; color: var(--cs-brand);
+  --cs-text: #002a4d;
+  --cs-text-70: rgba(0, 42, 77, 0.75);
+  --cs-text-60: rgba(0, 42, 77, 0.62);
+  --cs-text-15: rgba(0, 42, 77, 0.12);
+}
+.site-footer--curtain .site-footer__inner { width: 100%; padding-bottom: 3.2rem; }
+.site-footer--curtain .site-footer__cta { gap: 3.2rem; }
+.site-footer--curtain .btn--solid { background: var(--cs-brand); color: #fff; }
+.site-footer--curtain .btn--solid:hover { background: #0d4a7d; }
+.site-footer--curtain .site-footer__bottom { margin-top: 5.6rem; color: var(--cs-text-60); }
+.site-footer--curtain .site-footer__bottom a:hover { color: var(--cs-brand); }
+
+/* --------------------------------------------------------------------------
+   Archive carousel: square title-only cards in a horizontal scroll-snap row.
+   The current project is the white card; the edge fades, the peeking cards
+   and the arrow buttons all say "this slides". JS (data-carousel) drives the
+   arrows, disables them at the ends and starts with the current card in view.
+   -------------------------------------------------------------------------- */
+.archive-carousel { position: relative; }
+.archive-carousel__head { display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; margin-bottom: 2.4rem; }
+.archive-carousel__controls { display: flex; gap: 0.8rem; }
+.archive-carousel__btn {
+  width: 4.4rem; height: 4.4rem; padding: 0; border-radius: 50%;
+  border: 1px solid var(--cs-text-15); background: rgba(255, 255, 255, 0.1); color: #fff;
+  font: inherit; font-size: 1.8rem; line-height: 1; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+.archive-carousel__btn:hover { background: #fff; color: #000; }
+.archive-carousel__btn:disabled { opacity: 0.3; cursor: default; background: transparent; color: #fff; }
+.archive-carousel__track {
+  position: relative; list-style: none; margin: 0; padding: 0.6rem 0 1.2rem;
+  display: flex; gap: var(--cs-gap);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8rem, #000 calc(100% - 8rem), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8rem, #000 calc(100% - 8rem), transparent);
+}
+.archive-carousel.is-start .archive-carousel__track { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 8rem), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 8rem), transparent); }
+.archive-carousel.is-end .archive-carousel__track { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8rem); mask-image: linear-gradient(90deg, transparent, #000 8rem); }
+.archive-carousel.is-start.is-end .archive-carousel__track { -webkit-mask-image: none; mask-image: none; }
+.archive-carousel__track::-webkit-scrollbar { display: none; }
+.archive-carousel__track li { flex: 0 0 auto; scroll-snap-align: start; }
+.archive-card {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  width: 26rem; aspect-ratio: 1; padding: 2.4rem; box-sizing: border-box;
+  border-radius: var(--cs-radius); border: 1px solid var(--cs-text-15);
+  background: rgba(255, 255, 255, 0.08); color: #fff; text-decoration: none;
+  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.5s var(--cs-ease);
+}
+a.archive-card:hover { background: rgba(255, 255, 255, 0.18); transform: translateY(-0.4rem); }
+.archive-card__tag { margin-bottom: auto; font-size: 1.2rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cs-text-60); }
+.archive-card__title { font-size: 2.2rem; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.archive-card.is-current { background: #fff; border-color: #fff; color: var(--cs-brand); }
+.archive-card.is-current .archive-card__tag { color: var(--cs-brand); opacity: 0.7; }
+@media (max-width: 767px) { .archive-card { width: 19rem; padding: 1.8rem; } .archive-card__title { font-size: 1.8rem; } }

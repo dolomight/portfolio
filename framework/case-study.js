@@ -380,7 +380,8 @@
     var scales = $all("[data-scrollscale]", root);
     var veils = $all("[data-footer-veil]", root);
     var pageEnd = document.querySelector("main > .page-end");
-    if (!heroMedia.length && !fades.length && !scales.length && !veils.length && !pageEnd) return;
+    var curtain = document.querySelector(".site-footer--curtain");
+    if (!heroMedia.length && !fades.length && !scales.length && !veils.length && !pageEnd && !curtain) return;
 
     if (reduceMotion) {
       heroMedia.forEach(function (el) { el.style.opacity = ""; });
@@ -402,6 +403,11 @@
         main.classList.toggle("is-light", light);
         var nav = document.querySelector(".site-nav");
         if (nav) nav.classList.toggle("is-light", light && main.getBoundingClientRect().bottom > nav.offsetHeight);
+      }
+      // White curtain footer: once the page has lifted clear of the nav, the nav goes navy
+      if (curtain && !pageEnd) {
+        var pageMain = document.querySelector("main"), cnav = document.querySelector(".site-nav");
+        if (pageMain && cnav) cnav.classList.toggle("is-light", pageMain.getBoundingClientRect().bottom < cnav.offsetHeight);
       }
       if (reduceMotion) return;
 
@@ -440,6 +446,45 @@
      Archive pages embed a stripped-down Vimeo player (fullscreen=0). On phones
      the small inline frame is hard to watch, so allow the fullscreen button
      there only — desktop keeps the bare player. */
+  /* ------------------------------------------------- archive carousel
+     [data-carousel]: horizontal scroll-snap row of .archive-card items. The
+     arrow buttons scroll two cards at a time and disable at the ends; the
+     wrapper gets .is-start / .is-end so the CSS edge fades only show where
+     there is more to see. Starts with the current project in view. */
+  function initArchiveCarousel(root) {
+    $all("[data-carousel]", root).forEach(function (c) {
+      var track = c.querySelector(".archive-carousel__track");
+      if (!track) return;
+      var prev = c.querySelector(".is-prev"), next = c.querySelector(".is-next");
+      function step() {
+        var li = track.querySelector("li");
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return li ? li.getBoundingClientRect().width + gap : 300;
+      }
+      function sync() {
+        var max = track.scrollWidth - track.clientWidth - 1;
+        var atStart = track.scrollLeft <= 1, atEnd = track.scrollLeft >= max;
+        c.classList.toggle("is-start", atStart);
+        c.classList.toggle("is-end", atEnd);
+        if (prev) prev.disabled = atStart;
+        if (next) next.disabled = atEnd;
+      }
+      if (prev) prev.addEventListener("click", function () { track.scrollBy({ left: -step() * 2, behavior: "smooth" }); });
+      if (next) next.addEventListener("click", function () { track.scrollBy({ left: step() * 2, behavior: "smooth" }); });
+      track.addEventListener("scroll", sync, { passive: true });
+      window.addEventListener("resize", sync);
+      var cur = track.querySelector(".is-current");
+      var li = cur && cur.closest("li");
+      if (li) {
+        // jump, don't animate: "auto" would defer to the CSS scroll-behavior (smooth)
+        var sb = track.style.scrollBehavior; track.style.scrollBehavior = "auto";
+        track.scrollLeft = Math.max(0, li.offsetLeft - step() * 0.5);
+        track.style.scrollBehavior = sb;
+      }
+      sync();
+    });
+  }
+
   function initArchiveFullscreen(root) {
     if (!window.matchMedia("(max-width: 767px)").matches) return;
     $all(".archive-media iframe[src*='player.vimeo.com']", root).forEach(function (f) {
@@ -462,6 +507,7 @@
     initScrollLinked(root);
     initMediaScroll(root);
     initArchiveFullscreen(root);
+    initArchiveCarousel(root);
     initNav();
   }
 

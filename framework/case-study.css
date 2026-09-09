@@ -552,6 +552,7 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   font-size: 1.5rem;
   color: var(--cs-text-70);
 }
+.media-hero__meta dd { margin: 0; }   /* kill the UA indent so the meta lines up with the title */
 .media-hero__meta b { display: block; color: #fff; font-weight: 500; margin-bottom: 0.4rem; }
 .media-hero__meta strong { font-weight: 500; }   /* Inter Medium (500) is the heaviest weight loaded */
 

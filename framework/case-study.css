@@ -810,11 +810,11 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 @media (max-width: 767px) {
   .gallery__captions { gap: 60rem; padding-block: 60rem; }
   .gallery__shot {
-    left: 50%; top: 14%;
+    left: 50%; top: 9%;
     width: 86%;
     height: auto;
     transform: translateX(-50%) scale(0.96);
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 3 / 4;   /* tall enough on a phone to show the sections the captions describe */
   }
   .gallery__item.is-active .gallery__shot { transform: translateX(-50%) scale(1); }
   .gallery__shot--mobile { width: 44%; top: 8%; aspect-ratio: 9 / 16; }
@@ -1083,6 +1083,12 @@ main.is-light {
 .archive-carousel.is-end .archive-carousel__track { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8rem); mask-image: linear-gradient(90deg, transparent, #000 8rem); }
 .archive-carousel.is-start.is-end .archive-carousel__track { -webkit-mask-image: none; mask-image: none; }
 .archive-carousel__track::-webkit-scrollbar { display: none; }
+@media (max-width: 767px) {
+  /* phones: cards run edge to edge with no fade; the peeking card is signal enough */
+  .archive-carousel .archive-carousel__track,
+  .archive-carousel.is-start .archive-carousel__track,
+  .archive-carousel.is-end .archive-carousel__track { -webkit-mask-image: none; mask-image: none; }
+}
 .archive-carousel__track li { flex: 0 0 auto; scroll-snap-align: start; }
 .archive-card {
   position: relative; overflow: hidden; isolation: isolate;

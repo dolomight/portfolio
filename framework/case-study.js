@@ -352,8 +352,8 @@
       if (itemPath === here) a.classList.add("is-current");
       a.innerHTML =
         '<span class="work-card__thumb"><img src="' + siteRoot + item.thumb + '" alt="" width="480" height="300"></span>' +
-        '<span class="work-card__body"><span class="work-card__num">' + (i < 9 ? "0" : "") + (i + 1) + " · " + item.title + "</span>" +
-        '<span class="work-card__title">' + item.desc + "</span>" +
+        '<span class="work-card__body"><span class="work-card__num">' + (i < 9 ? "0" : "") + (i + 1) + "</span>" +
+        '<span class="work-card__title">' + item.title + "</span>" +
         '<span class="work-card__kind">' + item.kind + "</span></span>";
       list.appendChild(a);
     });

@@ -1026,19 +1026,26 @@ main.is-light {
 .site-footer--media .site-footer__bottom { margin-top: 6rem; color: var(--cs-text-70); }
 
 /* --------------------------------------------------------------------------
-   White footer (archive pages). A plain white footer that follows the page
-   in normal flow (no curtain), with navy text tokens. The class name is
-   historical: it briefly was a sticky curtain like the home page.
+   White curtain footer (archive pages). Same construction as the home page:
+   the footer is white and pinned to the bottom of the viewport *beneath* the
+   opaque page (sticky, z-index 0 under main's z-index 1), so as the reader
+   scrolls past the end the page lifts away like a curtain and reveals it.
+   It stays invisible (JS: .is-revealed) until the page has actually started
+   to lift, and the nav turns navy once the page has cleared it.
    -------------------------------------------------------------------------- */
 .site-footer--curtain {
-  position: relative; z-index: 1;
-  padding: 10rem 0 0; border-top: 0;
+  position: sticky; bottom: 0; z-index: 0;
+  min-height: 50vh; min-height: 50svh;
+  display: flex; align-items: flex-end;
+  padding: 6rem 0 0; border-top: 0; overflow: hidden;
   background: #fff; color: var(--cs-brand);
+  visibility: hidden;
   --cs-text: #002a4d;
   --cs-text-70: rgba(0, 42, 77, 0.75);
   --cs-text-60: rgba(0, 42, 77, 0.62);
   --cs-text-15: rgba(0, 42, 77, 0.12);
 }
+.site-footer--curtain.is-revealed { visibility: visible; }
 .site-footer--curtain .site-footer__inner { width: 100%; padding-bottom: 3.2rem; }
 .site-footer--curtain .site-footer__cta { gap: 3.2rem; }
 .site-footer--curtain .btn--solid { background: var(--cs-brand); color: #fff; }

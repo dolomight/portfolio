@@ -404,10 +404,16 @@
         var nav = document.querySelector(".site-nav");
         if (nav) nav.classList.toggle("is-light", light && main.getBoundingClientRect().bottom > nav.offsetHeight);
       }
-      // White footer (archive pages): the nav goes navy once the page has scrolled clear of it
+      // White curtain footer (archive pages), as on the home page: show the
+      // footer once the page has started to lift off it, and turn the nav navy
+      // once the page has cleared the nav
       if (curtain && !pageEnd) {
         var pageMain = document.querySelector("main"), cnav = document.querySelector(".site-nav");
-        if (pageMain && cnav) cnav.classList.toggle("is-light", pageMain.getBoundingClientRect().bottom < cnav.offsetHeight);
+        if (pageMain) {
+          var mainBottom = pageMain.getBoundingClientRect().bottom;
+          curtain.classList.toggle("is-revealed", mainBottom < vh + 1);
+          if (cnav) cnav.classList.toggle("is-light", mainBottom < cnav.offsetHeight);
+        }
       }
       if (reduceMotion) return;
 

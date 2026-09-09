@@ -31,6 +31,9 @@
     .archive-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, max-content)); gap: 2.4rem 4.8rem; margin: 0; padding-top: 3.2rem; border-top: 1px solid var(--cs-text-15); width: 100%; }
     .archive-meta dt { font-size: 1.2rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cs-text-60); margin-bottom: .6rem; }
     .archive-meta dd { margin: 0; font-size: 1.5rem; color: var(--cs-text); }
+    .archive-live { margin-top: 3.2rem; }
+    .archive-live .btn span { display: inline-block; margin-left: .6rem; transition: transform .4s var(--cs-ease); }
+    .archive-live .btn:hover span { transform: translate(.3rem, -.3rem); }
   </style>
 </head>
 <body>
@@ -97,6 +100,7 @@
               <div><dt>Client</dt><dd>Mammoth Lakes Tourism</dd></div>
               <div><dt>Year</dt><dd>2026</dd></div>
             </dl>
+            <p class="archive-live" data-reveal><a class="btn btn--solid" href="https://www.visitmammoth.com/certified-unreal-map/" target="_blank" rel="noopener">See the live 3D map <span aria-hidden="true">↗</span></a></p>
           </div>
         </div>
       </section>

@@ -404,7 +404,7 @@
         var nav = document.querySelector(".site-nav");
         if (nav) nav.classList.toggle("is-light", light && main.getBoundingClientRect().bottom > nav.offsetHeight);
       }
-      // White curtain footer: once the page has lifted clear of the nav, the nav goes navy
+      // White footer (archive pages): the nav goes navy once the page has scrolled clear of it
       if (curtain && !pageEnd) {
         var pageMain = document.querySelector("main"), cnav = document.querySelector(".site-nav");
         if (pageMain && cnav) cnav.classList.toggle("is-light", pageMain.getBoundingClientRect().bottom < cnav.offsetHeight);

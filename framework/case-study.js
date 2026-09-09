@@ -8,6 +8,7 @@
      [data-reveal]             block fade/slide reveal
      .gallery                  sticky media gallery (captions drive active media)
      [data-video]              Vimeo background video that covers its box
+     [data-video] + data-playback-rate="0.5"   slows a background video (Vimeo or file)
      [data-count]              number counts up when scrolled into view
      [data-hero-fade]          pinned hero media fades out over the first screen
      [data-scrollfade]         opacity tracks scroll position (objective rows)
@@ -177,6 +178,12 @@
           entry.iframe.contentWindow.postMessage(
             JSON.stringify({ method: "addEventListener", value: ev }), "https://player.vimeo.com");
         });
+        // data-playback-rate (e.g. 0.5 for a slow, dreamy loop); needs the
+        // speed embed param, which initVideo adds when the attribute is set
+        if (entry.rate) {
+          entry.iframe.contentWindow.postMessage(
+            JSON.stringify({ method: "setPlaybackRate", value: entry.rate }), "https://player.vimeo.com");
+        }
       } else if (data.event === "play" || data.event === "timeupdate") {
         entry.box.classList.add("is-playing");
         if (!entry.tracked) { entry.tracked = true; track("cs_video_play", { video_title: entry.box.dataset.title || "", video_kind: "vimeo" }); }
@@ -201,6 +208,8 @@
           "api=1", "player_id=" + playerId
         ];
         if (box.dataset.vimeoHash) params.unshift("h=" + box.dataset.vimeoHash);
+        var rate = parseFloat(box.dataset.playbackRate);
+        if (rate > 0) params.push("speed=1");
         media = document.createElement("iframe");
         media.id = playerId;
         media.src = "https://player.vimeo.com/video/" + box.dataset.vimeoId + "?" + params.join("&");
@@ -211,12 +220,13 @@
         // Only reveal the player once Vimeo confirms it is actually playing.
         // A private, password-protected or domain-locked video therefore
         // leaves the poster in place instead of showing Vimeo's error/gate.
-        vimeoBoxes[playerId] = { box: box, iframe: media };
+        vimeoBoxes[playerId] = { box: box, iframe: media, rate: rate > 0 ? rate : 0 };
       } else if (kind === "file" && box.dataset.src) {
         media = document.createElement("video");
         media.src = box.dataset.src;
         if (box.dataset.poster) media.poster = box.dataset.poster;
         media.muted = true; media.loop = true; media.autoplay = true; media.playsInline = true;
+        if (parseFloat(box.dataset.playbackRate) > 0) media.defaultPlaybackRate = media.playbackRate = parseFloat(box.dataset.playbackRate);
         media.setAttribute("aria-hidden", "true");
         media.addEventListener("playing", function () {
           box.classList.add("is-playing");

@@ -41,7 +41,8 @@
        ------------------------------------------------------------------ */
     body::before {
       content: ""; position: fixed; inset: -4%; z-index: 0; pointer-events: none;
-      background: url(assets/home/poster-wave.jpg) center / cover no-repeat;
+      /* background: url(assets/home/poster-wave.jpg) center / cover no-repeat;  original Hokusai print */
+      background: url(assets/home/poster-wave-2.jpg) center / cover no-repeat;
       filter: blur(28px) saturate(.55); opacity: .22; transform: scale(1.04);
     }
     body::after {
@@ -166,7 +167,8 @@
     }
     .after-cases::before {
       content: ""; position: absolute; inset: -4%; z-index: 0; pointer-events: none;
-      background: url(assets/home/poster-wave.jpg) center / cover no-repeat;
+      /* background: url(assets/home/poster-wave.jpg) center / cover no-repeat;  original Hokusai print */
+      background: url(assets/home/poster-wave-2.jpg) center / cover no-repeat;
       filter: blur(28px) saturate(.55); opacity: .22;
     }
     .after-cases::after {
@@ -267,8 +269,11 @@
                data-video="vimeo"
                data-vimeo-id=""
                data-ratio="1.488"
-               data-title="The Great Wave off Kanagawa, Hokusai">
+               data-title="The Great Wave, reimagined">
+            <!-- Original hero (Hokusai print), kept in case we go back:
             <img class="video-cover__poster" src="assets/home/poster-wave.jpg" alt="The Great Wave off Kanagawa by Hokusai" width="2400" height="1613" fetchpriority="high">
+            -->
+            <img class="video-cover__poster" src="assets/home/poster-wave-2.jpg" alt="A reimagined Great Wave off Kanagawa, with fishing boats beneath the crest and Mount Fuji beyond" width="2400" height="1357" fetchpriority="high">
           </div>
           <div class="media-fill__overlay"></div>
         </figure>

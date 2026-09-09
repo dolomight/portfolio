@@ -88,13 +88,14 @@
       var decimals = (el.dataset.count.split(".")[1] || "").length;
       var suffix = el.dataset.suffix || "";
       var prefix = el.dataset.prefix || "";
-      if (reduceMotion || isNaN(target)) { el.textContent = prefix + el.dataset.count + suffix; return; }
+      var fmt = function (n) { return n.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }); };
+      if (reduceMotion || isNaN(target)) { el.textContent = prefix + (isNaN(target) ? el.dataset.count : fmt(target)) + suffix; return; }
       var dur = 1400, start = null;
       function step(ts) {
         if (!start) start = ts;
         var p = Math.min(1, (ts - start) / dur);
         var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
+        el.textContent = prefix + fmt(target * eased) + suffix;
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);

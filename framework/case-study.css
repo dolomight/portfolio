@@ -837,7 +837,8 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
    -------------------------------------------------------------------------- */
 
 .quote__mark { width: 3.9rem; height: 3.2rem; margin-bottom: 3.2rem; fill: currentColor; }
-.quote cite { display: block; margin-top: 2rem; color: var(--cs-text-60); font-style: normal; }
+.quote cite { display: block; margin-top: 2rem; color: var(--cs-text-60); font-style: normal; font-size: 3.45rem; }   /* 25% smaller than the .h4 quote it sits under */
+@media (max-width: 767px) { .quote cite { font-size: 2.55rem; } }
 
 /* --------------------------------------------------------------------------
    Fullscreen media band (video or image)

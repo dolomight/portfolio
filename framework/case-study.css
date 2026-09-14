@@ -275,6 +275,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   width: 100%; height: 100%;
   object-fit: cover;
 }
+/* Sound toggle for films with audio (data-sound) — frosted pill, bottom right */
+.video-cover__sound {
+  position: absolute; right: 2rem; bottom: 2rem; z-index: 6;
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  height: 4.4rem; padding: 0 1.6rem 0 1.2rem;
+  border-radius: var(--cs-radius);
+  background: rgba(20, 20, 20, 0.45); color: #fff;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  font-size: 1.4rem; font-weight: 500; letter-spacing: 0.02em; line-height: 1;
+  opacity: 0; transition: opacity 0.6s ease, background-color 0.3s ease;
+}
+.video-cover.is-playing .video-cover__sound { opacity: 1; }
+.video-cover__sound:hover { background: rgba(20, 20, 20, 0.7); }
+.video-cover__sound svg { width: 2rem; height: 2rem; fill: currentColor; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.video-cover__sound svg path { stroke: none; }
+.video-cover__sound svg .wave { fill: none; stroke: currentColor; opacity: 0.35; }
+.video-cover__sound.is-on svg .wave { opacity: 1; }
+.video-cover__sound.is-on { background: rgba(255, 255, 255, 0.92); color: #000; }
+@media (max-width: 600px) { .video-cover__sound { right: 1.4rem; bottom: 1.4rem; } }
 
 /* --------------------------------------------------------------------------
    Header / nav
@@ -759,6 +778,9 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .gallery__shot--fit { height: auto; }
 .gallery__shot--fit .browser-frame { height: auto; }
 .gallery__shot--fit .browser-frame__view { height: auto; }
+/* in a fit frame the phone is sized like a phone beside a laptop screen: ~85% of the
+   screen height, overhanging the frame's bottom-right corner */
+.gallery__shot--fit.gallery__shot--pair .gallery__shot-secondary { height: 86%; right: -2%; bottom: -8%; }
 .gallery__shot--mobile {
   /* height: auto so the 9:19 aspect ratio actually applies (the base rule sets a
      viewport height, which would stretch the phone and crop the screen's sides);

@@ -202,11 +202,17 @@
 
       if (kind === "vimeo" && box.dataset.vimeoId) {
         var playerId = "cs-vimeo-" + (++vimeoCount);
+        // data-sound: a film the visitor may unmute. Vimeo's background mode
+        // pins the player to silent, so such players drop background=1 and
+        // rely on controls=0 + muted autoplay instead; a Sound button below
+        // toggles the volume through the player API.
+        var withSound = box.hasAttribute("data-sound");
         var params = [
-          "background=1", "autoplay=1", "loop=1", "muted=1", "autopause=0",
+          "autoplay=1", "loop=1", "muted=1", "autopause=0",
           "dnt=1", "title=0", "byline=0", "portrait=0", "controls=0", "playsinline=1",
           "api=1", "player_id=" + playerId
         ];
+        if (!withSound) params.unshift("background=1");
         if (box.dataset.vimeoHash) params.unshift("h=" + box.dataset.vimeoHash);
         var rate = parseFloat(box.dataset.playbackRate);
         if (rate > 0) params.push("speed=1");
@@ -238,6 +244,36 @@
       if (!media) return;
       box.appendChild(media);
 
+      // Sound toggle (data-sound): pill in the corner; off until clicked
+      if (box.hasAttribute("data-sound")) {
+        var btn = document.createElement("button");
+        btn.type = "button"; btn.className = "video-cover__sound";
+        btn.setAttribute("aria-pressed", "false");
+        btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg><span>Sound on</span>';
+        var on = false;
+        function setSound(state) {
+          on = state;
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+          btn.classList.toggle("is-on", on);
+          btn.querySelector("span").textContent = on ? "Sound off" : "Sound on";
+          if (kind === "vimeo") {
+            var win = media.contentWindow;
+            if (win) {
+              win.postMessage(JSON.stringify({ method: "setMuted", value: !on }), "https://player.vimeo.com");
+              win.postMessage(JSON.stringify({ method: "setVolume", value: on ? 1 : 0 }), "https://player.vimeo.com");
+            }
+          } else {
+            media.muted = !on;
+          }
+        }
+        btn.addEventListener("click", function () {
+          setSound(!on);
+          track("cs_video_sound", { video_title: box.dataset.title || "", video_kind: kind, link_text: on ? "on" : "off" });
+        });
+        box.appendChild(btn);
+        box.__setSound = setSound;
+      }
+
       function fit() {
         var w = box.clientWidth, h = box.clientHeight;
         if (!w || !h) return;
@@ -256,6 +292,7 @@
             if (e.isIntersecting) { if (!media.src) media.src = src; }
             else if (media.src && Math.abs(e.boundingClientRect.top) > window.innerHeight * 3) {
               media.removeAttribute("src"); box.classList.remove("is-playing");
+              if (box.__setSound) box.__setSound(false);   // a reloaded player comes back muted
             }
           });
         }, { rootMargin: "100% 0px" }).observe(box);

@@ -52,8 +52,8 @@
     .phones .media-fill img { object-position: top; }
     @media (max-width: 767px) { .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } .phones .media-fill { border-radius: 1.4rem; border-width: 0.35rem; } }
     /* UI components sit on a near-black tile, as they were designed */
-    .components .media-fill { aspect-ratio: 4 / 3; background: #fff; padding: 10%; box-sizing: border-box; }
-    .components .media-fill img { object-fit: contain; }
+    .components .media-fill { aspect-ratio: 4 / 3; background: #fff; }
+    .components .media-fill img { inset: 12%; width: 76%; height: 76%; object-fit: contain; }   /* the image is absolutely positioned, so pad via inset */
     /* Subject touchpoints: portrait documents on the light grey */
     .documents .media-fill { aspect-ratio: 4 / 5; background: #faf6f5; }
     .documents .media-fill img { object-fit: contain; }
@@ -592,10 +592,10 @@
         <div class="site-max">
           <figure class="media-fill radius-media browser-frame" data-scrollscale>
             <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="browser-frame__view" style="aspect-ratio:1375/846">
-              <img src="../../assets/abbvie/landing-site.jpg" alt="Aptios web landing page: A smarter way to conduct clinical studies, web login, support and app download" loading="lazy" width="1375" height="846">
+            <div class="browser-frame__view" style="aspect-ratio:1800/1589">
+              <img src="../../assets/abbvie/dashboard-playground.jpg" alt="Aptios admin console dashboard: overdue and current tasks beside current studies with enrolment progress" loading="lazy" width="1800" height="1589">
             </div>
-            <figcaption>Aptios web entry point for study teams, sites and subjects</figcaption>
+            <figcaption>Admin console dashboard: tasks and studies for a clinical research coordinator</figcaption>
           </figure>
         </div>
       </article>

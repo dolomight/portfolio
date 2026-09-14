@@ -850,7 +850,9 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
   }
   .gallery__item.is-active .gallery__shot { transform: translateX(-50%) scale(1); }
   .gallery__shot--mobile { width: 44%; top: 8%; aspect-ratio: 9 / 16; }
+  .gallery__shot--fit { aspect-ratio: auto; }   /* screen-sized shots keep their own ratio on phones too */
   .gallery__shot--pair .gallery__shot-secondary { right: 2%; bottom: 4%; height: 70%; }
+  .gallery__shot--fit.gallery__shot--pair .gallery__shot-secondary { height: 80%; right: -1%; bottom: -6%; }
   .gallery__caption-inner {
     padding: 2.4rem;
     border-radius: var(--cs-radius);

@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="framework/case-study.css?v=20260907s">
+  <link rel="stylesheet" href="framework/case-study.css?v=20260914a">
   <style>
     /* Charcoal palette for this page (the framework default is navy) */
     :root { --cs-bg: #161616; --cs-charcoal: #161616; --cs-heading-accent: #9fb4c8; }
@@ -336,6 +336,11 @@
               <img class="video-cover__poster" src="assets/smucker/poster-corporate-hq.jpg" alt="" width="1920" height="1080">
             </div>
           </figure>
+          <figure class="case-stage__media">
+            <div class="video-cover" data-video="vimeo" data-vimeo-id="1226470725" data-ratio="1.778" data-title="AbbVie clinical innovation film">
+              <img class="video-cover__poster" src="assets/home/poster-abbvie.jpg" alt="" width="1920" height="1080">
+            </div>
+          </figure>
           <div class="case-stage__veil"></div>
           <div class="case-stage__foot">
             <div class="site-max case-stage__foot-grid">
@@ -354,6 +359,10 @@
               <div class="case-stage__foot-item">
                 <p class="case-panel__desc">A corporate site that tells the story of a Fortune 500 family company behind 40+ brands, and recruits for its Orrville headquarters.</p>
                 <a class="case-panel__cta" href="case-studies/smucker/index.html">View<span class="arrow" aria-hidden="true">→</span></a>
+              </div>
+              <div class="case-stage__foot-item">
+                <p class="case-panel__desc">AbbVie's clinical-innovation platform, designed as one system: a remote capture app for trial participants, a Unity 3D visualizer, search-driven trial recruitment, and the admin console behind it all.</p>
+                <a class="case-panel__cta" href="case-studies/abbvie/index.html" data-gate="abbvie">View<span class="arrow" aria-hidden="true">→</span></a>
               </div>
             </div>
           </div>
@@ -392,6 +401,15 @@
           <a class="case-panel__link" href="case-studies/smucker/index.html" aria-label="The J.M. Smucker Company case study">
             <p class="eyebrow case-panel__index"><span>04</span><i aria-hidden="true"></i><span>Corporate &amp; careers</span></p>
             <h2 data-letters>The J.M. Smucker Co.</h2>
+          </a>
+        </div>
+      </article>
+
+      <article class="case-panel">
+        <div class="site-max">
+          <a class="case-panel__link" href="case-studies/abbvie/index.html" data-gate="abbvie" aria-label="AbbVie Clinical Innovation case study">
+            <p class="eyebrow case-panel__index"><span>05</span><i aria-hidden="true"></i><span>Clinical innovation</span></p>
+            <h2 data-letters data-stack>AbbVie Clinical Innovation</h2>
           </a>
         </div>
       </article>
@@ -514,7 +532,7 @@
     </div>
   </footer>
 
-  <script src="framework/case-study.js?v=20260907s" defer></script>
+  <script src="framework/case-study.js?v=20260914a" defer></script>
   <script>
   (function () {
     var panels = Array.prototype.slice.call(document.querySelectorAll(".case-panel"));

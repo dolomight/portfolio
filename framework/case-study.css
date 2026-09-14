@@ -754,8 +754,17 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 }
 .gallery__item.is-active .gallery__shot { transform: translateY(-50%) scale(1); }
 .gallery__shot--tall { aspect-ratio: 16 / 11.5; }
+/* --fit: for a screen-sized (16:9 / 16:10) screenshot rather than a tall page —
+   the frame wraps the image instead of filling the viewport height */
+.gallery__shot--fit { height: auto; }
+.gallery__shot--fit .browser-frame { height: auto; }
+.gallery__shot--fit .browser-frame__view { height: auto; }
 .gallery__shot--mobile {
-  width: clamp(20rem, 22vw, 30rem);
+  /* height: auto so the 9:19 aspect ratio actually applies (the base rule sets a
+     viewport height, which would stretch the phone and crop the screen's sides);
+     width also capped so the phone never exceeds the viewport height */
+  width: min(clamp(20rem, 22vw, 30rem), calc((100svh - 12rem) * 9 / 19));
+  height: auto;
   left: 20%;
   aspect-ratio: 9 / 19;
   border-radius: 3.6rem;
@@ -904,6 +913,73 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .img-grid .media-fill { aspect-ratio: 4 / 5; }
 .img-grid--wide .media-fill { aspect-ratio: 16 / 10; }
 @media (max-width: 767px) { .img-grid--2, .img-grid--3 { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------------------------------------
+   Password dialog for gated case studies (see netlify/edge-functions/gate.ts)
+   Opened by initGate for any link carrying data-gate="<slug>".
+   -------------------------------------------------------------------------- */
+
+.gate {
+  position: fixed; inset: 0;
+  z-index: 80;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--cs-gutter);
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(24px) saturate(0.8);
+  -webkit-backdrop-filter: blur(24px) saturate(0.8);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+.gate.is-open { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s; }
+.gate-open { overflow: hidden; }
+.gate__panel {
+  position: relative;
+  width: min(56rem, 100%);
+  padding: 4.8rem 4.4rem 4.4rem;
+  border-radius: 1.6rem;
+  background: rgba(30, 30, 30, 0.82);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  color: #fff;
+  transform: translateY(2rem);
+  transition: transform 0.7s var(--cs-ease);
+}
+.gate.is-open .gate__panel { transform: none; }
+.gate__close {
+  position: absolute; top: 1.6rem; right: 1.6rem;
+  width: 4rem; height: 4rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.1); color: #fff;
+  font-size: 2.2rem; line-height: 1;
+  transition: background 0.3s ease;
+}
+.gate__close:hover { background: rgba(255, 255, 255, 0.22); }
+.gate__panel .eyebrow { color: rgba(255, 255, 255, 0.55); margin-bottom: 1.6rem; }
+.gate__title { font-size: 3.2rem; line-height: 1.12; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1.6rem; }
+.gate__text { font-size: 1.8rem; line-height: 1.5; color: rgba(255, 255, 255, 0.75); margin-bottom: 2.8rem; }
+.gate__form { display: flex; gap: 1rem; }
+.gate__input {
+  flex: 1; min-width: 0; height: 5rem; padding: 0 1.8rem;
+  border-radius: var(--cs-radius);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.35); color: #fff;
+  font: inherit; font-size: 1.8rem;
+  transition: border-color 0.3s ease;
+}
+.gate__input:focus { outline: none; border-color: rgba(255, 255, 255, 0.7); }
+.gate__input::placeholder { color: rgba(255, 255, 255, 0.4); }
+.gate__form .btn { padding: 0 2.4rem; }
+.gate__form .btn[disabled] { opacity: 0.6; pointer-events: none; }
+.gate.is-shaking .gate__form { animation: gate-shake 0.4s ease; }
+@keyframes gate-shake { 0%, 100% { transform: none; } 25% { transform: translateX(-0.6rem); } 75% { transform: translateX(0.6rem); } }
+.gate__error { margin-top: 1.4rem; font-size: 1.5rem; color: #ffb4a8; }
+.gate__error[hidden] { display: none; }
+.gate__contact { display: inline-block; margin-top: 2.4rem; font-size: 1.6rem; color: rgba(255, 255, 255, 0.7); text-decoration: underline; text-underline-offset: 0.3em; }
+.gate__contact:hover { color: #fff; }
+@media (max-width: 600px) {
+  .gate__panel { padding: 4rem 2.8rem 3.2rem; }
+  .gate__title { font-size: 2.6rem; }
+  .gate__form { flex-direction: column; }
+}
 
 /* --------------------------------------------------------------------------
    Buttons

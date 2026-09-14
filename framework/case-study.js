@@ -314,6 +314,7 @@
     { path: "case-studies/ccg/index.html", thumb: "assets/menu/ccg.jpg", title: "Creative Composites Group", kind: "Case study", desc: "Rebuilding the FRP infrastructure leader’s site for the engineers who use it" },
     { path: "case-studies/bbw/index.html", thumb: "assets/menu/bbw.jpg", title: "Bath & Body Works", kind: "Case study", desc: "A corporate home built around People, Product and Planet" },
     { path: "case-studies/smucker/index.html", thumb: "assets/menu/smucker.jpg", title: "The J.M. Smucker Co.", kind: "Case study", desc: "Telling the story of a family company behind 40+ brands" },
+    { path: "case-studies/abbvie/index.html", thumb: "assets/menu/abbvie.jpg", title: "AbbVie Clinical Innovation", kind: "Case study", desc: "One platform for remote capture, 3D visualisation, recruitment and study admin", gate: "abbvie" },
     { path: "archive/mammoth/index.html", thumb: "assets/menu/mammoth.jpg", title: "Certified Unreal · Mammoth Lakes", kind: "Archive", desc: "A 3D map of 17 geological wonders for Mammoth Lakes Tourism" },
     { path: "archive/exal/index.html", thumb: "assets/menu/exal.jpg", title: "Exal Visualizer", kind: "Archive", desc: "A browser configurator that puts the customer’s brand on the bottle" },
     { path: "archive/stryker/index.html", thumb: "assets/menu/stryker.jpg", title: "Stryker Knee", kind: "Archive", desc: "A patient-education iPad app for a dual-radius knee implant" },
@@ -347,6 +348,7 @@
       var a = document.createElement("a");
       a.className = "work-card";
       a.href = siteRoot + item.path;
+      if (item.gate) a.setAttribute("data-gate", item.gate);   // opens the password dialog instead
       a.style.setProperty("--i", i);
       var itemPath = new URL(a.href).pathname.replace(/\/index\.html$/, "/");
       if (itemPath === here) a.classList.add("is-current");
@@ -560,6 +562,126 @@
     }, { passive: true });
   }
 
+  /* ---------------------------------------------- password-gated projects
+     Links carrying data-gate="<slug>" (home tiles, menu cards) open a dialog
+     instead of navigating. The dialog POSTs the password to /unlock (a Netlify
+     edge function, see netlify/edge-functions/gate.ts); on success the server
+     sets the access cookies and the browser follows the original link. A
+     visitor who already holds the cs_<slug>_ok cookie goes straight through.
+     Landing on the home page with ?unlock=<slug> (the edge function redirects
+     direct hits there) opens the dialog for that project immediately. */
+  function initGate() {
+    if (document.body.dataset.csGate) return;
+    document.body.dataset.csGate = "1";
+    var COPY = {
+      eyebrow: "Password required",
+      title: "This project is password protected",
+      text: "Due to the nature of the work for this project it is behind a password. Please contact me for access.",
+      wrong: "That password didn\u2019t work. Try again, or get in touch for access.",
+      offline: "The password couldn\u2019t be checked right now. Please try again in a moment."
+    };
+    var el = null, input, form, error, submit, target = "", slug = "", lastFocus = null;
+
+    function hasAccess(s) { return new RegExp("(?:^|; )cs_" + s + "_ok=1(?:;|$)").test(document.cookie); }
+
+    function build() {
+      el = document.createElement("div");
+      el.className = "gate";
+      el.setAttribute("role", "dialog");
+      el.setAttribute("aria-modal", "true");
+      el.setAttribute("aria-labelledby", "gate-title");
+      el.setAttribute("aria-hidden", "true");
+      el.innerHTML =
+        '<div class="gate__panel">' +
+          '<button class="gate__close" type="button" aria-label="Close">\u00d7</button>' +
+          '<p class="eyebrow">' + COPY.eyebrow + "</p>" +
+          '<h2 class="gate__title" id="gate-title">' + COPY.title + "</h2>" +
+          '<p class="gate__text">' + COPY.text + "</p>" +
+          '<form class="gate__form" novalidate>' +
+            '<label class="visually-hidden" for="gate-password">Password</label>' +
+            '<input class="gate__input" id="gate-password" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Password" required>' +
+            '<button class="btn btn--solid" type="submit">View project</button>' +
+          "</form>" +
+          '<p class="gate__error" role="alert" hidden></p>' +
+          '<a class="gate__contact" href="' + siteRoot + 'contact/index.html">Contact me for access \u2192</a>' +
+        "</div>";
+      document.body.appendChild(el);
+      input = el.querySelector(".gate__input");
+      form = el.querySelector(".gate__form");
+      error = el.querySelector(".gate__error");
+      submit = form.querySelector("button[type=submit]");
+      el.querySelector(".gate__close").addEventListener("click", close);
+      el.addEventListener("click", function (e) { if (e.target === el) close(); });
+      form.addEventListener("submit", onSubmit);
+    }
+
+    function open(s, href) {
+      if (!el) build();
+      slug = s; target = href;
+      lastFocus = document.activeElement;
+      input.value = ""; error.hidden = true; submit.disabled = false;
+      el.setAttribute("aria-hidden", "false");
+      el.classList.add("is-open");
+      document.body.classList.add("gate-open");
+      setTimeout(function () { input.focus(); }, 60);
+      track("cs_gate_open", { page_section: slug, link_url: href });
+    }
+    function close() {
+      if (!el || !el.classList.contains("is-open")) return;
+      el.classList.remove("is-open");
+      el.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("gate-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    function fail(message) {
+      error.textContent = message; error.hidden = false;
+      submit.disabled = false;
+      el.classList.remove("is-shaking"); void el.offsetWidth; el.classList.add("is-shaking");
+      input.focus(); input.select();
+    }
+    function onSubmit(e) {
+      e.preventDefault();
+      var password = input.value;
+      if (!password) { input.focus(); return; }
+      submit.disabled = true; error.hidden = true;
+      var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+      fetch(siteRoot + "unlock", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ project: slug, password: password })
+      }).then(function (res) {
+        if (res.ok) { track("cs_gate_unlock", { page_section: slug, link_url: target }); location.href = target; return; }
+        if (res.status === 401) { track("cs_gate_fail", { page_section: slug }); fail(COPY.wrong); return; }
+        throw new Error("unlock " + res.status);
+      }).catch(function () {
+        // No edge functions on the local http.server preview: let the page through.
+        if (local) { location.href = target; return; }
+        fail(COPY.offline);
+      });
+    }
+
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[data-gate]");
+      if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var s = a.getAttribute("data-gate");
+      if (hasAccess(s)) return;   // cookie already set by a previous unlock
+      e.preventDefault();
+      open(s, a.href);
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+
+    var wanted = new URLSearchParams(location.search).get("unlock");
+    if (wanted && /^[a-z0-9-]+$/.test(wanted)) {
+      var href = siteRoot + "case-studies/" + wanted + "/index.html";
+      if (hasAccess(wanted)) location.replace(href);
+      else {
+        if (history.replaceState) history.replaceState(null, "", location.pathname + location.hash);
+        open(wanted, href);
+      }
+    }
+  }
+
   function init(root) {
     root = root || document;
     initSplit(root);
@@ -573,6 +695,7 @@
     initArchiveCarousel(root);
     initNav();
     initClickTracking();
+    initGate();
   }
 
   window.CaseStudy = { init: init, splitWords: splitWords, track: track };

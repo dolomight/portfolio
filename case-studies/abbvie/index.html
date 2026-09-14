@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KSJ8FXFF');</script>
+  <!-- End Google Tag Manager -->
+  <title>AbbVie Clinical Innovation — One platform for remote capture, 3D visualisation, recruitment and study admin | Sean Cowan</title>
+  <meta name="description" content="Case study: a clinical-innovation platform for AbbVie, designed as one system: a remote capture app, a Unity 3D visualizer, search-driven trial recruitment and an admin console.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sean Cowan">
+  <meta property="og:title" content="AbbVie Clinical Innovation | Sean Cowan">
+  <meta property="og:description" content="Brand, product management, UX, UI and QC for Aptios, AbbVie Clinical Innovation's clinical-study platform. Password protected.">
+  <meta property="og:url" content="https://seancowan.me/case-studies/abbvie/index.html">
+  <meta property="og:image" content="https://seancowan.me/assets/og-wave.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Great Wave off Kanagawa by Hokusai">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../framework/case-study.css?v=20260914a">
+  <style>
+    /* Page-specific overrides — AbbVie / Aptios: the brand's dark brown, beige and orange */
+    :root {
+      --cs-bg: #492728;               /* Aptios dark brown */
+      --cs-accent: #f78f1e;           /* Aptios orange */
+      --cs-heading-accent: #f2d9d0;   /* Aptios beige, for subheads once in view */
+    }
+    main.is-light { --cs-heading-accent: #925c54; }   /* medium brown on the light page-end */
+    main.is-light { --cs-page-end: #faf6f5; }         /* Aptios light grey instead of plain white */
+
+    .browser-frame__view { background: #fff; }
+    .gallery__bg { opacity: 0.35; }
+    .gallery__bg-veil { background: linear-gradient(180deg, rgba(73,39,40,.35), rgba(73,39,40,.8)); }
+
+    /* Brand-book spreads are 16:9 pages */
+    .spreads .media-fill { aspect-ratio: 16 / 9; background: #fff; }
+    .spreads .media-fill img { object-fit: contain; }
+    /* Phone screens: 9:19.5 devices, cropped from the top */
+    .phones { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.6rem; }
+    .phones .media-fill { aspect-ratio: 9 / 19.5; border-radius: 2rem; border: 0.5rem solid #161616; background: #161616; }
+    .phones .media-fill img { object-position: top; }
+    @media (max-width: 767px) { .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } .phones .media-fill { border-radius: 1.4rem; border-width: 0.35rem; } }
+    /* UI components sit on a near-black tile, as they were designed */
+    .components .media-fill { aspect-ratio: 4 / 3; background: #fff; padding: 10%; box-sizing: border-box; }
+    .components .media-fill img { object-fit: contain; }
+    /* Subject touchpoints: portrait documents on the light grey */
+    .documents .media-fill { aspect-ratio: 4 / 5; background: #faf6f5; }
+    .documents .media-fill img { object-fit: contain; }
+    .video-article .media-fill { aspect-ratio: 16 / 9; }
+    .platform-diagram figure.media-fill { aspect-ratio: 1490 / 1080; background: #fff; }
+    .platform-diagram figure.media-fill img { object-fit: contain; padding: 3%; }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSJ8FXFF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="site-nav">
+    <div class="site-max site-nav__inner">
+      <a class="site-nav__brand" href="../../index.html"><span class="brand-mark" aria-hidden="true"><span class="brand-mark__initials">SC</span></span><span class="brand-name">Sean Cowan</span></a>
+      <div class="site-nav__right">
+        <nav class="site-nav__links" aria-label="Primary">
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../contact/index.html">Contact</a>
+        </nav>
+        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <nav class="site-max site-menu__links" aria-label="Menu">
+      <a href="../../index.html#work">Work</a>
+      <a href="../../index.html#about">About</a>
+      <a href="../../contact/index.html">Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <article>
+
+      <!-- ===============================================================
+           01 · HERO — Aptios loop (Vimeo), pinned and fading out
+           =============================================================== -->
+      <section class="media-hero">
+        <div class="media-hero__pin">
+          <figure class="media-hero__media media-fill" data-hero-fade>
+            <div class="video-cover" data-video="vimeo" data-vimeo-id="1226470725" data-ratio="1.778" data-title="AbbVie clinical innovation film">
+              <img class="video-cover__poster" src="../../assets/home/poster-abbvie.jpg" alt="" width="1920" height="1080" fetchpriority="high">
+            </div>
+            <div class="media-fill__overlay"></div>
+          </figure>
+        </div>
+        <div class="media-hero__content">
+          <div class="site-max media-hero__title">
+            <div class="media-hero__crumb" data-reveal>
+              <a href="../../index.html#work">Work</a><span aria-hidden="true">/</span><span>AbbVie Clinical Innovation</span>
+            </div>
+            <h1 class="h1" data-split>AbbVie<br>Clinical Innovation</h1>
+            <dl class="media-hero__meta" data-reveal style="--d:200ms">
+              <div><dt class="visually-hidden">Role</dt><dd><b>Role</b>Product management, UX, UI, brand and QC</dd></div>
+              <div><dt class="visually-hidden">Client</dt><dd><b>Client</b>Allergan Aesthetics R&amp;D, an AbbVie company</dd></div>
+              <div><dt class="visually-hidden">Year</dt><dd><b>Year</b>2021 to present</dd></div>
+              <div><dt class="visually-hidden">Deliverables</dt><dd><b>Deliverables</b>Aptios brand, capture app, admin console, 3D visualizer, recruitment</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           02 · INTRO STATEMENT
+           =============================================================== -->
+      <section class="section section--clip intro">
+        <div class="site-max">
+          <div class="site-grid intro__grid">
+            <p class="intro__text s:col-1-9" data-split>
+              Aptios is the clinical-study platform we named, branded, designed and still ship every month for AbbVie's Clinical Innovation team: a remote capture app, an admin console, a 3D visualizer and the recruitment campaigns that fill the studies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           03 · THE PLATFORM AT A GLANCE — the four parts around the mark
+           =============================================================== -->
+      <article class="section media-article platform-diagram">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-scrollscale>
+            <img src="../../assets/abbvie/platform-diagram.jpg" alt="The four parts of the Aptios platform around the Aptios mark: the Remote Capture App, Clinical Trial Recruitment fed by SEO and SEM, the Unity 3D Visualizer and the Admin Console" loading="lazy" width="1490" height="1080">
+            <figcaption>One brand, four products: capture app, recruitment, 3D visualizer and admin console</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           04 · OVERVIEW
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Overview</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h6 text-accent" data-split>
+              A clinical-trial platform built for aesthetics medicine, not borrowed from pharma.
+            </h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Allergan Aesthetics, an AbbVie company, runs clinical studies where the evidence is a face: before-and-after images and video, captured consistently, across many sites and many weeks. The off-the-shelf trial software on the market was built for molecule and compound trials. It was decentralised, time-consuming to manage, frustrating for sites and subjects, and it slowed everything down.</p>
+              <p>The Clinical Innovation team started with a question: could a subject's own phone capture study images at the same quality as the clinic-grade imaging systems studies relied on? The proof of concept answered yes, at 94% parity, and that answer became a product. Aptios grew into one platform with modules to recruit, train, capture, analyse and administer studies, used by subjects, investigators, clinicians, research coordinators, sponsors, study teams and data monitors.</p>
+              <p>With Fahlgren Mortine I have led the work since 2021 as an extension of AbbVie's product team: naming and building the Aptios brand from scratch, architecting the app and the admin console, defining the road map and every feature that followed, and running UX, UI, brand design and QC through monthly release sprints. Along the way we added a 3D treatment visualizer, eConsent, integrations with machine-learning analysis, and micro-targeted paid media to recruit study subjects.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           05 · OBJECTIVES
+           =============================================================== -->
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>Our objectives</h3>
+          <ul>
+            <li data-scrollfade><div class="objectives__num">01.</div><div class="objectives__text h6">Replace off-the-shelf trial tools with one platform designed around how aesthetics studies actually run.</div></li>
+            <li data-scrollfade><div class="objectives__num">02.</div><div class="objectives__text h6">Let subjects capture study-grade images and video at home, on their own phones, with the app guiding every frame.</div></li>
+            <li data-scrollfade><div class="objectives__num">03.</div><div class="objectives__text h6">Give sponsors, sites and study teams a single admin console for configuration, users, consent, training and data.</div></li>
+            <li data-scrollfade><div class="objectives__num">04.</div><div class="objectives__text h6">Create a brand that lives inside the Allergan Aesthetics system yet feels like a modern, trustworthy piece of technology.</div></li>
+            <li data-scrollfade><div class="objectives__num">05.</div><div class="objectives__text h6">Ship monthly, so the client can reprioritise as studies, regulators and review boards ask for more.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           06 · DISPLAY TITLE + STICKY GALLERY — the platform's products
+           =============================================================== -->
+      <section class="section section--clip" style="z-index:2">
+        <div class="site-max"><h2 class="display" data-split>One platform. Every study.</h2></div>
+      </section>
+      <div class="space-xs"></div>
+
+      <div class="gallery">
+        <div class="gallery__medias">
+          <div class="gallery__sticky">
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/abbvie/admin-dashboard.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/abbvie/admin-dashboard.jpg" alt="Aptios admin console dashboard: overdue tasks, current tasks and current studies with enrolment progress" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/abbvie/app-home.jpg" alt="Aptios capture app home screen with the subject's activity timeline" loading="lazy"></div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/abbvie/poster-facecapture.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--mobile">
+                <div class="browser-frame">
+                  <div class="browser-frame__view"><img src="../../assets/abbvie/fig-app-lighting-passed.jpg" alt="Capture app lighting check: all four quadrants marked Good and the face outline turned green" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/abbvie/config-face-panel.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--fit">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/abbvie/config-face-panel.jpg" alt="Aptios 3D Configurator: a rendered face with the layer and treatment panels open" loading="lazy"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery__item">
+              <img class="gallery__bg" src="../../assets/abbvie/landing-site.jpg" alt="" aria-hidden="true">
+              <div class="gallery__bg-veil"></div>
+              <div class="gallery__shot gallery__shot--pair gallery__shot--fit">
+                <div class="browser-frame">
+                  <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="browser-frame__view"><img src="../../assets/abbvie/landing-site.jpg" alt="Aptios web landing page: A smarter way to conduct clinical studies, with web login and app download" loading="lazy"></div>
+                </div>
+                <div class="gallery__shot-secondary"><img src="../../assets/abbvie/econsent-mobile.jpg" alt="eConsent document on a phone, section 1 of 8" loading="lazy"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="gallery__captions">
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">01</div>
+                <h3 class="h2-c" data-split>Admin Console</h3>
+                <div class="body-normal txt" data-reveal><p>The web hub for every study: configuration, users and sites, training, consent, capture schedules, queries and reports, designed for seven user types.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">02</div>
+                <h3 class="h2-c" data-split>Remote Capture App</h3>
+                <div class="body-normal txt" data-reveal><p>iOS and Android. Subjects and clinicians capture study images and video with live guidance on framing, lighting and expression.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">03</div>
+                <h3 class="h2-c" data-split>3D Visualizer</h3>
+                <div class="body-normal txt" data-reveal><p>A configurable 3D model of the face and body for planning and reviewing treatment areas, in prototype now in Figma and Unity.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__caption">
+            <div class="site-max site-grid">
+              <div class="s:col-9-3 gallery__caption-inner">
+                <div class="eyebrow">04</div>
+                <h3 class="h2-c" data-split>Recruit and consent</h3>
+                <div class="body-normal txt" data-reveal><p>Search and paid-media campaigns bring candidates to screening pages; eConsent takes them through the study document on any device.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           07 · THE BRAND — named, designed and documented from scratch
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The brand</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Aptios: a name, a mark and a system, built from a blank page</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The platform needed an identity that could sit inside the Allergan Aesthetics brand and still stand on its own in an app store, a study site and a sponsor's slide deck. We ran the naming and positioning workshops that produced Aptios, "keenly intelligent and responsive", and its tagline, Empowering Results.</p>
+              <p>The ring in the mark, segmented in the Aptios oranges, became the system's signature: cropped as a design element, used as a progress cue in the app, and extended into module lockups for Recruit, Train, Capture, Analyze and the Admin Console. The brand standards cover voice, nomenclature, typography, colour, accessibility, iconography, UI components and templates, so every team touching Aptios builds the same thing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 spreads">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/abbvie/brand-logo-variations.jpg" alt="Brand standards: logo variations on dark brown, black, beige and white" loading="lazy" width="1800" height="1012">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/abbvie/brand-ring.jpg" alt="Brand standards: Aptios ring crops used as a layout element" loading="lazy" width="1800" height="1012">
+            </figure>
+          </div>
+          <div class="space-xs"></div>
+          <div class="img-grid img-grid--3 spreads">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/abbvie/brand-type.jpg" alt="Brand standards: primary typefaces Beatrice and Neue Haas Unica" loading="lazy" width="1800" height="1012">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/abbvie/brand-colour.jpg" alt="Brand standards: colour values for the primary, secondary, accent and tertiary palettes" loading="lazy" width="1800" height="1012">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:240ms">
+              <img src="../../assets/abbvie/brand-lockup.jpg" alt="Brand standards: module lockup, Aptios Capture" loading="lazy" width="1800" height="1012">
+            </figure>
+          </div>
+          <div class="space-xs"></div>
+          <div class="img-grid img-grid--2 spreads">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/abbvie/brand-app.jpg" alt="Brand standards: mobile app screens, login, reset password and getting started" loading="lazy" width="1800" height="1012">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/abbvie/brand-collateral.jpg" alt="Brand standards: marketing collateral, the Aptios fact sheet" loading="lazy" width="1800" height="1012">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           08 · MEDIA BAND — the Aptios brand film
+           =============================================================== -->
+      <section class="media-band">
+        <figure class="media-fill" style="position:absolute;inset:0">
+          <div class="video-cover" data-video="vimeo" data-vimeo-id="1226470724" data-ratio="1.778" data-title="Aptios brand film">
+            <img class="video-cover__poster" src="../../assets/abbvie/poster-brand-video.jpg" alt="" loading="lazy" width="1920" height="1080">
+          </div>
+          <div class="media-fill__overlay"></div>
+        </figure>
+        <div class="media-band__label"><div class="site-max">Aptios brand film</div></div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           09 · REMOTE CAPTURE APP
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Remote capture app</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Study-grade images from a phone in someone's kitchen</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The app is where the platform earns its keep. A subject's home screen is a timeline of what is due: a video capture, an image capture, a data-capture questionnaire, each with the time it will take and a single Start Session button. Clinicians use an assisted capture mode to run the same sessions in the clinic.</p>
+              <p>Capture itself is guided frame by frame. The camera finds the face, reads the lighting in each quadrant and tells the subject what is too dark or too bright before they can continue, then checks distance and alignment. During the capture a target tracks the nose through the turn so every angle the protocol needs is recorded, and the app asks for a re-take the moment the subject drifts. Consistency is what makes the images usable by the analysis algorithms downstream, so the app never lets a capture proceed until the conditions are right.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article video-article">
+        <div class="site-max">
+          <figure class="media-fill radius-media" data-scrollscale>
+            <div class="video-cover" data-video="vimeo" data-vimeo-id="1226470726" data-ratio="1.778" data-title="Aptios face capture demo">
+              <img class="video-cover__poster" src="../../assets/abbvie/poster-facecapture.jpg" alt="" loading="lazy" width="1920" height="1080">
+            </div>
+            <figcaption>Face capture demo: guided framing, lighting and expression capture on a phone</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid phones">
+            <figure class="media-fill" data-reveal>
+              <img src="../../assets/abbvie/fig-app-adjust-lighting.jpg" alt="Adjust Your Lighting: quadrant checks marking too dark and too bright" loading="lazy" width="720" height="1551">
+            </figure>
+            <figure class="media-fill" data-reveal style="--d:80ms">
+              <img src="../../assets/abbvie/fig-app-lighting-passed.jpg" alt="Lighting passed: all four quadrants Good, green check" loading="lazy" width="720" height="1551">
+            </figure>
+            <figure class="media-fill" data-reveal style="--d:160ms">
+              <img src="../../assets/abbvie/fig-app-align-position.jpg" alt="Align Subject: distance meter and nose target" loading="lazy" width="720" height="1551">
+            </figure>
+            <figure class="media-fill" data-reveal style="--d:240ms">
+              <img src="../../assets/abbvie/fig-app-capturing.jpg" alt="Capturing: the target tracks the nose through the turn" loading="lazy" width="720" height="1551">
+            </figure>
+            <figure class="media-fill" data-reveal style="--d:320ms">
+              <img src="../../assets/abbvie/fig-app-warning.jpg" alt="Re-align with target warning during capture" loading="lazy" width="720" height="1551">
+            </figure>
+            <figure class="media-fill" data-reveal style="--d:400ms">
+              <img src="../../assets/abbvie/fig-app-success.jpg" alt="Capture complete with a green check" loading="lazy" width="720" height="1551">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           10 · ADMIN CONSOLE
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Admin console</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>One console for seven kinds of user, from sponsor to subject</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The admin console is the platform's operating system. Sponsors and study teams configure studies, visits and capture schedules; sites manage their users and subjects; investigators and data monitors work the query and data-change workflows; everyone trains in the Train module and carries a certificate of completion. We defined and designed every one of those journeys, and we keep extending them.</p>
+              <p>eConsent is the clearest example of the platform growing to replace paper. Study teams build consent documents section by section in the console, in as many languages as the study needs, with single-choice and assessment questions inline. Subjects read and sign on their phone or on the web, get a confirmation email with their completed document, and the record is kept within HIPAA security requirements.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article media-scroll" data-media-scroll data-scroll-speed="0.75">
+        <div class="media-scroll__sticky">
+          <div class="site-max">
+            <figure class="media-fill radius-media browser-frame media-scroll__frame">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view">
+                <img src="../../assets/abbvie/admin-econsent-single.jpg" alt="Admin console: eConsent configuration with a single-choice question, the full page" loading="lazy" width="1440" height="3669">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--2 img-grid--wide">
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/10"><img src="../../assets/abbvie/admin-queries.jpg" alt="Admin console: query management table for a study" loading="lazy" width="1440" height="1443"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/10"><img src="../../assets/abbvie/admin-activity-settings.jpg" alt="Admin console: capture activity settings and localisation schedule" loading="lazy" width="1440" height="1234"></div>
+            </figure>
+          </div>
+          <div class="space-xs"></div>
+          <div class="img-grid img-grid--2 img-grid--wide">
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/10"><img src="../../assets/abbvie/admin-econsent-config.jpg" alt="Admin console: eConsent assessment configuration, step 1, scale type and anchor labels" loading="lazy" width="1440" height="1749"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/10"><img src="../../assets/abbvie/admin-econsent-activity.jpg" alt="Subject web view: welcome, activity timeline and the remote capture app download" loading="lazy" width="1280" height="1784"></div>
+            </figure>
+          </div>
+          <div class="space-xs"></div>
+          <div class="img-grid img-grid--3 documents">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/abbvie/econsent-mobile-menu.jpg" alt="eConsent on a phone: section menu with completed sections ticked" loading="lazy" width="720" height="1381">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/abbvie/email-confirmation.jpg" alt="Confirmation email with a link to the completed eConsent document" loading="lazy" width="782" height="1234">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:240ms">
+              <img src="../../assets/abbvie/certificate.jpg" alt="Training certificate of completion" loading="lazy" width="792" height="1025">
+            </figure>
+          </div>
+          <div class="space-xs"></div>
+          <div class="img-grid img-grid--3 components">
+            <figure class="media-fill radius-media" data-reveal>
+              <img src="../../assets/abbvie/ui-buttons.png" alt="UI components: Learn More, Launch Training and Create New buttons" loading="lazy" width="552" height="379">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:120ms">
+              <img src="../../assets/abbvie/ui-secondary-buttons.png" alt="UI components: a Please Note dialog with Cancel and Proceed" loading="lazy" width="968" height="734">
+            </figure>
+            <figure class="media-fill radius-media" data-reveal style="--d:240ms">
+              <img src="../../assets/abbvie/ui-secondary-links.png" alt="UI components: login form with username, password and Forgot Password link" loading="lazy" width="973" height="578">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           11 · 3D VISUALIZER
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>3D visualizer</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>A 3D configurator for planning treatment, from the first Unity model to a working prototype</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>The 3D work began as a Unity model inside the Train module, a rendered head that shows study teams exactly what each expression in a protocol looks like. It has grown into the 3D Configurator, a browser tool for planning and reviewing treatment on a model of the face or the full body. Users pick a model, switch anatomical layers on and off, choose treatment areas and injection points from a listing, and compare the model against a subject's captured photos side by side.</p>
+              <p>The configurator is in prototype now, designed in Figma and built in Unity, and it shares its engine with the algorithm work that connects captured images to machine-learning analysis.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article">
+        <div class="site-max">
+          <figure class="media-fill radius-media browser-frame" data-scrollscale>
+            <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="browser-frame__view" style="aspect-ratio:16/9">
+              <img src="../../assets/abbvie/config-compare.jpg" alt="Aptios 3D Configurator: the model beside a subject's captured photos with capture details" loading="lazy" width="1600" height="900">
+            </div>
+            <figcaption>3D Configurator prototype: the model compared with a subject's captured photos</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-xs"></div>
+
+      <section class="section">
+        <div class="site-max">
+          <div class="img-grid img-grid--3 img-grid--wide">
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/9"><img src="../../assets/abbvie/config-treatment-list.jpg" alt="3D Configurator: treatment areas listed beside the model" loading="lazy" width="1600" height="900"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto; --d:120ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/9"><img src="../../assets/abbvie/config-anatomy.jpg" alt="3D Configurator: muscular layer switched on" loading="lazy" width="1600" height="900"></div>
+            </figure>
+            <figure class="media-fill radius-media browser-frame" data-reveal style="aspect-ratio:auto; --d:240ms">
+              <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="browser-frame__view" style="aspect-ratio:16/9"><img src="../../assets/abbvie/config-full-body.jpg" alt="3D Configurator: full-body model" loading="lazy" width="1600" height="900"></div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           12 · RECRUITMENT AND PAID MEDIA
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>Recruitment</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>Filling studies with search, paid media and influencers</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>A study only produces evidence if the right subjects enrol, so recruitment became part of the platform rather than a separate agency brief. We built branded landing pages with screening flows that qualify candidates on criteria such as skin type before they ever contact a site, then drove micro-targeted search, paid social and influencer campaigns into them, study by study and market by market.</p>
+              <p>Each campaign is measured through to enrolment, which lets sponsors see cost per qualified subject alongside the study's other operating data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-xs"></div>
+
+      <article class="section media-article">
+        <div class="site-max">
+          <figure class="media-fill radius-media browser-frame" data-scrollscale>
+            <div class="browser-frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="browser-frame__view" style="aspect-ratio:1375/846">
+              <img src="../../assets/abbvie/landing-site.jpg" alt="Aptios web landing page: A smarter way to conduct clinical studies, web login, support and app download" loading="lazy" width="1375" height="846">
+            </div>
+            <figcaption>Aptios web entry point for study teams, sites and subjects</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           13 · HOW WE WORK — monthly sprints
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>How we work</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>An extension of the team, shipping every month since the proof of concept</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>Aptios is a GxP-compliant product that touches subject data, so every release carries architecture review, security and penetration testing, and SDLC documentation. We run it as a programme, not a project: monthly sprints that turn the road map into releases across the admin console and the app, with the client free to reprioritise as new studies come on.</p>
+              <p>Around the product we cover what a small internal team cannot: user guides for studies, sites and subjects; training for the platform and each module; branded templates and marketing materials; and program management across AbbVie's infrastructure, review boards and integration partners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <section class="section objectives">
+        <div class="site-max">
+          <h3 class="eyebrow" data-reveal>What we provide</h3>
+          <ul>
+            <li data-scrollfade><div class="objectives__num">01.</div><div class="objectives__text h6">Product management: road map, feature definition, release planning and prioritisation with the Clinical Innovation team.</div></li>
+            <li data-scrollfade><div class="objectives__num">02.</div><div class="objectives__text h6">User experience: architecture, flows and screen inventories for the app and the console, across all seven user types.</div></li>
+            <li data-scrollfade><div class="objectives__num">03.</div><div class="objectives__text h6">UI and brand design: the Aptios identity, design system, components, module branding, iconography and templates.</div></li>
+            <li data-scrollfade><div class="objectives__num">04.</div><div class="objectives__text h6">QC and QA: release testing against the specification, with the documentation a regulated product requires.</div></li>
+            <li data-scrollfade><div class="objectives__num">05.</div><div class="objectives__text h6">Growth: recruitment landing pages, paid media and influencer campaigns that fill studies.</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           14 · QUOTE — the brand vision
+           =============================================================== -->
+      <section class="section quote">
+        <div class="site-max site-grid">
+          <div class="s:col-1-9" data-reveal>
+            <svg class="quote__mark" viewBox="0 0 39 32" aria-hidden="true"><path d="M0 32V19.2C0 8.6 6.4 2 17 0l1.8 4.6C12.4 6.4 9.2 10.2 9 15h8v17H0Zm22 0V19.2C22 8.6 28.4 2 39 0l1.8 4.6c-6.4 1.8-9.6 5.6-9.8 10.4h8v17H22Z"/></svg>
+            <blockquote class="h4" data-split>“To revolutionize the way clinical studies are conducted, advancing aesthetics medicine further and faster.”</blockquote>
+            <cite class="h4">— The Aptios vision, from the brand standards</cite>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-large"></div>
+
+      <!-- ===============================================================
+           15 · THE IMPACT + STATS
+           =============================================================== -->
+      <section class="section section--clip text-section">
+        <div class="site-max site-grid">
+          <div class="s:col-1-6">
+            <p class="eyebrow" data-reveal>The impact</p>
+          </div>
+          <div class="s:col-7-5 text-section__content">
+            <h2 class="h4 text-accent" data-split>From a proof of concept to the platform studies ask for</h2>
+            <div class="txt body-large text-light" data-reveal>
+              <p>In three years Aptios went from a single question about phone cameras to a product in full development, and it has passed every step of AbbVie's internal review process along the way. Adoption is spreading as more studies see what a purpose-built platform does for their timelines, and the business case projects multi-million-dollar annual savings against the tools it replaces. Groups beyond R&amp;D, in commercial operations and consumer brands, have asked for it too.</p>
+              <p>The relationship has outlasted three other vendors on the programme. That is the real outcome: a client that trusts one team to define, design, build and support its product, month after month.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section stats">
+        <div class="site-max">
+          <div class="stats__track">
+            <article class="stat" data-reveal>
+              <div class="stat__value h3"><span data-count="94" data-suffix="%">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Image parity</h2><p class="body-normal text-dim">Proof-of-concept capture on a phone matched clinic-grade imaging systems at 94%, the result that turned an idea into a product.</p></div>
+            </article>
+            <article class="stat" data-reveal style="--d:120ms">
+              <div class="stat__value h3"><span data-count="12">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Releases a year</h2><p class="body-normal text-dim">Monthly sprints across the app and the admin console since the proof of concept, each one reviewed, tested and documented.</p></div>
+            </article>
+            <article class="stat" data-reveal style="--d:240ms">
+              <div class="stat__value h3"><span data-count="7">0</span></div>
+              <div class="stat__content"><h2 class="body-large">User types</h2><p class="body-normal text-dim">Subjects, investigators, clinicians, research coordinators, sponsors, study teams and data monitors, each with their own journeys.</p></div>
+            </article>
+            <article class="stat" data-reveal style="--d:360ms">
+              <div class="stat__value h3"><span data-count="5">0</span></div>
+              <div class="stat__content"><h2 class="body-large">Modules</h2><p class="body-normal text-dim">Recruit, Train, Capture, Analyze and the Admin Console, one brand and one design system across all of them.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-large"></div>
+
+    </article>
+
+    <div class="page-end" aria-hidden="true"></div>
+  </main>
+
+  <footer class="site-footer site-footer--media" id="contact">
+    <figure class="site-footer__media media-fill">
+      <div class="video-cover" data-video="vimeo" data-vimeo-id="1226470725" data-ratio="1.778" data-title="AbbVie clinical innovation film">
+        <img class="video-cover__poster" src="../../assets/home/poster-abbvie.jpg" alt="" loading="lazy">
+      </div>
+    </figure>
+    <div class="site-footer__inner">
+      <div class="site-max">
+        <div class="site-footer__cta">
+          <a class="btn btn--solid" href="../../contact/index.html">Contact</a>
+        </div>
+        <div class="site-footer__bottom">
+          <span>© 2026 Sean Cowan</span>
+          <a href="#top">Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../framework/case-study.js?v=20260914a" defer></script>
+</body>
+</html>

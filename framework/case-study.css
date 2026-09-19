@@ -420,6 +420,32 @@ a.site-nav__brand:hover .brand-mark::before { transform: scale(1.08); }
 .menu-open .site-nav__burger i:first-child { top: 0.4rem; transform: rotate(45deg); }
 .menu-open .site-nav__burger i:last-child { bottom: 0.4rem; transform: rotate(-45deg); }
 
+/* Labelled pill (fantasy.co): at the top of the page the pill is wider and
+   reads "Menu"; once the page scrolls (or the menu opens) the word fades out,
+   the pill narrows to its usual width and the hamburger fades in. Scrolling
+   back to the top reverses it. Opt in with .site-nav__toggle--label on the
+   button plus a .site-nav__label span inside it. */
+.site-nav__toggle--label {
+  width: 9.2rem;
+  transition: opacity 0.35s ease, transform 0.5s var(--cs-ease), background-color 0.4s ease, width 0.65s var(--cs-ease);
+}
+.site-nav__label {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; white-space: nowrap;
+  transition: opacity 0.4s ease 0.25s;
+}
+.site-nav__toggle--label .site-nav__burger { opacity: 0; transition: opacity 0.2s ease; }
+.site-nav.is-scrolled .site-nav__toggle--label,
+.menu-open .site-nav__toggle--label { width: 5.6rem; }
+.site-nav.is-scrolled .site-nav__label,
+.menu-open .site-nav__label { opacity: 0; transition: opacity 0.25s ease; }
+.site-nav.is-scrolled .site-nav__toggle--label .site-nav__burger,
+.menu-open .site-nav__toggle--label .site-nav__burger { opacity: 1; transition: opacity 0.4s ease 0.3s; }
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__toggle--label, .site-nav__label, .site-nav__toggle--label .site-nav__burger { transition: none; }
+}
+
 .site-nav.is-light { color: #002a4d; }
 .site-nav.is-light .site-nav__toggle { background: rgba(0, 42, 77, 0.1); }
 .site-nav.is-light .site-nav__toggle:hover { background: rgba(0, 42, 77, 0.18); }

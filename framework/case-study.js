@@ -358,8 +358,12 @@
     { path: "archive/ticktracker/index.html", thumb: "assets/menu/ticktracker.jpg", title: "TickTracker", kind: "Archive", desc: "Brand, UX and UI for a crowdsourced tick tracking app" },
     { path: "archive/cm1000/index.html", thumb: "assets/menu/cm1000.jpg", title: "CM1000 Sales Tool", kind: "Archive", desc: "A live-data cost calculator for a new marine pump" },
     { path: "archive/nationwide/index.html", thumb: "assets/menu/nationwide.jpg", title: "Nationwide Life", kind: "Archive", desc: "A 360° video and browser VR pilot for life insurance" },
+    { path: "archive/yieldcurve/index.html", thumb: "assets/menu/yieldcurve.jpg", title: "Nationwide Financial Yield Curve Index AR", kind: "Archive", desc: "A white paper on the yield curve, turned into a city on your desk" },
     { path: "archive/ge/index.html", thumb: "assets/menu/ge.jpg", title: "GE Healthcare", kind: "Archive", desc: "Putting everyday and medical radiation exposure on one scale" },
-    { path: "archive/tradeshow/index.html", thumb: "assets/menu/tradeshow.jpg", title: "Trade Show Experiences", kind: "Archive", desc: "Kiosks, virtual booths and sales aids for four brands" },
+    { path: "archive/patientbuilder/index.html", thumb: "assets/menu/patientbuilder.jpg", title: "Interactive Patient Builder", kind: "Archive", desc: "A touch screen where oncologists build a patient and see the therapy at work" },
+    { path: "archive/disney/index.html", thumb: "assets/menu/disney.jpg", title: "Disney Diabetes Kiosk", kind: "Archive", desc: "A 3D storybook touch screen for families facing type 1 diabetes" },
+    { path: "archive/tradeshow/index.html", thumb: "assets/menu/tradeshow.jpg", title: "Trade Show Experiences", kind: "Archive", desc: "Kiosks, virtual booths and sales aids for seven brands" },
+    { path: "archive/crown/index.html", thumb: "assets/menu/crown.jpg", title: "Crown Virtual Trade Show", kind: "Archive", desc: "A 3D trade show booth in the browser, open all year" },
     { path: "archive/qn2a/index.html", thumb: "assets/menu/qn2a.jpg", title: "QN2A · Stand Up To Cancer", kind: "Archive", desc: "Where cancer patients shared the questions they wish they’d asked" }
   ];
   var scriptSrc = (document.currentScript && document.currentScript.src) || "";

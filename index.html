@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="framework/case-study.css?v=20260914c">
+  <link rel="stylesheet" href="framework/case-study.css?v=20260919a">
   <style>
     /* Charcoal palette for this page (the framework default is navy) */
     :root { --cs-bg: #161616; --cs-charcoal: #161616; --cs-heading-accent: #9fb4c8; }
@@ -241,7 +241,8 @@
           <a href="#about">About</a>
           <a href="contact/index.html">Contact</a>
         </nav>
-        <button class="site-nav__toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+        <button class="site-nav__toggle site-nav__toggle--label" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">
+          <span class="site-nav__label" aria-hidden="true">Menu</span>
           <span class="site-nav__burger" aria-hidden="true"><i></i><i></i></span>
         </button>
       </div>
@@ -496,14 +497,52 @@
             <h3 class="body-large">Nationwide Life</h3>
             <p class="text-dim">A split-tested 360° video and browser VR pilot for life insurance conversion.</p>
           </a>
-          <a class="loose-tile loose-tile--square" href="archive/tradeshow/index.html" style="--c: 8 / span 4; --mt: 6rem" data-reveal>
+          <a class="loose-tile" href="archive/yieldcurve/index.html" style="--c: 8 / span 5; --mt: 6rem" data-reveal>
+            <figure class="media-fill radius-media" data-scrollscale>
+              <div class="video-cover" data-video="vimeo" data-vimeo-id="510277827" data-ratio="1.778" data-title="Nationwide Financial Yield Curve Index AR">
+                <img class="video-cover__poster" src="assets/archive/thumb-yieldcurve.jpg" alt="" loading="lazy" width="1000" height="625">
+              </div>
+            </figure>
+            <h3 class="body-large">Nationwide Financial Yield Curve Index AR</h3>
+            <p class="text-dim">An augmented reality companion that turned a white paper on the yield curve into a city on your desk.</p>
+          </a>
+
+          <a class="loose-tile" href="archive/crown/index.html" style="--c: 1 / span 5; --mt: 2rem" data-reveal>
+            <figure class="media-fill radius-media" data-scrollscale>
+              <div class="video-cover" data-video="vimeo" data-vimeo-id="344577268" data-ratio="1.362" data-title="Crown virtual trade show">
+                <img class="video-cover__poster" src="assets/archive/thumb-crown.jpg" alt="" loading="lazy" width="1000" height="625">
+              </div>
+            </figure>
+            <h3 class="body-large">Crown Virtual Trade Show</h3>
+            <p class="text-dim">A browser-based 3D trade show booth for Crown Equipment, open long after the show floor closed.</p>
+          </a>
+          <a class="loose-tile loose-tile--square" href="archive/tradeshow/index.html" style="--c: 8 / span 4; --mt: 8rem" data-reveal>
             <figure class="media-fill radius-media" data-scrollscale>
               <div class="video-cover" data-video="vimeo" data-vimeo-id="86454785" data-ratio="1.791" data-title="Emerson trade show kiosk">
                 <img class="video-cover__poster" src="assets/archive/thumb-tradeshow.jpg" alt="" loading="lazy" width="1000" height="625">
               </div>
             </figure>
             <h3 class="body-large">Trade Show Experiences</h3>
-            <p class="text-dim">Kiosks, virtual booths and lead-scoring sales aids for Emerson, Avery Dennison, Cooper Tire and Colfax.</p>
+            <p class="text-dim">Kiosks, virtual booths and lead-scoring sales aids for Emerson, Avery Dennison, Cooper Tire, Colfax, Ansell, Lilly Oncology and Owens Corning.</p>
+          </a>
+
+          <a class="loose-tile" href="archive/patientbuilder/index.html" style="--c: 1 / span 5" data-reveal>
+            <figure class="media-fill radius-media" data-scrollscale>
+              <div class="video-cover" data-video="vimeo" data-vimeo-id="42672556" data-ratio="1.778" data-title="Interactive Patient Builder">
+                <img class="video-cover__poster" src="assets/archive/thumb-patientbuilder.jpg" alt="" loading="lazy" width="1000" height="625">
+              </div>
+            </figure>
+            <h3 class="body-large">Interactive Patient Builder</h3>
+            <p class="text-dim">A Lilly Oncology touch screen where oncologists build a patient and see the therapy at work, later rolled out to sales teams worldwide.</p>
+          </a>
+          <a class="loose-tile" href="archive/disney/index.html" style="--c: 8 / span 5; --mt: 6rem" data-reveal>
+            <figure class="media-fill radius-media" data-scrollscale>
+              <div class="video-cover" data-video="vimeo" data-vimeo-id="67778290" data-ratio="1.778" data-title="Disney Diabetes Kiosk">
+                <img class="video-cover__poster" src="assets/archive/thumb-disney.jpg" alt="" loading="lazy" width="1000" height="625">
+              </div>
+            </figure>
+            <h3 class="body-large">Disney Diabetes Kiosk</h3>
+            <p class="text-dim">A 3D storybook touch screen made with Lilly Diabetes and Disney for families facing type 1 diabetes.</p>
           </a>
 
           <a class="loose-tile" href="archive/qn2a/index.html" style="--c: 4 / span 5" data-reveal>
@@ -532,7 +571,7 @@
     </div>
   </footer>
 
-  <script src="framework/case-study.js?v=20260914c" defer></script>
+  <script src="framework/case-study.js?v=20260919d" defer></script>
   <script>
   (function () {
     var panels = Array.prototype.slice.call(document.querySelectorAll(".case-panel"));

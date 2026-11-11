@@ -255,14 +255,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .radius-media { border-radius: var(--cs-radius); }
 
 /* Vimeo / iframe "cover" — JS sizes the iframe to cover the box at 16:9 */
-.video-cover { position: absolute; inset: 0; overflow: hidden; }
+/* --video-x: horizontal focal point, like object-position's X (default 50% =
+   centred). The iframe is anchored so its X% point sits at the box's X%
+   point; the poster uses the same value so the two never disagree. */
+.video-cover { position: absolute; inset: 0; overflow: hidden; --video-x: 50%; }
 .video-cover iframe,
 .video-cover video {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%; left: var(--video-x);
   width: 100%; height: 100%;
   max-width: none; max-height: none;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-1 * var(--video-x)), -50%);
   border: 0;
   pointer-events: none;
   opacity: 0;
@@ -274,6 +277,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: var(--video-x) center;
 }
 /* Sound toggle for films with audio (data-sound) — frosted pill, bottom right */
 .video-cover__sound {
